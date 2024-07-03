@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risy DAO - Rise with RISY</title>
+    <link rel="stylesheet" href="assets/lib/css/tailwind.min.css">
+    <link rel="stylesheet" href="assets/lib/css/animate.min.css"/>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <script src="assets/lib/js/alpine.min.js" defer></script>
+    <script src="assets/lib/js/font-awesome.min.js"></script>
+    <script src="assets/lib/js/anime.min.js"></script>
+    <script src="assets/data.js"></script>
+    <script src="assets/script.js"></script>
+</head>
+<body class="bg-gray-900 text-white" x-data="risyData()">
+    <header class="fixed w-full z-10 bg-gray-900 bg-opacity-90 backdrop-blur-md">
+        <nav class="container mx-auto px-6 py-3" x-data="{ open: false, languageOpen: false }">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold text-gradient animate__animated animate__fadeIn whitespace-nowrap"><img src="img/logo.png" alt="Risy DAO Logo" class="inline-block w-10 h-10 mx-4 shadow-lg">Risy DAO</a>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="#about" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.about"></a>
+                    <a href="#features" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.features"></a>
+                    <a href="#tokenomics" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.tokenomics"></a>
+                    <a href="#roadmap" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.roadmap"></a>
+                    <a href="#faq" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.faq"></a>
+                    <div class="relative" @click.away="languageOpen = false">
+                        <button @click="languageOpen = !languageOpen" class="flex items-center space-x-1 hover:text-indigo-400 transition">
+                            <span x-text="language.toUpperCase()"></span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div x-show="languageOpen" class="absolute right-0 mt-2 py-2 w-24 bg-white rounded-md shadow-xl z-20">
+                            <a href="#" @click.prevent="switchLanguage('en'); languageOpen = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white" data-translate="languages.en"></a>
+                            <a href="#" @click.prevent="switchLanguage('tr'); languageOpen = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white" data-translate="languages.tr"></a>
+                        </div>
+                    </div>
+                </div>
+                <button @click="open = !open" class="md:hidden">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div x-show="open" class="md:hidden mt-3 space-y-2">
+                <a href="#about" class="block hover:text-indigo-400 transition" data-translate="nav.about"></a>
+                <a href="#features" class="block hover:text-indigo-400 transition" data-translate="nav.features"></a>
+                <a href="#tokenomics" class="block hover:text-indigo-400 transition" data-translate="nav.tokenomics"></a>
+                <a href="#roadmap" class="block hover:text-indigo-400 transition" data-translate="nav.roadmap"></a>
+                <a href="#faq" class="block hover:text-indigo-400 transition" data-translate="nav.faq"></a>
+                <a href="#resources" class="block hover:text-indigo-400 transition" data-translate="nav.resources"></a>
+                <hr>
+                <div class="flex space-x-2 mt-2">
+                    <button @click="switchLanguage('en')" :class="{'font-bold': language === 'en'}" data-translate="languages.en"></button>
+                    <button @click="switchLanguage('tr')" :class="{'font-bold': language === 'tr'}" data-translate="languages.tr"></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="min-h-screen flex items-center justify-center gradient-bg">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+                        <h1 class="text-5xl md:text-6xl font-bold mb-4 animate__animated animate__fadeInDown" data-translate="hero.title"></h1>
+                        <p class="text-xl md:text-2xl mb-4 animate__animated animate__fadeInUp animate__delay-1s" data-translate="hero.subtitle"></p>
+                        <p class="text-lg mb-12 animate__animated animate__fadeInUp animate__delay-2s" data-translate="hero.description"></p>
+                        <a :href="swapUrl + contractAddress" target="_blank" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-indigo-100 transition animate__animated animate__fadeInUp animate__delay-3s cta-button" data-translate="hero.cta"></a>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center md:justify-end animate__animated animate__fadeInRight animate__delay-3s">
+                        <img src="img/risy_hero.svg" alt="Risy DAO Concept" class="md:w-3/5 w-3/4 rounded-lg m-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="links" class="important-links w-full py-6 bg-gray-800">
+            <div class="grid md:grid-cols-2 gap-8 m-6">
+                <div>
+                    <iframe width="100%" height="600" frameBorder="0" scrolling="no" :src="'https://coinbrain.com/embed/poly-'+contractAddress+'?theme=custom&accent=6366f1&background=1f2937&padding=16&chart=1&trades=1&ratio=0.75'"></iframe>
+                </div>
+                <div>
+                    <iframe width=100% height="600" frameBorder="0" scrolling="no" :src="'https://coinbrain.com/coins/poly-'+contractAddress+'/lite?theme=custom&accent=6366f1&background=1f2937&padding=16&currency=USD'"></iframe>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 m-6">
+                <div>
+                    <iframe width=100% height="425" frameBorder="0" scrolling="no" :src="'https://coinbrain.com/embed/trade?theme=custom&accent=6366f1&background=1f2937&padding=16&summary=0&chainId=137&chainLocked=1&inputAddress=0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE&outputAddress='+contractAddress+'&outputLocked=1'"></iframe>
+                </div>
+                <div>
+                    <iframe width="100%" height="120" frameBorder="0" scrolling="no" :src="'https://coinbrain.com/embed/converter/poly-'+contractAddress+'/usd?theme=custom&accent=6366f1&background=1f2937&padding=16&layout=horizontal'"></iframe>
+                    <div class="w-full p-6 flex flex-col justify-center items-center space-y-2 md:text-center bg-gray-800">
+                        <a :href="socialLinks.github" target="_blank" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                            <i class="fab fa-github mr-2"></i><span data-translate="resources.links.sourceCode"></span>
+                        </a>
+                        <a :href="scanUrl + contractAddress" target="_blank" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                            <i class="fas fa-file-contract mr-2"></i><span data-translate="resources.links.contract"></span>
+                        </a>
+                        <a :href="whitepaperUrl" target="_blank" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                            <i class="fas fa-file-pdf mr-2"></i><span data-translate="resources.links.whitepaper"></span>
+                        </a>
+                        <a :href="dexScreenerUrl + contractAddress" target="_blank" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                            <i class="fas fa-chart-line mr-2"></i><span data-translate="resources.links.dexScreener"></span>
+                        </a>
+                        <a :href="swapUrl + contractAddress" target="_blank" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                            <i class="fas fa-exchange-alt mr-2"></i><span data-translate="resources.links.swap"></span>
+                        </a>
+                        <a :href="tallyUrl" target="_blank" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                            <i class="fas fa-users mr-2"></i><span data-translate="resources.links.goToDao"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="about.title"></h2>
+                <p class="font-semibold text-center mb-12" data-translate="about.tagline"></p>
+                <div class="items-center">
+                    <div class="animate__animated animate__fadeInLeft">
+                        <p class="text-lg mb-6" data-translate="about.description1"></p>
+                        <p class="text-lg" data-translate="about.description2"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="nav.features"></h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <template x-for="feature in features" :key="feature.title">
+                        <div class="bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn feature-card">
+                            <i :class="['fas', feature.icon, 'text-4xl', 'text-indigo-500', 'mb-4']"></i>
+                            <h3 class="text-xl font-semibold mb-2" x-text="feature.title"></h3>
+                            <p x-text="feature.description"></p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <section id="tokenomics" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="tokenomics.title"></h2>
+                <p class="font-semibold text-center mb-12" data-translate="tokenomics.chartTitle"></p>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="animate__animated animate__fadeInLeft">
+                        <ul class="space-y-4">
+                            <template x-for="item in tokenomics" :key="item">
+                                <li class="animate__animated animate__fadeInLeft">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    <span x-text="item"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                    <div class="relative animate__animated animate__fadeInRight">
+                        <a href="img/risy_dao_tests.png" target="_blank"><img src="img/risy_dao_tests.png" alt="Risy DAO Tests" class="w-full rounded-lg m-auto"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="roadmap.title"></h2>
+                <div class="relative">
+                    <div class="absolute h-full w-1 bg-indigo-500 left-1/2 transform -translate-x-1/2"></div>
+                    <div class="space-y-12">
+                        <template x-for="(item, index) in roadmapItems" :key="item.quarter">
+                            <div class="relative animate__animated animate__fadeIn roadmap-item">
+                                <div :class="['bg-gray-800 p-6 rounded-lg shadow-lg md:w-1/2', index % 2 === 0 ? 'md:ml-auto md:-mr-12' : 'md:mr-auto md:-ml-12']">
+                                    <h3 class="text-xl font-semibold mb-2" x-text="item.quarter"></h3>
+                                    <ul class="list-disc list-inside">
+                                        <template x-for="subItem in item.items" :key="subItem">
+                                            <li x-text="subItem"></li>
+                                        </template>
+                                    </ul>
+                                </div>
+                                <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-indigo-500 rounded-full"></div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faq" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="faq.title"></h2>
+                <div class="space-y-4">
+                    <template x-for="(item, index) in getTranslation('faq.items')" :key="index">
+                        <div class="bg-gray-900 rounded-lg overflow-hidden">
+                            <button 
+                                class="w-full py-4 px-6 text-left font-semibold flex justify-between items-center focus:outline-none"
+                                @click="item.isOpen = !item.isOpen"
+                                :aria-expanded="item.isOpen"
+                            >
+                                <span x-text="item.question"></span>
+                                <svg 
+                                    class="w-6 h-6 transition-transform duration-200" 
+                                    :class="{ 'transform rotate-180': item.isOpen }"
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    viewBox="0 0 24 24" 
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div 
+                                x-show="item.isOpen" 
+                                x-transition:enter="transition ease-out duration-200" 
+                                x-transition:enter-start="opacity-0 transform scale-y-90" 
+                                x-transition:enter-end="opacity-100 transform scale-y-100" 
+                                x-transition:leave="transition ease-in duration-100" 
+                                x-transition:leave-start="opacity-100 transform scale-y-100" 
+                                x-transition:leave-end="opacity-0 transform scale-y-90" 
+                                class="px-6 pb-4"
+                            >
+                                <p x-text="item.answer"></p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="resources.title"></h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeInLeft">
+                        <h3 class="text-2xl font-semibold mb-4" data-translate="resources.links.title"></h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a :href="socialLinks.github" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition">
+                                    <i class="fab fa-github mr-2"></i><span data-translate="resources.links.sourceCode"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a :href="scanUrl + contractAddress" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition">
+                                    <i class="fas fa-file-contract mr-2"></i><span data-translate="resources.links.contract"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a :href="whitepaperUrl" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition">
+                                    <i class="fas fa-file-pdf mr-2"></i><span data-translate="resources.links.whitepaper"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a :href="dexScreenerUrl + contractAddress" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition">
+                                    <i class="fas fa-chart-line mr-2"></i><span data-translate="resources.links.dexScreener"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a :href="swapUrl + contractAddress" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition">
+                                    <i class="fas fa-exchange-alt mr-2"></i><span data-translate="resources.links.swap"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a :href="tallyUrl" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition">
+                                    <i class="fas fa-users mr-2"></i><span data-translate="resources.links.goToDao"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeInRight">
+                        <h3 class="text-2xl font-semibold mb-4" data-translate="resources.getStarted.title"></h3>
+                        <ol class="list-decimal list-inside space-y-2">
+                            <template x-for="(step, index) in getTranslation('resources.getStarted.steps')" :key="index">
+                                <li x-text="step"></li>
+                            </template>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Risy DAO</h3>
+                    <p class="text-gray-400" data-translate="footer.description"></p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="footer.quickLinks"></h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition" data-translate="nav.about"></a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition" data-translate="nav.features"></a></li>
+                        <li><a href="#tokenomics" class="text-gray-400 hover:text-white transition" data-translate="nav.tokenomics"></a></li>
+                        <li><a href="#roadmap" class="text-gray-400 hover:text-white transition" data-translate="nav.roadmap"></a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition" data-translate="nav.faq"></a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="footer.usefulLinks"></h3>
+                    <ul class="space-y-2">
+                        <li><a :href="pressKitUrl" class="text-gray-400 hover:text-white transition">Press Kit</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="footer.connect"></h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a :href="'mailto:' + contactEmail" class="text-gray-400 hover:text-white transition">
+                                <i class="fas fa-envelope mr-2"></i><span x-text="contactEmail"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a :href="socialLinks.twitter" class="text-gray-400 hover:text-white transition">
+                                <i class="fab fa-twitter mr-2"></i>Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a :href="socialLinks.telegram" class="text-gray-400 hover:text-white transition">
+                                <i class="fab fa-telegram mr-2"></i>Telegram
+                            </a>
+                        </li>
+                        <li>
+                            <a :href="socialLinks.discord" class="text-gray-400 hover:text-white transition">
+                                <i class="fab fa-discord mr-2"></i>Discord
+                            </a>
+                        </li>
+                        <li>
+                            <a :href="socialLinks.github" class="text-gray-400 hover:text-white transition">
+                                <i class="fab fa-github mr-2"></i>GitHub
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p data-translate="footer.copyright"></p>
+                <div class="mt-4 flex justify-center space-x-4">
+                    <a :href="socialLinks.twitter" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a :href="socialLinks.telegram" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
+                    <a :href="socialLinks.discord" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord"></i></a>
+                    <a :href="socialLinks.github" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
