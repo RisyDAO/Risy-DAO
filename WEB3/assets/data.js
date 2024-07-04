@@ -9,7 +9,7 @@ var data = {
       "pressKitUrl": "https://risy.io/press-kit.zip",
       "socialLinks": {
         "twitter": "https://twitter.com/RisyDAO",
-        "telegram": "https://t.me/RisyDAO",
+        "telegram": "https://t.me/RisyDAOCommunity",
         "discord": "https://discord.gg/JYz5EF9h5e",
         "github": "https://github.com/RisyDAO"
       },
