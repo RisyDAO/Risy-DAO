@@ -42,6 +42,10 @@ const config: HardhatUserConfig = {
       url: "https://polygon-rpc.com",
       accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
+    polygonOKX: {
+      url: "https://polygon-rpc.com",
+      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    },
     goerli: {
       url: `https://goerli.infura.io/v3/${process.env.INFURA_PROJECT_ID}`,
       accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
@@ -55,8 +59,19 @@ const config: HardhatUserConfig = {
     apiKey: {
       polygonAmoy: process.env.POLYGONSCAN_API_KEY || "",
       polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
-      polygon: process.env.POLYGONSCAN_API_KEY || ""
+      polygon: process.env.POLYGONSCAN_API_KEY || "",
+      polygonOKX: process.env.OKLINK_API_KEY || ""
     },
+    customChains: [
+      {
+          network: "polygonOKX",
+          chainId: 137,
+          urls: {
+              apiURL: "https://www.oklink.com/api/v5/explorer/contract/verify-source-code-plugin/POLYGON",
+              browserURL: "https://www.oklink.com/polygon"
+          }
+      }
+    ]
   },
   sourcify: {
     enabled: true
