@@ -5,7 +5,7 @@ var data = {
       "scanUrl": "https://polygonscan.com/token/",
       "dexScreenerUrl": "https://dexscreener.com/polygon/",
       "swapUrl": "https://quickswap.exchange/#/swap?currency0=ETH&swapIndex=1&currency1=",
-      "tallyUrl": "https://www.tally.xyz/gov/risydao",
+      "tallyUrl": "https://www.tally.xyz/gov/risy-dao",
       "pressKitUrl": "https://risy.io/press-kit.zip",
       "socialLinks": {
         "twitter": "https://twitter.com/RisyDAO",
