@@ -6,7 +6,7 @@ var data = {
       "dexScreenerUrl": "https://dexscreener.com/polygon/",
       "swapUrl": "https://quickswap.exchange/#/swap?currency0=ETH&swapIndex=1&currency1=",
       "tallyUrl": "https://www.tally.xyz/gov/risydao",
-      "pressKitUrl": "https://risy.io/press-kit.zip",
+      "pressKitUrl": "press-kit.zip",
       "socialLinks": {
         "twitter": "https://twitter.com/RisyDAO",
         "telegram": "https://t.me/RisyDAOCommunity",
@@ -18,7 +18,7 @@ var data = {
   },
   "en": {
     "config": {
-      "whitepaperUrl": "https://risy.io/files/Risy DAO Whitepaper.pdf"
+      "whitepaperUrl": "files/Risy DAO Whitepaper.pdf"
     },
     "nav": {
       "about": "About",
@@ -188,7 +188,7 @@ var data = {
   },
   "tr": {
     "config": {
-      "whitepaperUrl": "https://risy.io/files/Risy DAO Teknik Raporu.pdf"
+      "whitepaperUrl": "files/Risy DAO Teknik Raporu.pdf"
     },
     "nav": {
       "about": "Hakkında",
