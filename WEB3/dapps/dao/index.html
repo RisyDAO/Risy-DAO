@@ -7,7 +7,7 @@
     <meta name="description" content="Risy DAO Governor - Decentralized Governance for RISY Token on Polygon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.1.2/ethers.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.0/ethers.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -24,7 +24,6 @@
 
         .text-gradient {
             background: linear-gradient(135deg, #6366F1, #3B82F6, #2DD4BF);
-            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -46,7 +45,7 @@
             <div class="flex justify-between items-center">
                 <a href="#" class="text-2xl font-bold text-gradient">Risy DAO Governor</a>
                 <div class="flex space-x-4 items-center">
-                    <span x-show="networkName !== 'matic'" class="text-red-500 mr-2">
+                    <span x-show="!isCorrectNetwork" class="text-red-500 mr-2">
                         <i class="fas fa-exclamation-triangle"></i> Wrong Network
                     </span>
                     <button x-show="!address" @click="connect" class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">
@@ -62,14 +61,14 @@
     </header>
 
     <main class="container mx-auto px-6 pt-24 pb-12">
-        <section x-show="!address" class="text-center py-20">
+        <div x-show="!address" class="text-center py-20">
             <h2 class="text-4xl font-bold mb-4 animate-float">Welcome to Risy DAO Governor</h2>
             <p class="mb-8">Connect your wallet to participate in governance</p>
             <button @click="connect" class="bg-indigo-600 text-white px-6 py-3 rounded-full hover:bg-indigo-700 transition text-lg">
                 Connect Wallet
             </button>
-        </section>
-
+        </div>
+        
         <div x-show="address">
             <section id="overview" class="mb-12">
                 <h2 class="text-3xl font-bold mb-4">DAO Overview</h2>
@@ -205,47 +204,41 @@
                 governorContract: null,
                 tokenContract: null,
                 networkName: '',
+                isCorrectNetwork: false,
                 isLoading: true,
                 currentPage: 1,
                 itemsPerPage: 5,
                 proposalFilter: 'active',
 
                 async init() {
-                    this.initializeContracts();
-                    this.setupEventListeners();
-                    await this.checkNetwork();
-                    await this.tryAutoConnect();
-                    this.animateTitle();
-                    this.startPolling();
+                    try {
+                        await this.initializeProvider();
+                        this.setupEventListeners();
+                        await this.checkNetwork();
+                        await this.tryAutoConnect();
+                        this.animateTitle();
+                        this.startPolling();
+                    } catch (error) {
+                        console.error('Initialization error:', error);
+                        this.showAlert('Initialization Error', 'Failed to initialize the application. Please ensure you have MetaMask installed and refresh the page.', 'error');
+                    }
                 },
 
-                initializeContracts() {
-                    this.provider = new ethers.providers.Web3Provider(window.ethereum);
-                    this.governorContract = new ethers.Contract(
-                        '0xD74E510a6472B20910ABCF8a3945E445b16aE11A',
-                        [
-                            'function getVotes(address account, uint256 blockNumber) view returns (uint256)',
-                            'function proposalCount() view returns (uint256)',
-                            'function quorum(uint256 blockNumber) view returns (uint256)',
-                            'function propose(address[] targets, uint256[] values, bytes[] calldatas, string description) returns (uint256)',
-                            'function castVote(uint256 proposalId, uint8 support) returns (uint256)',
-                            'function state(uint256 proposalId) view returns (uint8)',
-                            'function proposalSnapshot(uint256 proposalId) view returns (uint256)',
-                            'function proposalDeadline(uint256 proposalId) view returns (uint256)',
-                            'function getProposalDescription(uint256 proposalId) view returns (string)'
-                        ],
-                        this.provider
-                    );
-                    this.tokenContract = new ethers.Contract(
-                        '0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199',
-                        [
-                            'function balanceOf(address account) view returns (uint256)',
-                            'function decimals() view returns (uint8)',
-                            'function delegate(address delegatee) returns ()',
-                            'function delegates(address account) view returns (address)'
-                        ],
-                        this.provider
-                    );
+                async initializeProvider() {
+                    if (typeof window.ethereum !== 'undefined') {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        
+                        try {
+                            await window.ethereum.request({ method: 'eth_requestAccounts' });
+                            this.provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+                            await this.provider.ready;
+                        } catch (error) {
+                            console.error('Error initializing provider:', error);
+                            throw new Error('Failed to initialize Ethereum provider. Please ensure MetaMask is unlocked and try again.');
+                        }
+                    } else {
+                        throw new Error("No Ethereum provider found. Please install MetaMask.");
+                    }
                 },
 
                 setupEventListeners() {
@@ -274,10 +267,17 @@
                 },
 
                 async checkNetwork() {
-                    const network = await this.provider.getNetwork();
-                    this.networkName = network.name;
-                    if (network.chainId !== 137) {
-                        this.showAlert('Wrong Network', 'Please connect to Polygon Mainnet', 'warning');
+                    try {
+                        await this.provider.ready;
+                        const network = await this.provider.getNetwork();
+                        this.networkName = network.name;
+                        this.isCorrectNetwork = network.chainId === 137;
+                        if (!this.isCorrectNetwork) {
+                            this.showAlert('Wrong Network', 'Please connect to Polygon Mainnet', 'warning');
+                        }
+                    } catch (error) {
+                        console.error('Error checking network:', error);
+                        this.showAlert('Network Error', 'Unable to determine the current network. Please check your wallet connection.', 'error');
                     }
                 },
 
@@ -295,16 +295,21 @@
 
                 async connect() {
                     try {
-                        await this.provider.send("eth_requestAccounts", []);
+                        if (!this.provider) {
+                            await this.initializeProvider();
+                        }
+                        
+                        await this.provider.ready;
                         this.signer = this.provider.getSigner();
                         this.address = await this.signer.getAddress();
                         this.shortAddress = `${this.address.slice(0, 6)}...${this.address.slice(-4)}`;
+                        await this.initializeContracts();
                         await this.updateStats();
                         await this.fetchProposals();
                         this.showToast('Connected!', 'Your wallet has been successfully connected.', 'success');
                     } catch (error) {
                         console.error('Connection error:', error);
-                        this.showAlert('Connection Failed', 'Failed to connect wallet. Please try again.', 'error');
+                        this.showAlert('Connection Failed', 'Failed to connect wallet. Please ensure MetaMask is unlocked and try again.', 'error');
                     }
                 },
 
@@ -323,6 +328,34 @@
                     this.proposals = [];
                 },
 
+                initializeContracts() {
+                    this.governorContract = new ethers.Contract(
+                        '0xD74E510a6472B20910ABCF8a3945E445b16aE11A', // Replace with your actual Governor contract address
+                        [
+                            'function getVotes(address account, uint256 blockNumber) view returns (uint256)',
+                            'function proposalCount() view returns (uint256)',
+                            'function quorum(uint256 blockNumber) view returns (uint256)',
+                            'function propose(address[] targets, uint256[] values, bytes[] calldatas, string description) returns (uint256)',
+                            'function castVote(uint256 proposalId, uint8 support) returns (uint256)',
+                            'function state(uint256 proposalId) view returns (uint8)',
+                            'function proposalSnapshot(uint256 proposalId) view returns (uint256)',
+                            'function proposalDeadline(uint256 proposalId) view returns (uint256)',
+                            'function getProposalDescription(uint256 proposalId) view returns (string)'
+                        ],
+                        this.provider
+                    );
+                    this.tokenContract = new ethers.Contract(
+                        '0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199', // Replace with your actual RISY token contract address
+                        [
+                            'function balanceOf(address account) view returns (uint256)',
+                            'function decimals() view returns (uint8)',
+                            'function delegate(address delegatee) returns ()',
+                            'function delegates(address account) view returns (address)'
+                        ],
+                        this.provider
+                    );
+                },
+
                 startPolling() {
                     setInterval(async () => {
                         if (this.address) {
@@ -334,6 +367,7 @@
 
                 async updateStats() {
                     try {
+                        await this.provider.ready;
                         const [votes, proposalCount, quorum, balance] = await Promise.all([
                             this.getVotingPower(),
                             this.getProposalCount(),
@@ -349,7 +383,7 @@
                         this.animateStats();
                     } catch (error) {
                         console.error('Error updating stats:', error);
-                        this.showAlert('Error', 'Failed to update stats. Please try again later.', 'error');
+                        this.showAlert('Error', 'Failed to update stats. Please check your network connection and try again.', 'error');
                     }
                 },
 
@@ -390,16 +424,17 @@
                     this.isLoading = true;
                     this.proposals = [];
                     try {
+                        await this.provider.ready;
                         const count = await this.governorContract.proposalCount();
                         const proposalPromises = [];
-                        for (let i = count; i > 0; i--) {
+                        for (let i = count; i > Math.max(0, count - 10); i--) {
                             proposalPromises.push(this.fetchProposal(i));
                         }
                         this.proposals = await Promise.all(proposalPromises);
                         this.proposals = this.proposals.filter(p => p !== null);
                     } catch (error) {
                         console.error('Error fetching proposals:', error);
-                        this.showAlert('Error', 'Failed to fetch proposals. Please try again later.', 'error');
+                        this.showAlert('Error', 'Failed to fetch proposals. Please check your network connection and try again.', 'error');
                     }
                     this.isLoading = false;
                 },
@@ -493,7 +528,11 @@
                 },
 
                 async executeTransaction(method, args, pendingMessage) {
-                    const tx = await method.apply(this.signer ? method.connect(this.signer) : method, args);
+                    if (!this.signer) {
+                        throw new Error("Wallet not connected");
+                    }
+                    const contract = method.contract.connect(this.signer);
+                    const tx = await contract[method.name](...args);
                     this.showTransactionPending(pendingMessage);
                     return tx;
                 },
