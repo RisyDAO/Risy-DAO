@@ -125,7 +125,7 @@
                         <h1 class="text-5xl md:text-6xl font-bold mb-4 animate__animated animate__fadeInDown" data-translate="hero.title"></h1>
                         <p class="text-xl md:text-2xl mb-4 animate__animated animate__fadeInUp animate__delay-1s" data-translate="hero.subtitle"></p>
                         <p class="text-lg mb-12 animate__animated animate__fadeInUp animate__delay-2s" data-translate="hero.description"></p>
-                        <a :href="swapUrl + contractAddress" target="_blank" onclick="logEvent('go_swap')" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-indigo-100 transition animate__animated animate__fadeInUp animate__delay-3s cta-button" data-translate="hero.cta"></a>
+                        <a :href="swapUrl + contractAddress" target="_blank" data-event="go_swap" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-indigo-100 transition animate__animated animate__fadeInUp animate__delay-3s cta-button" data-translate="hero.cta"></a>
                     </div>
                     <div class="md:w-1/2 flex justify-center md:justify-end animate__animated animate__fadeInRight animate__delay-3s">
                         <img src="img/risy_hero.svg" alt="Risy DAO Concept" class="md:w-3/5 w-3/4 rounded-lg m-auto">
@@ -150,22 +150,22 @@
                 <div>
                     <iframe width="100%" height="192" frameBorder="0" scrolling="no" :src="'https://coinbrain.com/embed/converter/poly-'+contractAddress+'/usd?theme=custom&accent=6366f1&background=1f2937&padding=16&layout=vertical'"></iframe>
                     <div class="w-full p-6 flex flex-col justify-center items-center space-y-2 md:text-center bg-gray-800">
-                        <a :href="socialLinks.github" target="_blank" onclick="logEvent('go_social')" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                        <a :href="socialLinks.github" target="_blank" data-event="go_social" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
                             <i class="fab fa-github mr-2"></i><span data-translate="resources.links.sourceCode"></span>
                         </a>
-                        <a :href="scanUrl + contractAddress" target="_blank" onclick="logEvent('go_contract')" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                        <a :href="scanUrl + contractAddress" target="_blank" data-event="go_contract" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
                             <i class="fas fa-file-contract mr-2"></i><span data-translate="resources.links.contract"></span>
                         </a>
-                        <a :href="whitepaperUrl" target="_blank" onclick="logEvent('go_whitepaper')" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                        <a :href="whitepaperUrl" target="_blank" data-event="go_whitepaper" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
                             <i class="fas fa-file-pdf mr-2"></i><span data-translate="resources.links.whitepaper"></span>
                         </a>
-                        <a :href="dexScreenerUrl + contractAddress" target="_blank" onclick="logEvent('go_dex_screen')" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                        <a :href="dexScreenerUrl + contractAddress" target="_blank" data-event="go_dex_screen" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
                             <i class="fas fa-chart-line mr-2"></i><span data-translate="resources.links.dexScreener"></span>
                         </a>
-                        <a :href="swapUrl + contractAddress" target="_blank" onclick="logEvent('go_swap')" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                        <a :href="swapUrl + contractAddress" target="_blank" data-event="go_swap" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
                             <i class="fas fa-exchange-alt mr-2"></i><span data-translate="resources.links.swap"></span>
                         </a>
-                        <a :href="tallyUrl" target="_blank" onclick="logEvent('go_tally')" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
+                        <a :href="tallyUrl" target="_blank" data-event="go_tally" class="w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition">
                             <i class="fas fa-users mr-2"></i><span data-translate="resources.links.goToDao"></span>
                         </a>
                     </div>
@@ -296,32 +296,32 @@
                         <h3 class="text-2xl font-semibold mb-4" data-translate="resources.links.title"></h3>
                         <ul class="space-y-2">
                             <li>
-                                <a :href="socialLinks.github" target="_blank" onclick="logEvent('go_social')" class="text-indigo-400 hover:text-indigo-300 transition">
+                                <a :href="socialLinks.github" target="_blank" data-event="go_social" class="text-indigo-400 hover:text-indigo-300 transition">
                                     <i class="fab fa-github mr-2"></i><span data-translate="resources.links.sourceCode"></span>
                                 </a>
                             </li>
                             <li>
-                                <a :href="scanUrl + contractAddress" target="_blank" onclick="logEvent('go_contract')" class="text-indigo-400 hover:text-indigo-300 transition">
+                                <a :href="scanUrl + contractAddress" target="_blank" data-event="go_contract" class="text-indigo-400 hover:text-indigo-300 transition">
                                     <i class="fas fa-file-contract mr-2"></i><span data-translate="resources.links.contract"></span>
                                 </a>
                             </li>
                             <li>
-                                <a :href="whitepaperUrl" target="_blank" onclick="logEvent('go_whitepaper')" class="text-indigo-400 hover:text-indigo-300 transition">
+                                <a :href="whitepaperUrl" target="_blank" data-event="go_whitepaper" class="text-indigo-400 hover:text-indigo-300 transition">
                                     <i class="fas fa-file-pdf mr-2"></i><span data-translate="resources.links.whitepaper"></span>
                                 </a>
                             </li>
                             <li>
-                                <a :href="dexScreenerUrl + contractAddress" target="_blank" onclick="logEvent('go_dex_screen')" class="text-indigo-400 hover:text-indigo-300 transition">
+                                <a :href="dexScreenerUrl + contractAddress" target="_blank" data-event="go_dex_screen" class="text-indigo-400 hover:text-indigo-300 transition">
                                     <i class="fas fa-chart-line mr-2"></i><span data-translate="resources.links.dexScreener"></span>
                                 </a>
                             </li>
                             <li>
-                                <a :href="swapUrl + contractAddress" target="_blank" onclick="logEvent('go_swap')" class="text-indigo-400 hover:text-indigo-300 transition">
+                                <a :href="swapUrl + contractAddress" target="_blank" data-event="go_swap" class="text-indigo-400 hover:text-indigo-300 transition">
                                     <i class="fas fa-exchange-alt mr-2"></i><span data-translate="resources.links.swap"></span>
                                 </a>
                             </li>
                             <li>
-                                <a :href="tallyUrl" target="_blank" onclick="logEvent('go_tally')" class="text-indigo-400 hover:text-indigo-300 transition">
+                                <a :href="tallyUrl" target="_blank" data-event="go_tally" class="text-indigo-400 hover:text-indigo-300 transition">
                                     <i class="fas fa-users mr-2"></i><span data-translate="resources.links.goToDao"></span>
                                 </a>
                             </li>
@@ -360,34 +360,34 @@
                 <div>
                     <h3 class="text-xl font-semibold mb-4" data-translate="footer.usefulLinks"></h3>
                     <ul class="space-y-2">
-                        <li><a :href="pressKitUrl" onclick="logEvent('go_press_kit')" class="text-gray-400 hover:text-white transition">Press Kit</a></li>
+                        <li><a :href="pressKitUrl" data-event="go_press_kit" class="text-gray-400 hover:text-white transition">Press Kit</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-4" data-translate="footer.connect"></h3>
                     <ul class="space-y-2">
                         <li>
-                            <a :href="'mailto:' + contactEmail" onclick="logEvent('go_email')" class="text-gray-400 hover:text-white transition">
+                            <a :href="'mailto:' + contactEmail" data-event="go_email" class="text-gray-400 hover:text-white transition">
                                 <i class="fas fa-envelope mr-2"></i><span x-text="contactEmail"></span>
                             </a>
                         </li>
                         <li>
-                            <a :href="socialLinks.twitter" target="_blank" onclick="logEvent('go_social')" class="text-gray-400 hover:text-white transition">
+                            <a :href="socialLinks.twitter" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition">
                                 <i class="fab fa-twitter mr-2"></i>Twitter
                             </a>
                         </li>
                         <li>
-                            <a :href="socialLinks.telegram" target="_blank" onclick="logEvent('go_social')" class="text-gray-400 hover:text-white transition">
+                            <a :href="socialLinks.telegram" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition">
                                 <i class="fab fa-telegram mr-2"></i>Telegram
                             </a>
                         </li>
                         <li>
-                            <a :href="socialLinks.discord" target="_blank" onclick="logEvent('go_social')" class="text-gray-400 hover:text-white transition">
+                            <a :href="socialLinks.discord" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition">
                                 <i class="fab fa-discord mr-2"></i>Discord
                             </a>
                         </li>
                         <li>
-                            <a :href="socialLinks.github" target="_blank" onclick="logEvent('go_social')" class="text-gray-400 hover:text-white transition">
+                            <a :href="socialLinks.github" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition">
                                 <i class="fab fa-github mr-2"></i>GitHub
                             </a>
                         </li>
@@ -397,10 +397,10 @@
             <div class="mt-8 pt-8 border-t border-gray-700 text-center">
                 <p data-translate="footer.copyright"></p>
                 <div class="mt-4 flex justify-center space-x-4">
-                    <a :href="socialLinks.twitter" target="_blank" onclick="logEvent('go_social')" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
-                    <a :href="socialLinks.telegram" target="_blank" onclick="logEvent('go_social')" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
-                    <a :href="socialLinks.discord" target="_blank" onclick="logEvent('go_social')" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord"></i></a>
-                    <a :href="socialLinks.github" target="_blank" onclick="logEvent('go_social')" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
+                    <a :href="socialLinks.twitter" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a :href="socialLinks.telegram" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
+                    <a :href="socialLinks.discord" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord"></i></a>
+                    <a :href="socialLinks.github" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </div>

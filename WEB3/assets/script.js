@@ -328,3 +328,27 @@ function logEvent(eventName="click", eventVal = 0) {
             break;
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Log whole click events
+    document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.tagName === 'A') {
+            const eventName = target.getAttribute('data-event');
+            const eventVal = target.getAttribute('data-event-value');
+            if (eventName) {
+                if (eventVal) {
+                    logEvent(eventName, eventVal);
+                } else {
+                    logEvent(eventName);
+                }
+            } else {
+                if (eventVal) {
+                    logEvent('click', eventVal);
+                } else {
+                    logEvent();
+                }
+            }
+        }
+    });
+});
