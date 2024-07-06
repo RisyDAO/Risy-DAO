@@ -325,6 +325,11 @@ function logEvent(eventName="click", eventVal = 0) {
             });
             break;
         default:
+            // Google Analytics
+            gtag('event', eventName, {
+                'event_category': 'engagement',
+                'event_label': eventName
+            });
             break;
     }
 }
