@@ -237,3 +237,94 @@ function risyData() {
 document.addEventListener('alpine:init', () => {
     Alpine.data('risyData', risyData);
 });
+
+// Log events for ad tracking
+function logEvent(eventName="click", eventVal = 0) {
+    console.log(`Logging event: ${eventName} with value: ${eventVal}`);
+
+    switch (eventName) {
+        case 'go_swap':
+            // Bitmedia
+            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689cbc67f3ea2b25c892697',eventId:'go_swap',event:'conversion',eventValue:eventVal});
+            // Google Analytics
+            gtag('event', 'go_swap', {
+                'event_category': 'engagement',
+                'event_label': 'go_swap'
+            });
+            break;
+        case 'go_tally':
+            // Bitmedia
+            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689cf007f3ea2b25c89318c',eventId:'go_tally',event:'conversion',eventValue:eventVal});
+            // Google Analytics
+            gtag('event', 'go_tally', {
+                'event_category': 'engagement',
+                'event_label': 'go_tally'
+            });
+            break;
+        case 'go_whitepaper':
+            // Bitmedia
+            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689cf5e0afb82138bf9c3b6',eventId:'go_whitepaper',event:'conversion',eventValue:eventVal});
+            // Google Analytics
+            gtag('event', 'go_whitepaper', {
+                'event_category': 'engagement',
+                'event_label': 'go_whitepaper'
+            });
+            break;
+        case 'go_press_kit':
+            // Bitmedia
+            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689cfd00afb82138bf9c55b',eventId:'go_press_kit',event:'conversion',eventValue:eventVal});
+            // Google Analytics
+            gtag('event', 'go_press_kit', {
+                'event_category': 'engagement',
+                'event_label': 'go_press_kit'
+            });
+            break;
+        case 'go_social':
+            // Bitmedia
+            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d0080afb82138bf9c619',eventId:'go_social',event:'conversion',eventValue:eventVal});
+            // Google Analytics
+            gtag('event', 'go_social', {
+                'event_category': 'engagement',
+                'event_label': 'go_social'
+            });
+            break;
+        case 'go_contract':
+            // Bitmedia
+            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d0520afb82138bf9c6a9',eventId:'go_contract',event:'conversion',eventValue:eventVal});
+            // Google Analytics
+            gtag('event', 'go_contract', {
+                'event_category': 'engagement',
+                'event_label': 'go_contract'
+            });
+            break;
+        case 'go_dex_screen':
+            // Bitmedia
+            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d0af0afb82138bf9c78a',eventId:'go_dex_screen',event:'conversion',eventValue:eventVal});
+            // Google Analytics
+            gtag('event', 'go_dex_screen', {
+                'event_category': 'engagement',
+                'event_label': 'go_dex_screen'
+            });
+            break;
+        case 'go_email':
+            // Bitmedia
+            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d3400afb82138bf9d8d2',eventId:'go_email',event:'conversion',eventValue:eventVal});
+            // Google Analytics
+            gtag('event', 'go_email', {
+                'event_category': 'engagement',
+                'event_label': 'go_email'
+            });
+            break;
+        case 'click':
+            // Bitmedia
+            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d3ec0afb82138bf9ddc2',eventId:'click',event:'conversion',eventValue:eventVal});
+            // Google Analytics
+            gtag('event', 'click', {
+                'event_category': 'engagement',
+                'event_label': 'click'
+            });
+            break;
+        default:
+            break;
+    }
+}
