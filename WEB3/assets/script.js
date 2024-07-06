@@ -335,6 +335,13 @@ function logEvent(eventName="click", eventVal = 0) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Setup gtag
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-GFGCN04VH6');
+
     // Log whole click events
     document.addEventListener('click', (e) => {
         const target = e.target;
