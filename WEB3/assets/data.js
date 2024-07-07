@@ -11,7 +11,8 @@ var data = {
         "twitter": "https://twitter.com/RisyDAO",
         "telegram": "https://t.me/RisyDAOCommunity",
         "discord": "https://discord.gg/JYz5EF9h5e",
-        "github": "https://github.com/RisyDAO"
+        "github": "https://github.com/RisyDAO",
+        "medium": "https://risydao.medium.com"
       },
       "contactEmail": "info@risy.io",
     },
@@ -155,6 +156,11 @@ var data = {
           "isOpen": false
         }
       ]
+    },
+    "medium": {
+      "title": "Stay Updated",
+      "description": "Subscribe to our Medium blog for the latest insights, updates, and deep dives into the world of Risy DAO.",
+      "cta": "Subscribe to Our Blog"
     },
     "resources": {
       "title": "Resources",
@@ -325,6 +331,11 @@ var data = {
           "isOpen": false
         }
       ]
+    },
+    "medium": {
+      "title": "Güncel Kalın",
+      "description": "Risy DAO dünyasındaki en son görüşler, güncellemeler ve derinlemesine analizler için Medium blogumuza abone olun.",
+      "cta": "Blogumuza Abone Olun"
     },
     "resources": {
       "title": "Kaynaklar",

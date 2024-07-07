@@ -288,6 +288,17 @@
             </div>
         </section>
 
+        <section id="medium-cta" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-8 text-gradient animate__animated animate__fadeIn" data-translate="medium.title"></h2>
+                <p class="text-xl mb-8 animate__animated animate__fadeIn" data-translate="medium.description"></p>
+                <a :href="socialLinks.medium" target="_blank" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-700 transition animate__animated animate__fadeIn">
+                    <i class="fab fa-medium mr-2"></i>
+                    <span data-translate="medium.cta"></span>
+                </a>
+            </div>
+        </section>
+
         <section id="resources" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="resources.title"></h2>
@@ -401,6 +412,7 @@
                     <a :href="socialLinks.telegram" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
                     <a :href="socialLinks.discord" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord"></i></a>
                     <a :href="socialLinks.github" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
+                    <a :href="socialLinks.medium" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-medium"></i></a>
                 </div>
             </div>
         </div>
