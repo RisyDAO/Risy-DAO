@@ -57,6 +57,40 @@ function risyData() {
             return keys.reduce((obj, k) => obj && obj[k], this.translations[this.language]) || key;
         },
 
+        async addToWallet() {
+            console.log('Adding token to wallet...');
+            const translate = this.translations[this.language].config;
+
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    // Check if Polygon network is selected
+                    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+                    if (chainId !== '0x89') {
+                        alert(translate.wrongNetwork);
+                        return;
+                    }
+                    await window.ethereum.request({
+                        method: 'wallet_watchAsset',
+                        params: {
+                            type: 'ERC20',
+                            options: {
+                                address: this.contractAddress,
+                                name: 'Risy DAO',
+                                symbol: 'RISY',
+                                decimals: 18,
+                                chainId: 137,
+                                image: 'https://raw.githubusercontent.com/RisyDAO/contract-metadata/master/images/RISY.svg'
+                            },
+                        },
+                    });
+                } catch (error) {
+                    alert(translate.addedToWalletError + error.message + '\n\n (' + translate.manualAddToWallet + this.contractAddress + ')');
+                }
+            } else {
+                alert(translate.noWalletDetected);
+            }
+        },
+
         async init() {
             // Set configuration data
             const commonConfig = this.translations.common.config;

@@ -2,10 +2,10 @@ var data = {
   "common": {
     "config": {
       "contractAddress": "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199",
-      "scanUrl": "https://polygonscan.com/token/",
       "dexScreenerUrl": "https://dexscreener.com/polygon/",
       "swapUrl": "https://quickswap.exchange/#/swap?currency0=ETH&swapIndex=1&currency1=",
       "tallyUrl": "https://www.tally.xyz/gov/risydao",
+      "scanUrl": "https://polygonscan.com/token/",
       "pressKitUrl": "press-kit.zip",
       "socialLinks": {
         "twitter": "https://twitter.com/RisyDAO",
@@ -19,7 +19,11 @@ var data = {
   },
   "en": {
     "config": {
-      "whitepaperUrl": "files/Risy DAO Whitepaper.pdf"
+      "whitepaperUrl": "files/Risy DAO Whitepaper.pdf",
+      "wrongNetwork": "Please switch to the Polygon network to continue.",
+      "addedToWalletError": "Error adding RISY Token to your wallet: ",
+      "manualAddToWallet": "To manually add RISY Token to your wallet, use the following contract address: ",
+      "noWalletDetected": "No wallet detected. Please install MetaMask or another Polygon-compatible EVM decentralized wallet to continue."
     },
     "nav": {
       "about": "About",
@@ -43,6 +47,10 @@ var data = {
       "title": "About Risy DAO",
       "description1": "Risy DAO is a revolutionary decentralized autonomous organization built on the Polygon blockchain. We're addressing critical issues in the cryptocurrency space, including centralization, market manipulation, and unfair token distribution.",
       "description2": "Our mission is to create a truly decentralized, community-driven ecosystem that continuously evolves to meet the needs of its users. With Risy DAO, we're building a more equitable, stable, and sustainable financial future.",
+      "description3": "Risy DAO addresses the centralization problem of cryptocurrencies, whale manipulations, and unfair distribution of tokens through its innovative 10% daily transfer limit and temporary 0.75% hodl limit during the ICO period. The project evolves and upgrades itself indefinitely thanks to the DAO mechanism, ensuring long-term sustainability and adaptability.",
+      "description4": "With an initial locked liquidity of $20,000 (50% USDC, 50% PAXG), Risy DAO creates a unique correlation with both gold and the US dollar. This dual correlation provides stability against various inflationary scenarios and bear markets in the broader cryptocurrency space.",
+      "description5": "Built on the Polygon blockchain, Risy DAO enables fast and affordable dApp development compared to Ethereum-based tokens. The 0.1% DAO fee on each transfer funds ongoing development, marketing, and community initiatives, making the project self-sustaining.",
+      "description6": "Security is a top priority, with battle-tested smart contracts and hundreds of carefully crafted tests ensuring robustness and reliability. With approximately 10x buys against sells due to DEX purchase exceptions, Risy DAO is designed for continuous growth and success.",
       "tagline": "Made with passion and coffee for blockchain nerds by blockchain nerds."
     },
     "features": [
@@ -152,7 +160,7 @@ var data = {
         },
         {
           "question": "Where can I buy RISY tokens?",
-          "answer": "RISY tokens can be purchased on decentralized exchanges like 1Inch or QuickSwap. Please refer to our 'Resources' section for the most up-to-date information on where to trade RISY.",
+          "answer": "RISY tokens can be purchased on decentralized exchanges like QuickSwap. Please refer to our 'Resources' section for the most up-to-date information on where to trade RISY.",
           "isOpen": false
         }
       ]
@@ -166,19 +174,20 @@ var data = {
       "title": "Resources",
       "links": {
         "title": "Important Links",
-        "sourceCode": "Source Code",
-        "contract": "Smart Contract on PolygonScan",
-        "whitepaper": "Whitepaper",
         "dexScreener": "DEX Screener",
         "swap": "Trade on Swap",
-        "goToDao": "Go to DAO"
+        "goToDao": "Go to DAO",
+        "addToWallet": "Add to Wallet",
+        "contract": "Smart Contract on PolygonScan",
+        "whitepaper": "Whitepaper",
+        "sourceCode": "Source Code"
       },
       "getStarted": {
         "title": "How to Get Started",
         "steps": [
           "Connect your wallet to Polygon network",
           "Acquire MATIC for gas fees",
-          "Visit 1Inch or QuickSwap to swap for RISY tokens",
+          "Visit QuickSwap to swap for RISY tokens",
           "Join our community on Discord or Telegram",
           "Participate in DAO governance"
         ]
@@ -194,7 +203,11 @@ var data = {
   },
   "tr": {
     "config": {
-      "whitepaperUrl": "files/Risy DAO Teknik Raporu.pdf"
+      "whitepaperUrl": "files/Risy DAO Teknik Raporu.pdf",
+      "wrongNetwork": "Devam etmek için Polygon ağına geçiş yapın.",
+      "addedToWalletError": "RISY Token cüzdanınıza eklenirken bir hata oluştu: ",
+      "manualAddToWallet": "RISY Token'i cüzdanınıza manuel olarak eklemek için şu akıllı sözleşme adresini kullanın: ",
+      "noWalletDetected": "Cüzdan algılanamadı. Devam etmek için MetaMask veya başka bir Polygon uyumlu EVM merkezi olmayan cüzdan yükleyin."
     },
     "nav": {
       "about": "Hakkında",
@@ -218,6 +231,10 @@ var data = {
       "title": "Risy DAO Hakkında",
       "description1": "Risy DAO, Polygon blok zinciri üzerine inşa edilmiş devrimci bir merkezi olmayan otonom organizasyondur. Kripto para alanındaki merkezileşme, piyasa manipülasyonu ve adil olmayan token dağıtımı gibi kritik sorunları ele alıyoruz.",
       "description2": "Misyonumuz, kullanıcılarının ihtiyaçlarını karşılamak için sürekli gelişen, gerçekten merkezi olmayan, topluluk odaklı bir ekosistem oluşturmaktır. Risy DAO ile daha adil, istikrarlı ve sürdürülebilir bir finansal gelecek inşa ediyoruz.",
+      "description3": "Risy DAO, yenilikçi %10 günlük transfer limiti ve ICO döneminde geçici %0.75 hodl limiti sayesinde kripto paraların merkezileşme sorununu, balina manipülasyonlarını ve token'ların adil olmayan dağıtımını ele alıyor. Proje, DAO mekanizması sayesinde süresiz olarak evrilip yükseliyor ve bu da uzun vadeli sürdürülebilirlik ve uyarlanabilirlik sağlıyor.",
+      "description4": "20.000$ değerinde (%50 USDC, %50 PAXG) başlangıç kilitli likidite ile Risy DAO, hem altın hem de ABD doları ile benzersiz bir korelasyon oluşturuyor. Bu ikili korelasyon, geniş kripto para piyasasındaki çeşitli enflasyonist senaryolara ve ayı piyasalarına karşı istikrar sağlıyor.",
+      "description5": "Polygon blok zinciri üzerine inşa edilen Risy DAO, Ethereum tabanlı token'lara kıyasla hızlı ve uygun maliyetli dApp geliştirmeyi mümkün kılıyor. Her transferde alınan %0.1'lik DAO ücreti, sürekli gelişim, pazarlama ve topluluk girişimlerini finanse ederek projeyi kendi kendine yeter hale getiriyor.",
+      "description6": "Güvenlik en önemli önceliktir; savaş meydanında test edilmiş akıllı sözleşmeler ve özenle hazırlanmış yüzlerce test, sağlamlık ve güvenilirliği garanti ediyor. DEX alım istisnaları sayesinde yaklaşık 10 kata kadar alım-satım oranıyla Risy DAO, sürekli büyüme ve başarı için tasarlanmıştır.",
       "tagline": "Blok zinciri tutkunları tarafından blok zinciri tutkunları için tutku ve kahve ile yapıldı."
     },
     "features": [
@@ -327,7 +344,7 @@ var data = {
         },
         {
           "question": "RISY token'larını nereden satın alabilirim?",
-          "answer": "RISY token'ları 1Inch veya QuickSwap gibi merkezi olmayan borsalarda satın alınabilir. RISY'nin nerede işlem gördüğüne dair en güncel bilgiler için lütfen 'Kaynaklar' bölümümüze bakın.",
+          "answer": "RISY token'ları QuickSwap gibi merkezi olmayan borsalarda satın alınabilir. RISY'nin nerede işlem gördüğüne dair en güncel bilgiler için lütfen 'Kaynaklar' bölümümüze bakın.",
           "isOpen": false
         }
       ]
@@ -340,20 +357,21 @@ var data = {
     "resources": {
       "title": "Kaynaklar",
       "links": {
-        "sourceCode": "Kaynak Kodu",
         "title": "Önemli Bağlantılar",
-        "contract": "PolygonScan'de Akıllı Sözleşme",
-        "whitepaper": "Teknik Doküman",
         "dexScreener": "DEX Tarayıcı",
         "swap": "Swapte İşlem Yap",
-        "goToDao": "DAO'ya Git"
+        "goToDao": "DAO'ya Git",
+        "addToWallet": "Cüzdana Ekle",
+        "contract": "PolygonScan'de Akıllı Sözleşme",
+        "whitepaper": "Teknik Doküman",
+        "sourceCode": "Kaynak Kodu"
       },
       "getStarted": {
         "title": "Nasıl Başlanır",
         "steps": [
           "Cüzdanınızı Polygon ağına bağlayın",
           "Gas ücretleri için MATIC edinin",
-          "RISY token'ları takas etmek için 1Inch veya QuickSwap'i ziyaret edin",
+          "RISY token'ları takas etmek için QuickSwap'i ziyaret edin",
           "Discord veya Telegram'daki topluluğumuza katılın",
           "DAO yönetişimine katılın"
         ]
