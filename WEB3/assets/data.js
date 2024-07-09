@@ -25,7 +25,7 @@ var data = {
       "wrongNetwork": "You are not on the Polygon network. Would you like to switch to Polygon?",
       "addedToWalletError": "Error adding RISY Token to your wallet: ",
       "manualAddToWallet": "To manually add RISY Token to your wallet, use the following contract address: ",
-      "noWalletDetected": "No wallet detected. Please install MetaMask or another Polygon-compatible EVM decentralized wallet to continue."
+      "noWalletDetected": "No wallet detected. Please install MetaMask or another Polygon-compatible EVM decentralized wallet to continue.\n\nDo you want to install MetaMask?"
     },
     "nav": {
       "about": "About",
@@ -213,7 +213,7 @@ var data = {
       "wrongNetwork": "Polygon ağında değilsiniz. Polygon'a geçmek ister misiniz?",
       "addedToWalletError": "RISY Token cüzdanınıza eklenirken bir hata oluştu: ",
       "manualAddToWallet": "RISY Token'i cüzdanınıza manuel olarak eklemek için şu akıllı sözleşme adresini kullanın: ",
-      "noWalletDetected": "Cüzdan algılanamadı. Devam etmek için MetaMask veya başka bir Polygon uyumlu EVM merkezi olmayan cüzdan yükleyin."
+      "noWalletDetected": "Cüzdan algılanamadı. Devam etmek için MetaMask veya başka bir Polygon uyumlu EVM merkezi olmayan cüzdan yükleyin.\n\nMetaMask yüklemek ister misiniz?"
     },
     "nav": {
       "about": "Hakkında",

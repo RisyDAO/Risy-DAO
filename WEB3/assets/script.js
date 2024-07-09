@@ -90,7 +90,18 @@ function risyData() {
                             });
                             console.log('Added Polygon Mainnet to wallet');
 
-                            return true;
+                            // Check if Polygon network is selected
+                            const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+                            if (chainId === '0x89') {
+                                console.log('Switched to Polygon Mainnet');
+
+                                return true;
+                            } else {
+                                console.error('Error switching to Polygon Mainnet:', chainId);
+                                alert(translate.switchToPolygonError);
+
+                                return false;
+                            }
                         } catch (addError) {
                             console.error('Error adding Polygon Mainnet:', addError);
                             alert(translate.addPolygonError);
@@ -105,7 +116,7 @@ function risyData() {
                     }
                 }
             } else {
-                alert(translate.noWalletDetected);
+                this.installMetaMask();
 
                 return false;
             }
@@ -124,10 +135,10 @@ function risyData() {
                         if (shouldSwitch) {
                             var networkStatus = await this.switchToPolygon();
                             if (!networkStatus) {
-                                return;
+                                return false;
                             }
                         } else {
-                            return;
+                            return false;
                         }
                     }
 
@@ -145,13 +156,30 @@ function risyData() {
                             },
                         },
                     });
+
                     console.log('Token added to wallet');
+
+                    return true;
                 } catch (error) {
                     console.error('Error adding token to wallet:', error);
                     alert(translate.addedToWalletError + error.message + '\n\n (' + translate.manualAddToWallet + this.contractAddress + ')');
                 }
             } else {
-                alert(translate.noWalletDetected);
+                this.installMetaMask();
+
+                return false;
+            }
+        },
+
+        installMetaMask() {
+            console.log('Installing MetaMask...');
+            const translate = this.translations[this.language].config;
+
+            if (typeof window.ethereum === 'undefined') {
+                const isMetaMaskInstalled = confirm(translate.noWalletDetected);
+                if (isMetaMaskInstalled) {
+                    window.open('https://metamask.io/download.html', '_blank');
+                }
             }
         },
 
