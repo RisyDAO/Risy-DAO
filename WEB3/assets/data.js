@@ -20,7 +20,7 @@ var data = {
   "en": {
     "config": {
       "whitepaperUrl": "files/Risy DAO Whitepaper.pdf",
-      "wrongNetwork": "Please switch to the Polygon network to continue.",
+      "wrongNetwork": "Please switch to the Polygon Mainnet to continue.",
       "addedToWalletError": "Error adding RISY Token to your wallet: ",
       "manualAddToWallet": "To manually add RISY Token to your wallet, use the following contract address: ",
       "noWalletDetected": "No wallet detected. Please install MetaMask or another Polygon-compatible EVM decentralized wallet to continue."
@@ -185,7 +185,7 @@ var data = {
       "getStarted": {
         "title": "How to Get Started",
         "steps": [
-          "Connect your wallet to Polygon network",
+          "Connect your wallet to Polygon Mainnet",
           "Acquire MATIC for gas fees",
           "Visit QuickSwap to swap for RISY tokens",
           "Join our community on Discord or Telegram",

@@ -162,7 +162,7 @@ Security is a top priority for Risy DAO:
 
 Risy DAO has ambitious plans for future development:
 
-1. **dApp Ecosystem**: We're planning to develop various decentralized applications, including games and financial tools, leveraging the fast and affordable Polygon network.
+1. **dApp Ecosystem**: We're planning to develop various decentralized applications, including games and financial tools, leveraging the fast and affordable Polygon Mainnet.
 
 2. **Continuous Upgrades**: Thanks to the DAO mechanism, Risy can evolve indefinitely based on community decisions.
 

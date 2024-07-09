@@ -63,7 +63,7 @@ function risyData() {
 
             if (typeof window.ethereum !== 'undefined') {
                 try {
-                    // Check if Polygon network is selected
+                    // Check if Polygon Mainnet is selected
                     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
                     if (chainId !== '0x89') {
                         alert(translate.wrongNetwork);
