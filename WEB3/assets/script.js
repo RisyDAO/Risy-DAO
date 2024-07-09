@@ -178,7 +178,7 @@ function risyData() {
             if (typeof window.ethereum === 'undefined') {
                 const isMetaMaskInstalled = confirm(translate.noWalletDetected);
                 if (isMetaMaskInstalled) {
-                    window.open('https://metamask.io/download.html', '_blank');
+                    window.open('https://metamask.io/download/', '_blank');
                 }
             }
         },
