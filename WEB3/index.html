@@ -380,6 +380,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="#" @click.prevent="switchToPolygon" data-event="switch_to_polygon" class="text-purple-400 hover:text-purple-300 transition">
+                                    <i class="fas fa-exchange-alt mr-2"></i><span data-translate="resources.links.switchToPolygon"></span>
+                                </a>
+                            </li>
+                            <li>
                                 <a :href="scanUrl + contractAddress" target="_blank" data-event="go_contract" class="text-indigo-400 hover:text-indigo-300 transition">
                                     <i class="fas fa-file-contract mr-2"></i><span data-translate="resources.links.contract"></span>
                                 </a>
