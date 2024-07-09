@@ -56,6 +56,50 @@ function risyData() {
             const keys = key.split('.');
             return keys.reduce((obj, k) => obj && obj[k], this.translations[this.language]) || key;
         },
+        
+        async switchToPolygon() {
+            console.log('Switching to Polygon Mainnet...');
+            const translate = this.translations[this.language].config;
+
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    await window.ethereum.request({
+                        method: 'wallet_switchEthereumChain',
+                        params: [{ chainId: '0x89' }], // Polygon Mainnet chain ID
+                    });
+                    console.log('Switched to Polygon Mainnet');
+                } catch (switchError) {
+                    // This error code indicates that the chain has not been added to MetaMask
+                    if (switchError.code === 4902) {
+                        try {
+                            await window.ethereum.request({
+                                method: 'wallet_addEthereumChain',
+                                params: [{
+                                    chainId: '0x89',
+                                    chainName: 'Polygon Mainnet',
+                                    nativeCurrency: {
+                                        name: 'MATIC',
+                                        symbol: 'MATIC',
+                                        decimals: 18
+                                    },
+                                    rpcUrls: ['https://polygon-rpc.com/'],
+                                    blockExplorerUrls: ['https://polygonscan.com/']
+                                }],
+                            });
+                            console.log('Added Polygon Mainnet to wallet');
+                        } catch (addError) {
+                            console.error('Error adding Polygon Mainnet:', addError);
+                            alert(translate.addPolygonError);
+                        }
+                    } else {
+                        console.error('Error switching to Polygon Mainnet:', switchError);
+                        alert(translate.switchToPolygonError);
+                    }
+                }
+            } else {
+                alert(translate.noWalletDetected);
+            }
+        },
 
         async addToWallet() {
             console.log('Adding token to wallet...');
@@ -63,12 +107,18 @@ function risyData() {
 
             if (typeof window.ethereum !== 'undefined') {
                 try {
-                    // Check if Polygon Mainnet is selected
+                    // Check if Polygon network is selected
                     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
                     if (chainId !== '0x89') {
-                        alert(translate.wrongNetwork);
-                        return;
+                        const shouldSwitch = confirm(translate.wrongNetwork);
+                        if (shouldSwitch) {
+                            await this.switchToPolygon();
+                        } else {
+                            return;
+                        }
                     }
+
+                    // Add token to wallet
                     await window.ethereum.request({
                         method: 'wallet_watchAsset',
                         params: {
@@ -78,12 +128,13 @@ function risyData() {
                                 name: 'Risy DAO',
                                 symbol: 'RISY',
                                 decimals: 18,
-                                chainId: 137,
                                 image: 'https://raw.githubusercontent.com/RisyDAO/contract-metadata/master/images/RISY.svg'
                             },
                         },
                     });
+                    console.log('Token added to wallet');
                 } catch (error) {
+                    console.error('Error adding token to wallet:', error);
                     alert(translate.addedToWalletError + error.message + '\n\n (' + translate.manualAddToWallet + this.contractAddress + ')');
                 }
             } else {

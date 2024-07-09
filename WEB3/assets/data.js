@@ -20,7 +20,9 @@ var data = {
   "en": {
     "config": {
       "whitepaperUrl": "files/Risy DAO Whitepaper.pdf",
-      "wrongNetwork": "Please switch to the Polygon Mainnet to continue.",
+      "switchToPolygonError": "Error switching to Polygon Mainnet. Please try again or add the network manually.",
+      "addPolygonError": "Error adding Polygon Mainnet to your wallet. Please add it manually.",
+      "wrongNetwork": "You are not on the Polygon network. Would you like to switch to Polygon?",
       "addedToWalletError": "Error adding RISY Token to your wallet: ",
       "manualAddToWallet": "To manually add RISY Token to your wallet, use the following contract address: ",
       "noWalletDetected": "No wallet detected. Please install MetaMask or another Polygon-compatible EVM decentralized wallet to continue."
@@ -178,6 +180,7 @@ var data = {
         "swap": "Trade on Swap",
         "goToDao": "Go to DAO",
         "addToWallet": "Add to Wallet",
+        "switchToPolygon": "Switch to Polygon",
         "contract": "Smart Contract on PolygonScan",
         "whitepaper": "Whitepaper",
         "sourceCode": "Source Code"
@@ -197,6 +200,7 @@ var data = {
       "description": "Revolutionizing decentralized finance on the Polygon blockchain.",
       "quickLinks": "Quick Links",
       "usefulLinks": "Useful Links",
+      "pressKit": "Press Kit",
       "connect": "Connect",
       "copyright": "© 2024 Risy DAO. All rights reserved."
     }
@@ -204,7 +208,9 @@ var data = {
   "tr": {
     "config": {
       "whitepaperUrl": "files/Risy DAO Teknik Raporu.pdf",
-      "wrongNetwork": "Devam etmek için Polygon ağına geçiş yapın.",
+      "switchToPolygonError": "Polygon Mainnet'e geçiş yapılırken hata oluştu. Lütfen tekrar deneyin veya ağı manuel olarak ekleyin.",
+      "addPolygonError": "Polygon Mainnet cüzdanınıza eklenirken hata oluştu. Lütfen manuel olarak ekleyin.",
+      "wrongNetwork": "Polygon ağında değilsiniz. Polygon'a geçmek ister misiniz?",
       "addedToWalletError": "RISY Token cüzdanınıza eklenirken bir hata oluştu: ",
       "manualAddToWallet": "RISY Token'i cüzdanınıza manuel olarak eklemek için şu akıllı sözleşme adresini kullanın: ",
       "noWalletDetected": "Cüzdan algılanamadı. Devam etmek için MetaMask veya başka bir Polygon uyumlu EVM merkezi olmayan cüzdan yükleyin."
@@ -362,6 +368,7 @@ var data = {
         "swap": "Swapte İşlem Yap",
         "goToDao": "DAO'ya Git",
         "addToWallet": "Cüzdana Ekle",
+        "switchToPolygon": "Polygon'a Geç",
         "contract": "PolygonScan'de Akıllı Sözleşme",
         "whitepaper": "Teknik Doküman",
         "sourceCode": "Kaynak Kodu"
@@ -381,6 +388,7 @@ var data = {
       "description": "Polygon blok zincirinde merkezi olmayan finansı devrimleştiriyoruz.",
       "quickLinks": "Hızlı Bağlantılar",
       "usefulLinks": "Faydalı Bağlantılar",
+      "pressKit": "Basın Kiti",
       "connect": "Bağlantılar",
       "copyright": "© 2024 Risy DAO. Tüm hakları saklıdır."
     }
