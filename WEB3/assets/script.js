@@ -68,6 +68,8 @@ function risyData() {
                         params: [{ chainId: '0x89' }], // Polygon Mainnet chain ID
                     });
                     console.log('Switched to Polygon Mainnet');
+
+                    return true;
                 } catch (switchError) {
                     // This error code indicates that the chain has not been added to MetaMask
                     if (switchError.code === 4902) {
@@ -87,17 +89,25 @@ function risyData() {
                                 }],
                             });
                             console.log('Added Polygon Mainnet to wallet');
+
+                            return true;
                         } catch (addError) {
                             console.error('Error adding Polygon Mainnet:', addError);
                             alert(translate.addPolygonError);
+
+                            return false;
                         }
                     } else {
                         console.error('Error switching to Polygon Mainnet:', switchError);
                         alert(translate.switchToPolygonError);
+
+                        return false;
                     }
                 }
             } else {
                 alert(translate.noWalletDetected);
+
+                return false;
             }
         },
 
@@ -112,7 +122,10 @@ function risyData() {
                     if (chainId !== '0x89') {
                         const shouldSwitch = confirm(translate.wrongNetwork);
                         if (shouldSwitch) {
-                            await this.switchToPolygon();
+                            var networkStatus = await this.switchToPolygon();
+                            if (!networkStatus) {
+                                return;
+                            }
                         } else {
                             return;
                         }
