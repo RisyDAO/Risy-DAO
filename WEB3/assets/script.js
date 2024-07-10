@@ -13,6 +13,7 @@ function risyData() {
         language: detectLanguage(),
         translations: data,
         contractAddress: '',
+        ctaUrl: '',
         whitepaperUrl: '',
         dexScreenerUrl: '',
         swapUrl: '',
@@ -188,6 +189,7 @@ function risyData() {
             const commonConfig = this.translations.common.config;
             
             this.contractAddress = commonConfig.contractAddress;
+            this.ctaUrl = commonConfig.ctaUrl;
             this.scanUrl = commonConfig.scanUrl;
             this.dexScreenerUrl = commonConfig.dexScreenerUrl;
             this.swapUrl = commonConfig.swapUrl;
