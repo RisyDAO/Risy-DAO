@@ -49,7 +49,7 @@ var data = {
       "title": "About Risy DAO",
       "description1": "Risy DAO is a revolutionary decentralized autonomous organization built on the Polygon blockchain. We're addressing critical issues in the cryptocurrency space, including centralization, market manipulation, and unfair token distribution.",
       "description2": "Our mission is to create a truly decentralized, community-driven ecosystem that continuously evolves to meet the needs of its users. With Risy DAO, we're building a more equitable, stable, and sustainable financial future.",
-      "description3": "Risy DAO addresses the centralization problem of cryptocurrencies, whale manipulations, and unfair distribution of tokens through its innovative 10% daily transfer limit and temporary 0.75% hodl limit during the ICO period. The project evolves and upgrades itself indefinitely thanks to the DAO mechanism, ensuring long-term sustainability and adaptability.",
+      "description3": "Risy DAO addresses the centralization problem of cryptocurrencies, whale manipulations, and unfair distribution of tokens through its innovative 10% daily transfer limit and temporary 0.75% (~=7500000000 RISY) hodl limit during the ICO period. The project evolves and upgrades itself indefinitely thanks to the DAO mechanism, ensuring long-term sustainability and adaptability.",
       "description4": "With an initial locked liquidity of $20,000 (50% USDC, 50% PAXG), Risy DAO creates a unique correlation with both gold and the US dollar. This dual correlation provides stability against various inflationary scenarios and bear markets in the broader cryptocurrency space.",
       "description5": "Built on the Polygon blockchain, Risy DAO enables fast and affordable dApp development compared to Ethereum-based tokens. The 0.1% DAO fee on each transfer funds ongoing development, marketing, and community initiatives, making the project self-sustaining.",
       "description6": "Security is a top priority, with battle-tested smart contracts and hundreds of carefully crafted tests ensuring robustness and reliability. With approximately 10x buys against sells due to DEX purchase exceptions, Risy DAO is designed for continuous growth and success.",
@@ -64,7 +64,7 @@ var data = {
       {
         "icon": "fa-shield-alt",
         "title": "Whale Protection",
-        "description": "10% daily transfer limit and 0.75% temporary hodl limit for ICO prevent market manipulation."
+        "description": "10% daily transfer limit and 0.75% (~=7500000000 RISY) temporary hodl limit for ICO prevent market manipulation."
       },
       {
         "icon": "fa-chart-line",
@@ -96,7 +96,7 @@ var data = {
         "Initial Liquidity: $20,000 (50% USDC, 50% PAXG)",
         "DAO Fee: 0.1% on each transfer",
         "Daily Transfer Limit: 10% of balance",
-        "ICO Max Balance: 0.75% during ICO period"
+        "ICO Max Balance: 0.75% (~=7500000000 RISY) during ICO period"
       ],
       "chartTitle": "Designed for long-term stability and sustainable growth. Risy DAO undergoes professional security audits before mainnet deployment."
     },
@@ -147,7 +147,7 @@ var data = {
         },
         {
           "question": "How does Risy DAO prevent whale manipulation?",
-          "answer": "Risy DAO implements a 10% daily transfer limit and a temporary 0.75% hodl limit during the ICO period to prevent large-scale market manipulation by whales.",
+          "answer": "Risy DAO implements a 10% daily transfer limit and a temporary 0.75% (~=7500000000 RISY) hodl limit during the ICO period to prevent large-scale market manipulation by whales.",
           "isOpen": false
         },
         {
@@ -181,18 +181,31 @@ var data = {
         "goToDao": "Go to DAO",
         "addToWallet": "Add to Wallet",
         "switchToPolygon": "Switch to Polygon",
-        "contract": "Smart Contract on PolygonScan",
+        "contract": "Smart Contract",
         "whitepaper": "Whitepaper",
         "sourceCode": "Source Code"
       },
       "getStarted": {
         "title": "How to Get Started",
         "steps": [
-          "Connect your wallet to Polygon Mainnet",
-          "Acquire MATIC for gas fees",
-          "Visit QuickSwap to swap for RISY tokens",
-          "Join our community on Discord or Telegram",
-          "Participate in DAO governance"
+          "Set up a Polygon-compatible wallet (e.g., MetaMask, Trust Wallet)",
+          "Add the Polygon network to your wallet",
+          "Acquire MATIC tokens for gas fees",
+          "Use the 'Add to Wallet' button on our website",
+          "Visit QuickSwap or another supported DEX",
+          "Connect your wallet to the DEX",
+          "Swap MATIC or other supported tokens for RISY",
+          "Join our Discord or Telegram community",
+          "Participate in DAO governance by voting on proposals"
+        ],
+        "tipsTitle": "Helpful Tips",
+        "tips": [
+          "Using the 'Add to Wallet' button ensures you're adding the correct token contract",
+          "Always verify you're on the official Risy DAO website before adding the token",
+          "Keep your wallet secure and never share your private keys",
+          "Start with a small amount to familiarize yourself with the process",
+          "Follow our official channels for the latest updates and announcements",
+          "Reach out to our community for help if you encounter any issues"
         ]
       }
     },
@@ -369,18 +382,31 @@ var data = {
         "goToDao": "DAO'ya Git",
         "addToWallet": "Cüzdana Ekle",
         "switchToPolygon": "Polygon'a Geç",
-        "contract": "PolygonScan'de Akıllı Sözleşme",
+        "contract": "Akıllı Sözleşme",
         "whitepaper": "Teknik Doküman",
         "sourceCode": "Kaynak Kodu"
       },
       "getStarted": {
         "title": "Nasıl Başlanır",
         "steps": [
-          "Cüzdanınızı Polygon ağına bağlayın",
-          "Gas ücretleri için MATIC edinin",
-          "RISY token'ları takas etmek için QuickSwap'i ziyaret edin",
-          "Discord veya Telegram'daki topluluğumuza katılın",
-          "DAO yönetişimine katılın"
+          "Polygon uyumlu bir cüzdan kurun (örn. MetaMask, Trust Wallet)",
+          "Cüzdanınıza Polygon ağını ekleyin",
+          "Gas ücretleri için MATIC token'ları edinin",
+          "Web sitemizde 'Cüzdana Ekle' butonunu kullanın",
+          "QuickSwap veya desteklenen başka bir DEX'i ziyaret edin",
+          "Cüzdanınızı DEX'e bağlayın",
+          "MATIC veya diğer desteklenen token'ları RISY ile takas edin",
+          "Discord veya Telegram topluluğumuza katılın",
+          "Önerilere oy vererek DAO yönetişimine katılın"
+        ],
+        "tipsTitle": "Faydalı İpuçları",
+        "tips": [
+          "'Cüzdana Ekle' butonunu kullanmak, doğru token sözleşmesini eklediğinizden emin olmanızı sağlar",
+          "Token'ı eklemeden önce her zaman resmi Risy DAO web sitesinde olduğunuzu doğrulayın",
+          "Cüzdanınızı güvende tutun ve özel anahtarlarınızı asla paylaşmayın",
+          "Süreci öğrenmek için küçük bir miktarla başlayın",
+          "En son güncellemeler ve duyurular için resmi kanallarımızı takip edin",
+          "Herhangi bir sorunla karşılaşırsanız yardım için topluluğumuza ulaşın"
         ]
       }
     },
