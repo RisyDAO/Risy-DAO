@@ -44,7 +44,7 @@ var data = {
       "title": "Rise with RISY",
       "subtitle": "The Future of Decentralized Finance",
       "description": "Risy DAO is revolutionizing DeFi with innovative tokenomics, community governance, and sustainable growth mechanisms.",
-      "cta": "Join the Revolution"
+      "cta": "How to get $RISY"
     },
     "about": {
       "title": "About Risy DAO",
@@ -245,7 +245,7 @@ var data = {
       "title": "RISY ile Yükselin",
       "subtitle": "Merkezi Olmayan Finansın Geleceği",
       "description": "Risy DAO, yenilikçi tokenomik, topluluk yönetişimi ve sürdürülebilir büyüme mekanizmaları ile DeFi'yi devrimleştiriyor.",
-      "cta": "Devrime Katılın"
+      "cta": "$RISY Nasıl Edinilir"
     },
     "about": {
       "title": "Risy DAO Hakkında",
