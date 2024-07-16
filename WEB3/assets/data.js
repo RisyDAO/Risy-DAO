@@ -2,7 +2,7 @@ var data = {
   "common": {
     "config": {
       "contractAddress": "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199",
-      "ctaUrl": "https://risydao.medium.com/join-the-revolution-to-earn-your-risy-dao-airdrop-a-fun-adventure-f58227b26e93",
+      "ctaUrl": "https://risydao.medium.com/the-9-steps-not-10-hitchhikers-guide-to-defi-f6d767f264cd",
       "dexScreenerUrl": "https://dexscreener.com/polygon/",
       "swapUrl": "https://quickswap.exchange/#/swap?currency0=ETH&swapIndex=1&currency1=",
       "tallyUrl": "https://www.tally.xyz/gov/risydao",
