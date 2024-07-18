@@ -153,7 +153,7 @@ function risyData() {
                                 name: 'Risy DAO',
                                 symbol: 'RISY',
                                 decimals: 18,
-                                image: 'https://raw.githubusercontent.com/RisyDAO/contract-metadata/master/images/RISY.svg'
+                                image: 'https://raw.githubusercontent.com/RisyDAO/Risy-DAO/main/WEB3/img/logo.png'
                             },
                         },
                     });
