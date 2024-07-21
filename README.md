@@ -194,7 +194,13 @@ For any inquiries or support, please contact:
 
 - Email: info@risy.io
 - Website: [https://risy.io](https://risy.io)
-- Twitter: [@RisyDAO](https://twitter.com/RisyDAO)
-- Discord: [Risy DAO Community](https://discord.gg/JYz5EF9h5e)
+- X (Twitter): [@RisyDAO](https://twitter.com/RisyDAO)
+- Telegram: [Risy DAO Community](https://t.me/RisyDAOCommunity)
+- Discord: [Risy DAO Community](https://discord.gg/zuSBq2XBjc)
+- Medium: [Risy DAO](https://risydao.medium.com)
+- Whitepaper: [Risy DAO Whitepaper](https://risy.io/files/Risy%20DAO%20Whitepaper.pdf)
+- DAO: [Risy DAO](https://www.tally.xyz/gov/risydao)
+- Smart Contract: [Risy DAO on PolygonScan](https://polygonscan.com/token/0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199)
+- DEX: [Risy DAO on QuickSwap](https://quickswap.exchange/#/swap?currency0=ETH&swapIndex=1&currency1=0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199)
 
 Made with passion and coffee for blockchain nerds by the blockchain nerds. Rise with RISY!

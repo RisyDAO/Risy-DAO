@@ -11,7 +11,7 @@ var data = {
       "socialLinks": {
         "twitter": "https://twitter.com/RisyDAO",
         "telegram": "https://t.me/RisyDAOCommunity",
-        "discord": "https://discord.gg/JYz5EF9h5e",
+        "discord": "https://discord.gg/zuSBq2XBjc",
         "github": "https://github.com/RisyDAO",
         "medium": "https://risydao.medium.com"
       },
