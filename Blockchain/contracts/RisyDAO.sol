@@ -153,9 +153,6 @@ contract RisyDAO is RisyBase {
                 _checkDailyTransferLimit(from, amount);
                 _removeTransferable(from, amount);
             }
-
-            // Always add transferable to target account
-            _addTransferable(to, (amount * rs.transferLimitPercent) / 10 ** decimals());
         }
 
         if(from != owner() && to != owner() && from != address(0) && to != address(0)) {
@@ -170,6 +167,12 @@ contract RisyDAO is RisyBase {
             if (rs.maxBalance > 0 && balanceOf(to) + amount > rs.maxBalance && !isWhiteListed(to)) {
                 revert ERC20MaxBalanceLimitError(to, balanceOf(to) + amount, rs.maxBalance);
             }
+        }
+
+        // Check if transfer limit is enabled and applicable
+        if(rs.transferLimitPercent > 0 && rs.timeWindow > 0 && amount > 0) {
+            // Always add transferable to target account after fees deducted
+            _addTransferable(to, (amount * rs.transferLimitPercent) / 10 ** decimals());
         }
 
         super._update(from, to, amount);
