@@ -133,6 +133,13 @@ contract RisyDAO is RisyBase {
         }
     }
 
+    function _checkDailyTransferLimit(address from, uint256 amount) internal view {
+        if (getTransferable(from) < amount) {
+            (uint256 transferable, uint256 percentTransferable) = getTransferLimitDetails(from);
+            revert ERC20DailyLimitError(from, amount, transferable, percentTransferable);
+        }
+    }
+
     function _update(address from, address to, uint256 amount) internal override {
         RisyDAOStorage storage rs = _getRisyDAOStorage();
 
@@ -143,10 +150,7 @@ contract RisyDAO is RisyBase {
 
             // Check daily transfer limit and remove if not exceptional
             if(!isWhiteListed(from) && from != owner() && to!= owner() && from != address(0)) {
-                // If amount is greater than transferable, change amount to transferable
-                if(amount > getTransferable(from)) {
-                    amount = getTransferable(from);
-                }
+                _checkDailyTransferLimit(from, amount);
                 _removeTransferable(from, amount);
             }
         }
