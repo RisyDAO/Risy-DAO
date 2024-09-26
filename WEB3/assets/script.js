@@ -27,7 +27,7 @@ function risyData() {
 
         profitCalculator: {
             dailyReturn: 1,
-            principal: 100,
+            principal: 1000,
             days: 365,
             get finalAmount() {
                 return this.principal * Math.pow((1 + this.dailyReturn / 100), this.days);
