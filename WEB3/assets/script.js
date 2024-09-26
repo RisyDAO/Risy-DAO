@@ -40,6 +40,9 @@ function risyData() {
             },
             get percentageIncrease() {
                 return (this.parseNumber(this.profit) / this.parseNumber(this.principal)) * 100;
+            },
+            get xIncrease() {
+                return this.parseNumber(this.finalAmount) / this.parseNumber(this.principal);
             }
         },
 

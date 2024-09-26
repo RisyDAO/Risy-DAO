@@ -224,7 +224,7 @@
         <section id="profit-calculator" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="profitCalculator.title">Profit Calculator</h2>
-                <div class="max-w-2xl mx-auto bg-gray-900 p-6 rounded-lg shadow-lg">
+                <div class="max-w-4xl mx-auto bg-gray-900 p-6 rounded-lg shadow-lg">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                         <div>
                             <label for="dailyReturn" class="block text-sm font-medium text-gray-400 mb-1" data-translate="profitCalculator.dailyReturn">Daily Return (%)</label>
@@ -239,7 +239,7 @@
                             <input type="text" id="days" x-model.number="profitCalculator.days" step="1" min="1" class="w-full bg-gray-700 text-white rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 break-all">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 break-all">
                         <div class="bg-gray-800 p-4 rounded">
                             <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.finalAmount">Final Amount</h3>
                             <p class="text-2xl font-bold" x-text="'$' + profitCalculator.finalAmount.toFixed(2)"></p>
@@ -251,6 +251,10 @@
                         <div class="bg-gray-800 p-4 rounded">
                             <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.percentageIncrease">Percentage Increase</h3>
                             <p class="text-2xl font-bold" x-text="profitCalculator.percentageIncrease.toFixed(2) + '%'"></p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded">
+                            <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.xIncrease">X</h3>
+                            <p class="text-2xl font-bold" x-text="profitCalculator.xIncrease.toFixed(2) + 'x'"></p>
                         </div>
                     </div>
                 </div>
