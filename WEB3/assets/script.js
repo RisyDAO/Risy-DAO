@@ -30,7 +30,7 @@ function risyData() {
             principal: "1000",
             days: "365",
             parseNumber(value) {
-                value = value.replace(',', '.');
+                value = toString(value).replace(',', '.');
                 return parseFloat(value) || 0;
             },
             get finalAmount() {
