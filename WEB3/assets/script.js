@@ -222,8 +222,6 @@ function risyData() {
             this.updateContent();
 
             this.initAnimations();
-
-            this.initProfitCalculator();
         },
 
         initAnimations() {
@@ -374,10 +372,6 @@ function risyData() {
                 direction: 'alternate',
                 loop: true
             });
-        },
-
-        initProfitCalculator() {
-            console.log('Profit calculator initialized');
         },
     };
 }
