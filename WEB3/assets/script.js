@@ -26,10 +26,11 @@ function risyData() {
         faqItems: [],
 
         profitCalculator: {
-            dailyReturn: "0.75",
+            dailyReturn: "1",
             principal: "1000",
             days: "365",
             parseNumber(value) {
+                value = value.replace(',', '.');
                 return parseFloat(value) || 0;
             },
             get finalAmount() {
