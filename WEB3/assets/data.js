@@ -54,7 +54,7 @@ var data = {
         "finalAmount": "Final Amount",
         "profit": "Profit",
         "percentageIncrease": "Increase (%)",
-        "xIncrease": "Increase (x)"
+        "xIncrease": "Increase (X)"
     },
     "about": {
       "title": "About Risy DAO",
@@ -265,7 +265,7 @@ var data = {
         "finalAmount": "Son Tutar",
         "profit": "Kâr",
         "percentageIncrease": "Artış (%)",
-        "xIncrease": "Artış (x)"
+        "xIncrease": "Artış (X)"
     },
     "about": {
       "title": "Risy DAO Hakkında",
