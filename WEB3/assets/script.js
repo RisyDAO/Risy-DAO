@@ -30,20 +30,20 @@ function risyData() {
             principal: "1000",
             days: "365",
             parseNumber(value) {
-                value = value.toString().replace(',', '.');
+                value = value.replace(',', '.');
                 return parseFloat(value) || 0;
             },
             get finalAmount() {
                 return this.parseNumber(this.principal) * Math.pow((1 + this.parseNumber(this.dailyReturn) / 100), this.parseNumber(this.days));
             },
             get profit() {
-                return this.parseNumber(this.finalAmount) - this.parseNumber(this.principal);
+                return this.finalAmount - this.parseNumber(this.principal);
             },
             get percentageIncrease() {
-                return (this.parseNumber(this.profit) / this.parseNumber(this.principal)) * 100;
+                return this.profit / this.parseNumber(this.principal) * 100;
             },
             get xIncrease() {
-                return this.parseNumber(this.finalAmount) / this.parseNumber(this.principal);
+                return this.finalAmount / this.parseNumber(this.principal);
             }
         },
 
