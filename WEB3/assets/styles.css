@@ -242,3 +242,29 @@ footer a:hover {
         left: 100%;
     }
 }
+
+/* Profit Calculator Styles */
+#profit-calculator input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+#profit-calculator input::-webkit-outer-spin-button,
+#profit-calculator input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#profit-calculator .bg-gray-800 {
+    transition: all 0.3s ease;
+}
+
+#profit-calculator .bg-gray-800:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    #profit-calculator .grid {
+        grid-template-columns: 1fr;
+    }
+}

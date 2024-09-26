@@ -46,6 +46,15 @@ var data = {
       "description": "Risy DAO is revolutionizing DeFi with innovative tokenomics, community governance, and sustainable growth mechanisms.",
       "cta": "How to get $RISY"
     },
+    "profitCalculator": {
+        "title": "Profit Calculator",
+        "dailyReturn": "Daily Return (%)",
+        "principal": "Principal ($)",
+        "days": "Number of Days",
+        "finalAmount": "Final Amount",
+        "profit": "Profit",
+        "percentageIncrease": "Percentage Increase"
+    },
     "about": {
       "title": "About Risy DAO",
       "description1": "Risy DAO is a revolutionary decentralized autonomous organization built on the Polygon blockchain. We're addressing critical issues in the cryptocurrency space, including centralization, market manipulation, and unfair token distribution.",
@@ -246,6 +255,15 @@ var data = {
       "subtitle": "Merkezi Olmayan Finansın Geleceği",
       "description": "Risy DAO, yenilikçi tokenomik, topluluk yönetişimi ve sürdürülebilir büyüme mekanizmaları ile DeFi'yi devrimleştiriyor.",
       "cta": "$RISY Nasıl Edinilir"
+    },
+    "profitCalculator": {
+        "title": "Kâr Hesaplayıcı",
+        "dailyReturn": "Günlük Getiri (%)",
+        "principal": "Ana Para ($)",
+        "days": "Gün Sayısı",
+        "finalAmount": "Son Tutar",
+        "profit": "Kâr",
+        "percentageIncrease": "Yüzde Artış"
     },
     "about": {
       "title": "Risy DAO Hakkında",

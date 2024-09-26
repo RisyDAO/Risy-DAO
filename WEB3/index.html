@@ -180,7 +180,7 @@
             </nav>
         </section>
 
-        <section id="links" class="important-links w-full py-6 bg-gray-800">
+        <section id="links" class="important-links w-full py-6 bg-gray-900">
             <style>
                 #dexscreener-embed {
                     position: relative;
@@ -221,7 +221,43 @@
             </div -->
         </section>
 
-        <section id="about" class="py-20 bg-gray-800">
+        <section id="profit-calculator" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="profitCalculator.title">Profit Calculator</h2>
+                <div class="max-w-2xl mx-auto bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label for="dailyReturn" class="block text-sm font-medium text-gray-400 mb-1" data-translate="profitCalculator.dailyReturn">Daily Return (%)</label>
+                            <input type="number" id="dailyReturn" x-model.number="profitCalculator.dailyReturn" step="0.1" min="0" max="100" class="w-full bg-gray-700 text-white rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        <div>
+                            <label for="principal" class="block text-sm font-medium text-gray-400 mb-1" data-translate="profitCalculator.principal">Principal ($)</label>
+                            <input type="number" id="principal" x-model.number="profitCalculator.principal" step="1" min="0" class="w-full bg-gray-700 text-white rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        <div>
+                            <label for="days" class="block text-sm font-medium text-gray-400 mb-1" data-translate="profitCalculator.days">Number of Days</label>
+                            <input type="number" id="days" x-model.number="profitCalculator.days" step="1" min="1" class="w-full bg-gray-700 text-white rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-800 p-4 rounded">
+                            <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.finalAmount">Final Amount</h3>
+                            <p class="text-2xl font-bold" x-text="'$' + profitCalculator.finalAmount.toFixed(2)"></p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded">
+                            <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.profit">Profit</h3>
+                            <p class="text-2xl font-bold" x-text="'$' + profitCalculator.profit.toFixed(2)"></p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded">
+                            <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.percentageIncrease">Percentage Increase</h3>
+                            <p class="text-2xl font-bold" x-text="profitCalculator.percentageIncrease.toFixed(2) + '%'"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="about.title"></h2>
                 <p class="font-semibold text-center mb-12" data-translate="about.tagline"></p>
@@ -238,12 +274,12 @@
             </div>
         </section>
 
-        <section id="features" class="py-20 bg-gray-900">
+        <section id="features" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="nav.features"></h2>
                 <div class="grid md:grid-cols-3 gap-8">
                     <template x-for="feature in features" :key="feature.title">
-                        <div class="bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn feature-card">
+                        <div class="bg-gray-900 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn feature-card">
                             <i :class="['fas', feature.icon, 'text-4xl', 'text-indigo-500', 'mb-4']"></i>
                             <h3 class="text-xl font-semibold mb-2" x-text="feature.title"></h3>
                             <p x-text="feature.description"></p>
@@ -253,7 +289,7 @@
             </div>
         </section>
 
-        <section id="tokenomics" class="py-20 bg-gray-800">
+        <section id="tokenomics" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="tokenomics.title"></h2>
                 <p class="font-semibold text-center mb-12" data-translate="tokenomics.chartTitle"></p>
@@ -275,7 +311,7 @@
             </div>
         </section>
 
-        <section id="roadmap" class="py-20 bg-gray-900">
+        <section id="roadmap" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="roadmap.title"></h2>
                 <div class="relative">
@@ -283,7 +319,7 @@
                     <div class="space-y-12">
                         <template x-for="(item, index) in roadmapItems" :key="item.quarter">
                             <div class="relative animate__animated animate__fadeIn roadmap-item">
-                                <div :class="['bg-gray-800 p-6 rounded-lg shadow-lg md:w-1/2', index % 2 === 0 ? 'md:ml-auto md:-mr-12' : 'md:mr-auto md:-ml-12']">
+                                <div :class="['bg-gray-900 p-6 rounded-lg shadow-lg md:w-1/2', index % 2 === 0 ? 'md:ml-auto md:-mr-12' : 'md:mr-auto md:-ml-12']">
                                     <h3 class="text-xl font-semibold mb-2" x-text="item.quarter"></h3>
                                     <ul class="list-disc list-inside">
                                         <template x-for="subItem in item.items" :key="subItem">
@@ -299,12 +335,12 @@
             </div>
         </section>
         
-        <section id="faq" class="py-20 bg-gray-800">
+        <section id="faq" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="faq.title"></h2>
                 <div class="space-y-4">
                     <template x-for="(item, index) in getTranslation('faq.items')" :key="index">
-                        <div class="bg-gray-900 rounded-lg overflow-hidden">
+                        <div class="bg-gray-800 rounded-lg overflow-hidden">
                             <button 
                                 class="w-full py-4 px-6 text-left font-semibold flex justify-between items-center focus:outline-none"
                                 @click="item.isOpen = !item.isOpen"
@@ -340,7 +376,7 @@
             </div>
         </section>
 
-        <section id="medium-cta" class="pb-20 bg-gray-800">
+        <section id="medium-cta" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl font-bold mb-8 text-gradient animate__animated animate__fadeIn" data-translate="medium.title"></h2>
                 <p class="text-xl mb-8 animate__animated animate__fadeIn" data-translate="medium.description"></p>

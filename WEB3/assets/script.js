@@ -25,6 +25,21 @@ function risyData() {
         roadmapItems: [],
         faqItems: [],
 
+        profitCalculator: {
+            dailyReturn: 1,
+            principal: 100,
+            days: 365,
+            get finalAmount() {
+                return this.principal * Math.pow((1 + this.dailyReturn / 100), this.days);
+            },
+            get profit() {
+                return this.finalAmount - this.principal;
+            },
+            get percentageIncrease() {
+                return (this.profit / this.principal) * 100;
+            }
+        },
+
         switchLanguage(lang) {
             this.language = lang;
             this.updateContent();
@@ -207,6 +222,8 @@ function risyData() {
             this.updateContent();
 
             this.initAnimations();
+
+            this.initProfitCalculator();
         },
 
         initAnimations() {
@@ -357,7 +374,11 @@ function risyData() {
                 direction: 'alternate',
                 loop: true
             });
-        }
+        },
+
+        initProfitCalculator() {
+            console.log('Profit calculator initialized');
+        },
     };
 }
 
