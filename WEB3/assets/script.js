@@ -27,23 +27,23 @@ function risyData() {
 
         profitCalculator: {
             dailyReturn: "1",
-            principal: "1000",
+            capital: "1000",
             days: "365",
             parseNumber(value) {
                 value = value.replace(',', '.');
                 return parseFloat(value) || 0;
             },
             get finalAmount() {
-                return this.parseNumber(this.principal) * Math.pow((1 + this.parseNumber(this.dailyReturn) / 100), this.parseNumber(this.days));
+                return this.parseNumber(this.capital) * Math.pow((1 + this.parseNumber(this.dailyReturn) / 100), this.parseNumber(this.days));
             },
             get profit() {
-                return this.finalAmount - this.parseNumber(this.principal);
+                return this.finalAmount - this.parseNumber(this.capital);
             },
             get percentageIncrease() {
-                return this.profit / this.parseNumber(this.principal) * 100;
+                return this.profit / this.parseNumber(this.capital) * 100;
             },
             get xIncrease() {
-                return this.finalAmount / this.parseNumber(this.principal);
+                return this.finalAmount / this.parseNumber(this.capital);
             }
         },
 

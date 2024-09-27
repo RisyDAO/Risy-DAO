@@ -49,7 +49,7 @@ var data = {
     "profitCalculator": {
         "title": "Profit Calculator",
         "dailyReturn": "Daily Return (%)",
-        "principal": "Principal ($)",
+        "capital": "Capital ($)",
         "days": "Number of Days",
         "finalAmount": "Final Amount",
         "profit": "Profit",
@@ -260,7 +260,7 @@ var data = {
     "profitCalculator": {
         "title": "Kâr Hesaplayıcı",
         "dailyReturn": "Günlük Getiri (%)",
-        "principal": "Ana Para ($)",
+        "capital": "Ana Para ($)",
         "days": "Gün Sayısı",
         "finalAmount": "Son Tutar",
         "profit": "Kâr",
