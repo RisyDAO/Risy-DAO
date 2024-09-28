@@ -188,12 +188,10 @@
   
       calculateUniswapV2Price(pairAddress, baseTokenAddress) {
         return this.wrapAsync(async () => {
-          const [reserves, tokens, baseTokenDecimals, quoteTokenDecimals] = await Promise.all([
-            this.getUniswapV2Reserves(pairAddress),
-            this.getUniswapV2Tokens(pairAddress),
-            this.getTokenDecimals(baseTokenAddress),
-            this.getTokenDecimals(tokens.token0 === baseTokenAddress ? tokens.token1 : tokens.token0)
-          ]);
+          const reserves = await this.getUniswapV2Reserves(pairAddress);
+          const tokens = await this.getUniswapV2Tokens(pairAddress);
+          const baseTokenDecimals = await this.getTokenDecimals(baseTokenAddress);
+          const quoteTokenDecimals = await this.getTokenDecimals(tokens.token0 === baseTokenAddress ? tokens.token1 : tokens.token0);
   
           const [baseReserve, quoteReserve] = tokens.token0.toLowerCase() === baseTokenAddress.toLowerCase() 
             ? [reserves[0], reserves[1]] 
