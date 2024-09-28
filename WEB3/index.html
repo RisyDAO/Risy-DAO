@@ -50,8 +50,49 @@
     <script src="assets/lib/js/alpine.min.js" defer></script>
     <script src="assets/lib/js/font-awesome.min.js"></script>
     <script src="assets/lib/js/anime.min.js"></script>
+    <script src="assets/lib/js/ethers-5_7_2.umd.min.js"></script>
+    <script src="assets/lib/js/risy-connector.js"></script>
     <script src="assets/data.js"></script>
     <script src="assets/script.js"></script>
+
+    <script type="text/javascript">
+        const rpcList = [
+            "https://polygon.llamarpc.com",
+            "https://polygon-bor-rpc.publicnode.com",
+            "https://polygon.blockpi.network/v1/rpc/public",
+            "https://polygon.drpc.org",
+            "https://polygon.rpc.blxrbdn.com",
+            "https://api.zan.top/node/v1/polygon/mainnet/public",
+            "https://polygon-mainnet.public.blastapi.io",
+            "https://endpoints.omniatech.io/v1/matic/mainnet/public",
+            "https://polygon.meowrpc.com",
+            "https://rpc-mainnet.matic.quiknode.pro",
+            "https://polygon.rpc.subquery.network/public",
+            "https://polygon.api.onfinality.io/public",
+            "https://polygon-mainnet.4everland.org/v1/37fa9972c1b1cd5fab542c7bdd4cde2f",
+            "https://1rpc.io/matic",
+            "https://polygon-pokt.nodies.app",
+            "https://polygon-mainnet.rpcfast.com?api_key=xbhWBI1Wkguk8SNMu1bvvLurPGLXmgwYeC4S6g2H7WdwFigZSmPWVZRxrskEQwIf",
+            "https://gateway.tenderly.co/public/polygon",
+            "https://polygon.gateway.tenderly.co",
+            "https://polygon-rpc.com",
+            "https://rpc.ankr.com/polygon"
+        ];
+
+        const connector = new RisyConnector(rpcList, {
+            timeout: 5000,
+            retries: 2,
+            debugMode: true
+        });
+
+        async function test() {
+            // Get current block number
+            const blockNumber = await connector.getBlockNumber();
+            console.log('Current block number:', blockNumber);
+        }
+        
+        test();
+    </script>
 
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
