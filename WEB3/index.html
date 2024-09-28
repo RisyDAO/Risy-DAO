@@ -88,8 +88,8 @@
     <script type="text/javascript">
         async function test() {
             // Get current price
-            const price = await connector.calculateUniswapV2Price("0xb908228A001CB177ac785659505EBCa1d9947EE8","0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359");
-            console.log('Price:', price);
+            const price = await connector.calculateUniswapV2PriceAsNum("0xb908228A001CB177ac785659505EBCa1d9947EE8","0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359");
+            console.log('Price:', price.toFixed(18));
         }
         
         test();

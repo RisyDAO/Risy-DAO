@@ -56,7 +56,7 @@
           });
   
           return Promise.race([
-            provider.getBlockNumber().then(() => ({ provider, index })),
+            provider.getBlockNumber().then(() => ({ provider, index })).catch(error => ({ error, index })),
             timeoutPromise
           ]).catch(error => ({ error, index }));
         });
@@ -186,7 +186,7 @@
         });
       }
   
-      calculateUniswapV2Price(pairAddress, baseTokenAddress) {
+      calculateUniswapV2PriceAsNum(pairAddress, baseTokenAddress) {
         return this.wrapAsync(async () => {
           const reserves = await this.getUniswapV2Reserves(pairAddress);
           const tokens = await this.getUniswapV2Tokens(pairAddress);
@@ -196,8 +196,9 @@
           const [baseReserve, quoteReserve] = tokens.token0.toLowerCase() === baseTokenAddress.toLowerCase() 
             ? [reserves[0], reserves[1]] 
             : [reserves[1], reserves[0]];
-  
-          return (quoteReserve / Math.pow(10, quoteTokenDecimals)) / (baseReserve / Math.pow(10, baseTokenDecimals));
+          
+          const price = baseReserve.mul(ethers.BigNumber.from(10).pow(quoteTokenDecimals + baseTokenDecimals)).div(quoteReserve);
+          return ethers.utils.formatUnits(price, baseTokenDecimals) / 10 ** baseTokenDecimals;
         });
       }
     }
