@@ -42,7 +42,7 @@ function risyData() {
             async init() {
                 await connector.calculateUniswapV2PriceAsNum("0xb908228A001CB177ac785659505EBCa1d9947EE8","0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359").then(price => {
                     this.currentPrice = price.toFixed(12).toString();
-                    this.dailyReturn = (this.currentDailyReturn * 100).toFixed(4).toString();
+                    this.dailyReturn = (this.currentDailyReturn * 100).toFixed(2).toString();
                 });
                 
                 setInterval(async () => {

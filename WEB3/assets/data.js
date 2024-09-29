@@ -56,8 +56,17 @@ var data = {
         "profit": "Profit",
         "percentageRise": "Rise (%)",
         "xRise": "Rise (X)",
-        "roi": "ROI",
+        "roi": "ROI (100%)",
         "roiSuffix": "Days"
+    },
+    "onChainData": {
+      "title": "On-Chain Data",
+      "currentDailyReturn": "Average Daily Return",
+      "daysPassed": "Days Passed Since Launch",
+      "whatIfFinalAmount": "Final Amount Since Launch",
+      "whatIfProfit": "Profit Since Launch",
+      "currentPercentageRise": "Rise (%) Since Launch",
+      "currentXRise": "Rise (x) Since Launch"
     },
     "about": {
       "title": "About Risy DAO",
@@ -270,8 +279,17 @@ var data = {
         "profit": "Kâr",
         "percentageRise": "Artış (%)",
         "xRise": "Artış (X)",
-        "roi": "Amortisman",
+        "roi": "Amortisman (%100)",
         "roiSuffix": "Gün"
+    },
+    "onChainData": {
+      "title": "Zincir-üstü Veri",
+      "currentDailyReturn": "Ortalama Günlük Getiri",
+      "daysPassed": "Başlangıçtan Bu Yana Geçen Gün Sayısı",
+      "whatIfFinalAmount": "Başlangıçtan Bu Yana Son Tutar",
+      "whatIfProfit": "Başlangıçtan Bu Yana Kâr",
+      "currentPercentageRise": "Başlangıçtan Bu Yana Artış (%)",
+      "currentXRise": "Başlangıçtan Bu Yana Artış (x)"
     },
     "about": {
       "title": "Risy DAO Hakkında",
