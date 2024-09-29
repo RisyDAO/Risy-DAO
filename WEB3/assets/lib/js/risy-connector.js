@@ -36,8 +36,21 @@
           debugMode: false,
           ...options
         };
-  
-        this.providers = this.rpcList.map(url => new ethers.providers.JsonRpcProvider(url));
+
+        this.providers = this.rpcList.map((url) => {
+          return new ethers.providers.JsonRpcProvider({
+            url,
+            name: url,
+            chainId: 137,
+            staticNetwork: true,
+            skipFetchSetup: true,
+            errorPassThrough: false,
+            throttleCallback: (attempt, url) => {
+            },
+            throttleLimit: 1
+          });
+        });
+        
         this.currentProviderIndex = 0;
       }
   

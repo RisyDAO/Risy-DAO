@@ -53,6 +53,7 @@
     <script src="assets/lib/js/ethers-5_7_2.umd.min.js"></script>
     <script src="assets/lib/js/risy-connector.js"></script>
     <script src="assets/data.js"></script>
+
     <script type="text/javascript">
         const rpcList = [
             "https://polygon.llamarpc.com",
@@ -80,21 +81,11 @@
         const connector = new RisyConnector(rpcList, {
             timeout: 5000,
             retries: 3,
-            debugMode: true
+            debugMode: false
         });
     </script>
+
     <script src="assets/script.js"></script>
-
-    <script type="text/javascript">
-        async function test() {
-            // Get current price
-            const price = await connector.calculateUniswapV2PriceAsNum("0xb908228A001CB177ac785659505EBCa1d9947EE8","0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359");
-            console.log('Price:', price.toFixed(18));
-        }
-        
-        test();
-    </script>
-
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
     {
@@ -223,33 +214,7 @@
         </section>
 
         <section id="links" class="important-links w-full py-6 bg-gray-900">
-            <style>
-                #dexscreener-embed {
-                    position: relative;
-                    width: 100%;
-                    padding-bottom: 600px;
-                    max-height: 600px;
-                }
-                @media (min-width: 1400px) {
-                    #dexscreener-embed {
-                        padding-bottom: 600px;
-                        max-height: 600px;
-                    }
-                }
-                #dexscreener-embed iframe {
-                    position: absolute;
-                    width: 100%;
-                    max-height: 600px;
-                    top: 0;
-                    left: 0;
-                    border: 0;
-                }
-                .dexscreener-embedder {
-                    width: 100%;
-                    max-height: 600px;
-                }
-            </style>
-            <div id="dexscreener-embed">
+            <div id="dexscreener-embed" class="hidden lg:block">
                 <iframe src="https://dexscreener.com/polygon/0xb908228a001cb177ac785659505ebca1d9947ee8?embed=1&theme=dark&trades=0" class="dexscreener-embedder" height="600" width="100%" frameBorder="0" scrolling="no">
                 </iframe>
             </div>
@@ -258,8 +223,8 @@
         <section id="profit-calculator" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="profitCalculator.title">Profit Calculator</h2>
-                <div class="max-w-4xl mx-auto bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="max-w-5xl mx-auto bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label for="dailyReturn" class="block text-sm font-medium text-gray-400 mb-1" data-translate="profitCalculator.dailyReturn">Daily Return (%)</label>
                             <input type="text" id="dailyReturn" x-model="profitCalculator.dailyReturn" step="0.01" min="0" max="100" class="w-full bg-gray-700 text-white rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -273,7 +238,8 @@
                             <input type="text" id="days" x-model="profitCalculator.days" step="1" min="1" class="w-full bg-gray-700 text-white rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 break-all">
+                    <small class="text-gray-400 text-xsm" data-translate="profitCalculator.tip"></small>
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 break-all mt-6">
                         <div class="bg-gray-800 p-4 rounded">
                             <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.finalAmount">Final Amount</h3>
                             <p class="text-2xl font-bold" x-text="'$' + profitCalculator.finalAmount.toFixed(2)"></p>
@@ -283,12 +249,16 @@
                             <p class="text-2xl font-bold" x-text="'$' + profitCalculator.profit.toFixed(2)"></p>
                         </div>
                         <div class="bg-gray-800 p-4 rounded">
-                            <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.percentageIncrease">Percentage Increase</h3>
-                            <p class="text-2xl font-bold" x-text="profitCalculator.percentageIncrease.toFixed(2) + '%'"></p>
+                            <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.percentageRise">Percentage Rise</h3>
+                            <p class="text-2xl font-bold" x-text="profitCalculator.percentageRise.toFixed(2).replace('NaN','0') + '%'"></p>
                         </div>
                         <div class="bg-gray-800 p-4 rounded">
-                            <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.xIncrease">X</h3>
-                            <p class="text-2xl font-bold" x-text="profitCalculator.xIncrease.toFixed(2) + 'x'"></p>
+                            <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.xRise">X</h3>
+                            <p class="text-2xl font-bold" x-text="profitCalculator.xRise.toFixed(2).replace('NaN','0') + 'x'"></p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded">
+                            <h3 class="text-lg font-semibold mb-2 text-indigo-400" data-translate="profitCalculator.roi">ROI</h3>
+                            <p class="text-2xl font-bold"><span x-text="profitCalculator.roi.toFixed(2).replace('Infinity','∞')"></span>&nbsp;<span data-translate="profitCalculator.roiSuffix"></span></p>
                         </div>
                     </div>
                 </div>

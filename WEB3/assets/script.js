@@ -26,6 +26,12 @@ function risyData() {
         faqItems: [],
 
         profitCalculator: {
+            startPrice: "0.00000001973",
+            currentPrice: "0.00000001973",
+            startDate: new Date("Jul-03-2024 05:56:16 PM UTC"),
+            get currentDate() {
+                return new Date();
+            },
             dailyReturn: "1",
             capital: "1000",
             days: "365",
@@ -33,18 +39,51 @@ function risyData() {
                 value = value.replace(',', '.');
                 return parseFloat(value) || 0;
             },
+            async init() {
+                await connector.calculateUniswapV2PriceAsNum("0xb908228A001CB177ac785659505EBCa1d9947EE8","0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359").then(price => {
+                    this.currentPrice = price.toFixed(12).toString();
+                    this.dailyReturn = (this.currentDailyReturn * 100).toFixed(4).toString();
+                });
+                
+                setInterval(async () => {
+                    await connector.calculateUniswapV2PriceAsNum("0xb908228A001CB177ac785659505EBCa1d9947EE8","0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359").then(price => {
+                        this.currentPrice = price.toFixed(12).toString();
+                    });
+                }, 30000);
+            },
+            get daysPassed() {
+                return (this.currentDate - this.startDate) / (1000 * 60 * 60 * 24);
+            },
+            get currentXRise() {
+                return this.parseNumber(this.currentPrice) / this.parseNumber(this.startPrice);
+            },
+            get currentPercentageRise() {
+                return (this.currentXRise - 1) * 100;
+            },
+            get whatIfFinalAmount() {
+                return this.parseNumber(this.capital) * this.currentXRise;
+            },
+            get currentDailyReturn() {
+                return Math.pow(this.currentXRise, 1 / this.daysPassed) - 1;
+            },
+            get whatIfProfit() {
+                return this.whatIfFinalAmount - this.parseNumber(this.capital);
+            },
             get finalAmount() {
                 return this.parseNumber(this.capital) * Math.pow((1 + this.parseNumber(this.dailyReturn) / 100), this.parseNumber(this.days));
+            },
+            get roi() {
+                return Math.log(2) / Math.log(1 + this.parseNumber(this.dailyReturn) / 100);
             },
             get profit() {
                 return this.finalAmount - this.parseNumber(this.capital);
             },
-            get percentageIncrease() {
-                return this.profit / this.parseNumber(this.capital) * 100;
-            },
-            get xIncrease() {
+            get xRise() {
                 return this.finalAmount / this.parseNumber(this.capital);
-            }
+            },
+            get percentageRise() {
+                return (this.xRise - 1) * 100;
+            },
         },
 
         switchLanguage(lang) {
@@ -229,6 +268,8 @@ function risyData() {
             this.updateContent();
 
             this.initAnimations();
+
+            this.profitCalculator.init();
         },
 
         initAnimations() {

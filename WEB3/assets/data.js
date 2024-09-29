@@ -51,10 +51,13 @@ var data = {
         "dailyReturn": "Daily Return (%)",
         "capital": "Capital ($)",
         "days": "Number of Days",
+        "tip": "You can analyse your own investment by entering values in the boxes. Amounts are calculated using the compound interest formula.",
         "finalAmount": "Final Amount",
         "profit": "Profit",
-        "percentageIncrease": "Increase (%)",
-        "xIncrease": "Increase (X)"
+        "percentageRise": "Rise (%)",
+        "xRise": "Rise (X)",
+        "roi": "ROI",
+        "roiSuffix": "Days"
     },
     "about": {
       "title": "About Risy DAO",
@@ -262,10 +265,13 @@ var data = {
         "dailyReturn": "Günlük Getiri (%)",
         "capital": "Ana Para ($)",
         "days": "Gün Sayısı",
+        "tip": "Kutucuklara değer girerek kendi yatırımınızı analiz edebilirsiniz. Tutarlar bileşik getiri formülü ile hesaplanır.",
         "finalAmount": "Son Tutar",
         "profit": "Kâr",
-        "percentageIncrease": "Artış (%)",
-        "xIncrease": "Artış (X)"
+        "percentageRise": "Artış (%)",
+        "xRise": "Artış (X)",
+        "roi": "Amortisman",
+        "roiSuffix": "Gün"
     },
     "about": {
       "title": "Risy DAO Hakkında",

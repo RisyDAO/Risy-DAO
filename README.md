@@ -166,7 +166,7 @@ Risy DAO has ambitious plans for future development:
 
 2. **Continuous Upgrades**: Thanks to the DAO mechanism, Risy can evolve indefinitely based on community decisions.
 
-3. **Expanding Use Cases**: As the ecosystem grows, we aim to increase the utility and adoption of RISY tokens across different platforms and services.
+3. **Expanding Use Cases**: As the ecosystem grows, we aim to rise the utility and adoption of RISY tokens across different platforms and services.
 
 ## Tokenomics
 
