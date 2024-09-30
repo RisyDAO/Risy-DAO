@@ -327,8 +327,10 @@ function risyData() {
                 this.profitCalculator.currentPrice = this.onChainData.currentPrice;
 
             } catch (error) {
+                // Try again after 5 seconds
                 console.error('Error fetching on-chain data:', error);
-                this.error = 'Failed to fetch on-chain data. Please try again later.';
+                this.error = 'Failed to fetch on-chain data.<br>Please check your network connection.<br><br>Trying again in 5 seconds...';
+                setTimeout(this.fetchOnChainData, 5000);
             } finally {
                 this.isLoading = false;
             }
