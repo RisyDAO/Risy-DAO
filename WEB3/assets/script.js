@@ -330,7 +330,11 @@ function risyData() {
                 // Try again after 5 seconds
                 console.error('Error fetching on-chain data:', error);
                 this.error = 'Failed to fetch on-chain data.<br>Please check your network connection.<br><br>Trying again in 5 seconds...';
-                setTimeout(this.fetchOnChainData, 5000);
+                setTimeout(()=>{
+                    this.error = null;
+                    this.isLoading = true;
+                    this.fetchOnChainData();
+                }, 5000);
             } finally {
                 this.isLoading = false;
             }
