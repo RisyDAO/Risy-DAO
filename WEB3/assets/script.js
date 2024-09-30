@@ -1,3 +1,39 @@
+// RisyConnector initialization
+const rpcList = [
+    "https://polygon.gateway.tenderly.co/2wV3bFeeHB2fY6uVT7uB0M",
+    "https://polygon.gateway.tenderly.co/3hrilfgliLox7wHffJ3KG3",
+    "https://polygon.gateway.tenderly.co/54sRfq2yMc24rkHUMB5GcQ",
+    "https://polygon.gateway.tenderly.co/3KCXhFClgBQfk86RrIDGb2",
+    "https://polygon-mainnet.infura.io/v3/6abe696e9cb946d0b52e286e11037a2b",
+    "https://polygon-mainnet.infura.io/v3/cb02a852ec17453bb8a0cc700c5c61c6",
+    "https://polygon.llamarpc.com",
+    "https://polygon-bor-rpc.publicnode.com",
+    "https://polygon.blockpi.network/v1/rpc/public",
+    "https://polygon.drpc.org",
+    "https://polygon.rpc.blxrbdn.com",
+    "https://api.zan.top/node/v1/polygon/mainnet/public",
+    "https://polygon-mainnet.public.blastapi.io",
+    "https://endpoints.omniatech.io/v1/matic/mainnet/public",
+    "https://polygon.meowrpc.com",
+    "https://rpc-mainnet.matic.quiknode.pro",
+    "https://polygon.rpc.subquery.network/public",
+    "https://polygon.api.onfinality.io/public",
+    "https://polygon-mainnet.4everland.org/v1/37fa9972c1b1cd5fab542c7bdd4cde2f",
+    "https://1rpc.io/matic",
+    "https://polygon-pokt.nodies.app",
+    "https://polygon-mainnet.rpcfast.com?api_key=xbhWBI1Wkguk8SNMu1bvvLurPGLXmgwYeC4S6g2H7WdwFigZSmPWVZRxrskEQwIf",
+    "https://gateway.tenderly.co/public/polygon",
+    "https://polygon.gateway.tenderly.co",
+    "https://polygon-rpc.com",
+    "https://rpc.ankr.com/polygon"
+];
+
+const connector = new RisyConnector(rpcList, {
+    timeout: 30000,
+    retries: 3,
+    debugMode: false
+});
+
 // Detect user's preferred language
 function detectLanguage() {
     const savedLang = localStorage.getItem('preferred-language');
@@ -12,7 +48,7 @@ function risyData() {
     return {
         language: detectLanguage(),
         translations: data,
-        contractAddress: '',
+        contractAddress: '0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199',
         ctaUrl: '',
         whitepaperUrl: '',
         dexScreenerUrl: '',
@@ -24,10 +60,28 @@ function risyData() {
         tokenomics: [],
         roadmapItems: [],
         faqItems: [],
+        isLoading: true,
+        error: null,
+
+        onChainData: {
+            address: 'Loading...',
+            chain: 'Polygon Mainnet',
+            name: 'Loading...',
+            symbol: 'Loading...',
+            decimals: 0,
+            totalSupply: 'Loading...',
+            initialPrice: '0.00000001938',
+            currentPrice: '0.00000001938',
+            launchDate: new Date("Jul-03-2024 05:56:16 PM UTC"),
+            transferLimit: 'Loading...',
+            maxBalance: 'Loading...',
+            daoFee: 'Loading...',
+            version: 'Loading...'
+        },
 
         profitCalculator: {
-            startPrice: "0.00000001973",
-            currentPrice: "0.00000001973",
+            startPrice: "0.00000001938",
+            currentPrice: "0.00000001938",
             startDate: new Date("Jul-03-2024 05:56:16 PM UTC"),
             get currentDate() {
                 return new Date();
@@ -245,6 +299,54 @@ function risyData() {
             }
         },
 
+        async fetchOnChainData() {
+            try {
+                this.isLoading = true;
+                this.error = null;
+                const risyInfo = await connector.getRisyDAOInfo(this.contractAddress);
+                
+                this.onChainData = {
+                    ...this.onChainData,
+                    address: this.contractAddress,
+                    name: risyInfo.name,
+                    symbol: risyInfo.symbol,
+                    decimals: risyInfo.decimals,
+                    totalSupply: risyInfo.totalSupply,
+                    transferLimit: `${risyInfo.transferLimit.percent * 100}% per ${risyInfo.transferLimit.timeWindow / 3600} hours (GMT+0)`,
+                    maxBalance: risyInfo.maxBalance,
+                    daoFee: risyInfo.daoFee * 100,
+                    version: risyInfo.version
+                };
+
+                // Fetch current price
+                const currentPrice = await connector.calculateUniswapV2PriceAsNum(
+                    "0xb908228A001CB177ac785659505EBCa1d9947EE8",
+                    "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
+                );
+                this.onChainData.currentPrice = currentPrice.toFixed(12);
+                this.profitCalculator.currentPrice = this.onChainData.currentPrice;
+
+            } catch (error) {
+                console.error('Error fetching on-chain data:', error);
+                this.error = 'Failed to fetch on-chain data. Please try again later.';
+            } finally {
+                this.isLoading = false;
+            }
+        },
+
+        getTimeSinceLaunch() {
+            const now = new Date();
+            const diff = now - this.onChainData.launchDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const months = Math.floor(days / 30);
+            const years = Math.floor(months / 12);
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            return `${years}y ${months % 12}m ${days % 30}d ${hours}h ${minutes}m ${seconds}s`;
+        },
+
         async init() {
             // Set configuration data
             const commonConfig = this.translations.common.config;
@@ -261,15 +363,43 @@ function risyData() {
 
             // Set language-specific configuration data
             const config = this.translations[this.language].config;
-
             this.whitepaperUrl = config.whitepaperUrl;
 
             // Set content data
             this.updateContent();
 
+            // Initialize profit calculator
+            await this.profitCalculator.init();
+
+            // Initialize animations and UI components
             this.initAnimations();
 
-            this.profitCalculator.init();
+            // Start periodic updates
+            this.startPeriodicUpdates();
+
+            // Fetch on-chain data
+            await this.fetchOnChainData();
+        },
+
+        startPeriodicUpdates() {
+            // Update current price every 30 seconds
+            setInterval(async () => {
+                try {
+                    const currentPrice = await connector.calculateUniswapV2PriceAsNum(
+                        "0xb908228A001CB177ac785659505EBCa1d9947EE8",
+                        "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
+                    );
+                    this.onChainData.currentPrice = currentPrice.toFixed(12);
+                    this.profitCalculator.currentPrice = this.onChainData.currentPrice;
+                } catch (error) {
+                    console.error('Error updating current price:', error);
+                }
+            }, 30000);
+
+            // Update time since launch every second
+            setInterval(() => {
+                this.$refs.timeSinceLaunch.textContent = this.getTimeSinceLaunch();
+            }, 1000);
         },
 
         initAnimations() {
@@ -396,6 +526,18 @@ function risyData() {
             });
         },
 
+        initPulsingButton() {
+            anime({
+                targets: '#hero a.cta-button',
+                scale: [1, 1.1],
+                opacity: [0.9, 1],
+                easing: 'easeInOutQuad',
+                duration: 1000,
+                direction: 'alternate',
+                loop: true
+            });
+        },
+
         animateValue(obj, start, end, duration) {
             let startTimestamp = null;
             const step = (timestamp) => {
@@ -408,19 +550,7 @@ function risyData() {
                 }
             };
             window.requestAnimationFrame(step);
-        },
-
-        initPulsingButton() {
-            anime({
-                targets: '#hero a.cta-button',
-                scale: [1, 1.1],
-                opacity: [0.9, 1],
-                easing: 'easeInOutQuad',
-                duration: 1000,
-                direction: 'alternate',
-                loop: true
-            });
-        },
+        }
     };
 }
 

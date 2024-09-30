@@ -60,25 +60,45 @@ var data = {
         "roiSuffix": "Days"
     },
     "onChainData": {
-      "title": "On-Chain Data",
+      "title": "On-Chain Token Data",
       "currentDailyReturn": "Average Daily Return",
       "daysPassed": "Days Passed Since Launch",
       "whatIfFinalAmount": "Final Amount Since Launch",
       "whatIfProfit": "Profit Since Launch",
       "currentPercentageRise": "Rise (%) Since Launch",
-      "currentXRise": "Rise (x) Since Launch"
+      "currentXRise": "Rise (x) Since Launch",
+      "address": "Address",
+      "chain": "Chain",
+      "name": "Name",
+      "symbol": "Symbol",
+      "decimals": "Decimals",
+      "totalSupply": "Total Supply",
+      "initialPrice": "Initial Price",
+      "currentPrice": "Current Price",
+      "launchDate": "Launch Date",
+      "timeSinceLaunch": "ago",
+      "transferLimit": "Current Daily Transfer Limit",
+      "maxBalance": "Current ICO Hodl Limit",
+      "daoFee": "DAO Fee",
+      "contractVersion": "Contract Version"
     },
     "about": {
       "title": "About Risy DAO",
       "description1": "Risy DAO is a revolutionary decentralized autonomous organization built on the Polygon blockchain. We're addressing critical issues in the cryptocurrency space, including centralization, market manipulation, and unfair token distribution.",
       "description2": "Our mission is to create a truly decentralized, community-driven ecosystem that continuously evolves to meet the needs of its users. With Risy DAO, we're building a more equitable, stable, and sustainable financial future.",
-      "description3": "Risy DAO addresses the centralization problem of cryptocurrencies, whale manipulations, and unfair distribution of tokens through its innovative 10% daily transfer limit and temporary 0.75% (~=7500000000 RISY) hodl limit during the ICO period. The project evolves and upgrades itself indefinitely thanks to the DAO mechanism, ensuring long-term sustainability and adaptability.",
-      "description4": "With an initial locked liquidity of $20,000 (50% USDC, 50% PAXG), Risy DAO creates a unique correlation with both gold and the US dollar. This dual correlation provides stability against various inflationary scenarios and bear markets in the broader cryptocurrency space.",
-      "description5": "Built on the Polygon blockchain, Risy DAO enables fast and affordable dApp development compared to Ethereum-based tokens. The 0.1% DAO fee on each transfer funds ongoing development, marketing, and community initiatives, making the project self-sustaining.",
-      "description6": "Security is a top priority, with battle-tested smart contracts and hundreds of carefully crafted tests ensuring robustness and reliability. With approximately 10x buys against sells due to DEX purchase exceptions, Risy DAO is designed for continuous growth and success.",
+      "description3": "Risy DAO revolutionizes the cryptocurrency space with its groundbreaking 10% daily transfer limit. This innovative mechanism creates a natural 10:1 buy-to-sell ratio, ensuring RISY is always in a bull market. The project's name itself, 'RISY', symbolizes this infinite rise, while the angry bull in our logo represents the unstoppable bull market we've created. Thanks to the DAO mechanism, the project evolves and upgrades indefinitely, guaranteeing long-term sustainability and adaptability in this ever-rising ecosystem.",
+      "description4": "We address the centralization problem of cryptocurrencies, whale manipulations, and unfair distribution of tokens through Risy DAO Token (RISY)'s innovative 10% daily transfer limit and temporary 0.75% (~=7500000000 RISY) hodl limit during the ICO period. The project evolves and upgrades itself indefinitely thanks to the DAO mechanism, ensuring long-term sustainability and adaptability.",
+      "description5": "With an initial locked liquidity of $20,000 (50% USDC, 50% PAXG), Risy DAO creates a unique correlation with both gold and the US dollar. This dual correlation provides stability against various inflationary scenarios and bear markets in the broader cryptocurrency space.",
+      "description6": "Built on the Polygon blockchain, Risy DAO enables fast and affordable dApp development compared to Ethereum-based tokens. The 0.1% DAO fee on each transfer funds ongoing development, marketing, and community initiatives, making the project self-sustaining.",
+      "description7": "Security is a top priority, with battle-tested smart contracts and hundreds of carefully crafted tests ensuring robustness and reliability. With approximately 10x buys against sells due to DEX purchase exceptions, Risy DAO is designed for continuous growth and success.",
       "tagline": "Made with passion and coffee for blockchain nerds by blockchain nerds."
     },
     "features": [
+      {
+        "icon": "fa-chart-line",
+        "title": "Endless Bull Market",
+        "description": "Revolutionary 10% daily sell limit creates a 10:1 buy-to-sell ratio, ensuring RISY's continuous rise and infinite bull market."
+      },
       {
         "icon": "fa-lock",
         "title": "Decentralized Governance",
@@ -90,14 +110,9 @@ var data = {
         "description": "10% daily transfer limit and 0.75% (~=7500000000 RISY) temporary hodl limit for ICO prevent market manipulation."
       },
       {
-        "icon": "fa-chart-line",
-        "title": "Economic Stability",
-        "description": "Correlated with both USD and gold, providing stability against various market conditions."
-      },
-      {
         "icon": "fa-coins",
-        "title": "Sustainable Funding",
-        "description": "0.1% DAO fee on transfers funds ongoing development and community initiatives."
+        "title": "Stability and Funding",
+        "description": "Correlated with both USD and gold, providing stability against various market conditions. 0.1% DAO fee on transfers funds ongoing development and community initiatives."
       },
       {
         "icon": "fa-tachometer-alt",
@@ -164,8 +179,18 @@ var data = {
       "title": "Frequently Asked Questions",
       "items": [
         {
-          "question": "What is Risy DAO?",
-          "answer": "Risy DAO is a decentralized autonomous organization built on the Polygon blockchain, designed to address critical issues in the cryptocurrency space such as centralization, market manipulation, and unfair token distribution.",
+          "question": "What is Risy DAO and why is it revolutionary?",
+          "answer": "Risy DAO is a groundbreaking decentralized autonomous organization built on the Polygon blockchain. What sets it apart is its innovative tokenomics, particularly the 10% daily sell limit. This unique feature creates an unprecedented 10:1 buy-to-sell ratio, resulting in an endless bull market for RISY tokens. It's not just a cryptocurrency; it's a financial revolution designed for continuous growth!",
+          "isOpen": false
+        },
+        {
+          "question": "How does the 10% daily sell limit work, and why is it so important?",
+          "answer": "The 10% daily sell limit is the cornerstone of Risy DAO's tokenomics. Here's why it's a game-changer:<br><br>1. It restricts token holders from selling more than 10% of their balance in a day.<br>2. This creates a natural 10:1 demand-to-supply ratio in the market.<br>3. As a result, there's always more buying pressure than selling pressure.<br>4. This ingenious mechanism ensures that RISY is always in a bull market, constantly rising in value.<br><br>The name 'RISY' itself is derived from this infinite rise, and the angry bull in our logo symbolizes this perpetual bull market. With Risy, you're not just investing; you're joining a movement that's redefining the very nature of cryptocurrency markets!",
+          "isOpen": false
+        },
+        {
+          "question": "How does Risy DAO ensure long-term stability and growth?",
+          "answer": "Risy DAO combines several innovative features to ensure long-term stability and continuous growth:<br><br>1. The 10% daily sell limit creates an endless bull market, providing consistent upward pressure on the token price.<br>2. Correlation with both USD and gold offers stability against various market conditions.<br>3. The 0.1% DAO fee on transfers funds ongoing development and community initiatives, ensuring sustainable growth.<br>4. Built on the fast and cost-effective Polygon blockchain, allowing for rapid ecosystem expansion.<br>5. A robust governance model that allows the project to evolve based on community decisions.<br><br>These features work in harmony to create a token that's not just stable, but programmed for perpetual growth. With Risy, you're not just holding a token; you're part of an ever-rising financial ecosystem!",
           "isOpen": false
         },
         {
@@ -186,6 +211,26 @@ var data = {
         {
           "question": "Where can I buy RISY tokens?",
           "answer": "RISY tokens can be purchased on decentralized exchanges like QuickSwap. Please refer to our 'Resources' section for the most up-to-date information on where to trade RISY.",
+          "isOpen": false
+        },
+        {
+          "question": "Why is there a 10% daily transfer limit?",
+          "answer": "The 10% daily transfer limit is a key feature of Risy DAO designed to prevent market manipulation and create a more stable token economy. It helps maintain a balanced ratio of buys to sells, contributing to the token's continuous growth.",
+          "isOpen": false
+        },
+        {
+          "question": "How does the DAO voting power work?",
+          "answer": "Voting power in the DAO is proportional to the number of RISY tokens held. Token holders can also delegate their voting power to other addresses. The project aims to distribute voting power more widely as it matures to ensure true decentralization.",
+          "isOpen": false
+        },
+        {
+          "question": "What is the purpose of the 0.1% DAO fee on transfers?",
+          "answer": "The 0.1% DAO fee on transfers is collected to fund ongoing development, marketing, and community initiatives. This fee helps make the project self-sustaining and ensures continuous improvement and growth.",
+          "isOpen": false
+        },
+        {
+          "question": "What are the future plans for Risy DAO?",
+          "answer": "Future plans for Risy DAO include expanding the ecosystem with DeFi applications, implementing cross-chain solutions, and continuously improving the governance model. The project aims to become a leading force in decentralized finance.",
           "isOpen": false
         }
       ]
@@ -283,25 +328,45 @@ var data = {
         "roiSuffix": "Gün"
     },
     "onChainData": {
-      "title": "Zincir-üstü Veri",
+      "title": "Zincir Üstü Token Verileri",
       "currentDailyReturn": "Ortalama Günlük Getiri",
       "daysPassed": "Başlangıçtan Bu Yana Geçen Gün Sayısı",
       "whatIfFinalAmount": "Başlangıçtan Bu Yana Son Tutar",
       "whatIfProfit": "Başlangıçtan Bu Yana Kâr",
       "currentPercentageRise": "Başlangıçtan Bu Yana Artış (%)",
-      "currentXRise": "Başlangıçtan Bu Yana Artış (x)"
+      "currentXRise": "Başlangıçtan Bu Yana Artış (x)",
+      "address": "Adres",
+      "chain": "Zincir",
+      "name": "İsim",
+      "symbol": "Sembol",
+      "decimals": "Ondalık",
+      "totalSupply": "Toplam Arz",
+      "initialPrice": "Başlangıç Fiyatı",
+      "currentPrice": "Güncel Fiyat",
+      "launchDate": "Lansman Tarihi",
+      "timeSinceLaunch": "önce",
+      "transferLimit": "Güncel Günlük Transfer Limiti",
+      "maxBalance": "Güncel ICO Hodl Limiti",
+      "daoFee": "DAO Ücreti",
+      "contractVersion": "Sözleşme Versiyonu"
     },
     "about": {
       "title": "Risy DAO Hakkında",
       "description1": "Risy DAO, Polygon blok zinciri üzerine inşa edilmiş devrimci bir merkezi olmayan otonom organizasyondur. Kripto para alanındaki merkezileşme, piyasa manipülasyonu ve adil olmayan token dağıtımı gibi kritik sorunları ele alıyoruz.",
       "description2": "Misyonumuz, kullanıcılarının ihtiyaçlarını karşılamak için sürekli gelişen, gerçekten merkezi olmayan, topluluk odaklı bir ekosistem oluşturmaktır. Risy DAO ile daha adil, istikrarlı ve sürdürülebilir bir finansal gelecek inşa ediyoruz.",
-      "description3": "Risy DAO, yenilikçi %10 günlük transfer limiti ve ICO döneminde geçici %0.75 hodl limiti sayesinde kripto paraların merkezileşme sorununu, balina manipülasyonlarını ve token'ların adil olmayan dağıtımını ele alıyor. Proje, DAO mekanizması sayesinde süresiz olarak evrilip yükseliyor ve bu da uzun vadeli sürdürülebilirlik ve uyarlanabilirlik sağlıyor.",
-      "description4": "20.000$ değerinde (%50 USDC, %50 PAXG) başlangıç kilitli likidite ile Risy DAO, hem altın hem de ABD doları ile benzersiz bir korelasyon oluşturuyor. Bu ikili korelasyon, geniş kripto para piyasasındaki çeşitli enflasyonist senaryolara ve ayı piyasalarına karşı istikrar sağlıyor.",
-      "description5": "Polygon blok zinciri üzerine inşa edilen Risy DAO, Ethereum tabanlı token'lara kıyasla hızlı ve uygun maliyetli dApp geliştirmeyi mümkün kılıyor. Her transferde alınan %0.1'lik DAO ücreti, sürekli gelişim, pazarlama ve topluluk girişimlerini finanse ederek projeyi kendi kendine yeter hale getiriyor.",
-      "description6": "Güvenlik en önemli önceliktir; savaş meydanında test edilmiş akıllı sözleşmeler ve özenle hazırlanmış yüzlerce test, sağlamlık ve güvenilirliği garanti ediyor. DEX alım istisnaları sayesinde yaklaşık 10 kata kadar alım-satım oranıyla Risy DAO, sürekli büyüme ve başarı için tasarlanmıştır.",
+      "description3": "Risy DAO, çığır açan günlük %10 transfer limiti ile kripto para alanında devrim yaratıyor. Bu yenilikçi mekanizma, doğal bir 10:1 alım-satım oranı yaratarak RISY'nin her zaman bir boğa piyasasında olmasını sağlıyor. Projenin adı 'RISY'nin kendisi bu sonsuz yükselişi sembolize ederken, logomizdaki öfkeli boğa yarattığımız durdurulamaz boğa piyasasını temsil ediyor. DAO mekanizması sayesinde proje süresiz olarak evrilip yükseliyor, bu sürekli yükselen ekosistemde uzun vadeli sürdürülebilirlik ve uyarlanabilirlik garanti altına alınıyor.",
+      "description4": "Balina düşmanı %10 günlük transfer limiti ve ICO döneminde geçici %0.75 hodl limiti sayesinde kripto paraların merkezileşme sorununu, balina manipülasyonlarını ve token'ların adil olmayan dağıtımını ele alıyoruz. Proje, DAO mekanizması sayesinde süresiz olarak evrilip yükseliyor ve bu da uzun vadeli sürdürülebilirlik ve uyarlanabilirlik sağlıyor.",
+      "description5": "20.000$ değerinde (%50 USDC, %50 PAXG) başlangıç kilitli likidite ile Risy DAO, hem altın hem de ABD doları ile benzersiz bir korelasyon oluşturuyor. Bu ikili korelasyon, geniş kripto para piyasasındaki çeşitli enflasyonist senaryolara ve ayı piyasalarına karşı istikrar sağlıyor.",
+      "description6": "Polygon blok zinciri üzerine inşa edilen Risy DAO, Ethereum tabanlı token'lara kıyasla hızlı ve uygun maliyetli dApp geliştirmeyi mümkün kılıyor. Her transferde alınan %0.1'lik DAO ücreti, sürekli gelişim, pazarlama ve topluluk girişimlerini finanse ederek projeyi kendi kendine yeter hale getiriyor.",
+      "description7": "Güvenlik en önemli önceliktir; savaş meydanında test edilmiş akıllı sözleşmeler ve özenle hazırlanmış yüzlerce test, sağlamlık ve güvenilirliği garanti ediyor. DEX alım istisnaları sayesinde yaklaşık 10 kata kadar alım-satım oranıyla Risy DAO, sürekli büyüme ve başarı için tasarlanmıştır.",
       "tagline": "Blok zinciri tutkunları tarafından blok zinciri tutkunları için tutku ve kahve ile yapıldı."
     },
     "features": [
+      {
+        "icon": "fa-chart-line",
+        "title": "Sonsuz Boğa Piyasası",
+        "description": "Devrim niteliğindeki günlük %10 satış limiti, 10:1 alım-satım oranı yaratarak RISY'nin sürekli yükselmesiyle sonsuz bir boğa piyasası sağlar."
+      },
       {
         "icon": "fa-lock",
         "title": "Merkezi Olmayan Yönetişim",
@@ -313,14 +378,9 @@ var data = {
         "description": "Günlük %10 transfer limiti ve ICO için geçici %0.75 hodl limiti, piyasa manipülasyonunu önler."
       },
       {
-        "icon": "fa-chart-line",
-        "title": "Ekonomik İstikrar",
-        "description": "Hem USD hem de altınla korelasyon, çeşitli piyasa koşullarına karşı istikrar sağlar."
-      },
-      {
         "icon": "fa-coins",
-        "title": "Sürdürülebilir Finansman",
-        "description": "Transferlerde %0.1 DAO ücreti, sürekli gelişim ve topluluk girişimlerini finanse eder."
+        "title": "İstikrar ve Finansman",
+        "description": "Hem USD hem de altınla korelasyon, çeşitli piyasa koşullarına karşı istikrar sağlar. Transferlerde %0.1 DAO ücreti, sürekli gelişim ve topluluk girişimlerini finanse eder."
       },
       {
         "icon": "fa-tachometer-alt",
@@ -387,8 +447,18 @@ var data = {
       "title": "Sıkça Sorulan Sorular",
       "items": [
         {
-          "question": "Risy DAO nedir?",
-          "answer": "Risy DAO, kripto para alanındaki merkezileşme, piyasa manipülasyonu ve adil olmayan token dağıtımı gibi kritik sorunları ele almak için tasarlanmış, Polygon blok zinciri üzerine inşa edilmiş merkezi olmayan bir otonom organizasyondur.",
+          "question": "Risy DAO nedir ve neden devrim niteliğindedir?",
+          "answer": "Risy DAO, Polygon blok zinciri üzerine inşa edilmiş çığır açan bir merkezi olmayan otonom organizasyondur. Onu farklı kılan, özellikle günlük %10 satış limiti olan yenilikçi tokenomisidir. Bu benzersiz özellik, RISY token'ları için eşi görülmemiş bir 10:1 alım-satım oranı yaratarak sonsuz bir boğa piyasası oluşturur. Bu sadece bir kripto para birimi değil; sürekli büyüme için tasarlanmış finansal bir devrimdir!",
+          "isOpen": false
+        },
+        {
+          "question": "Günlük %10 satış limiti nasıl çalışır ve neden bu kadar önemlidir?",
+          "answer": "Günlük %10 satış limiti, Risy DAO'nun tokenomisinin temel taşıdır. İşte neden bu kadar önemli olduğu:<br><br>1. Token sahiplerinin günde bakiyelerinin %10'undan fazlasını satmasını kısıtlar.<br>2. Bu, piyasada doğal bir 10:1 talep-arz oranı yaratır.<br>3. Sonuç olarak, her zaman satış baskısından daha fazla alım baskısı vardır.<br>4. Bu dahi mekanizma, RISY'nin her zaman bir boğa piyasasında olmasını ve değerinin sürekli artmasını sağlar.<br><br>'RISY' adının kendisi bu sonsuz yükselişten türetilmiştir ve logomizdeki öfkeli boğa bu sürekli boğa piyasasını sembolize eder. Risy ile sadece yatırım yapmıyorsunuz; kripto para piyasalarının doğasını yeniden tanımlayan bir harekete katılıyorsunuz!",
+          "isOpen": false
+        },
+        {
+          "question": "Risy DAO uzun vadeli istikrarı ve büyümeyi nasıl sağlıyor?",
+          "answer": "Risy DAO, uzun vadeli istikrar ve sürekli büyümeyi sağlamak için çeşitli yenilikçi özellikleri bir araya getiriyor:<br><br>1. Günlük %10 satış limiti, sonsuz bir boğa piyasası yaratarak token fiyatı üzerinde sürekli bir yukarı yönlü baskı sağlar.<br>2. Hem USD hem de altınla korelasyon, çeşitli piyasa koşullarına karşı istikrar sunar.<br>3. Transferlerdeki %0.1'lik DAO ücreti, sürekli gelişim ve topluluk girişimlerini finanse ederek sürdürülebilir büyümeyi sağlar.<br>4. Hızlı ve uygun maliyetli Polygon blok zinciri üzerine inşa edilmiştir, bu da hızlı ekosistem genişlemesine olanak tanır.<br>5. Projenin topluluk kararlarına göre gelişmesine izin veren sağlam bir yönetişim modeli.<br><br>Bu özellikler, sadece istikrarlı değil, aynı zamanda sürekli büyüme için programlanmış bir token yaratmak için uyum içinde çalışır. Risy ile sadece bir token tutmuyorsunuz; sürekli yükselen bir finansal ekosistemin parçasısınız!",
           "isOpen": false
         },
         {
@@ -409,6 +479,26 @@ var data = {
         {
           "question": "RISY token'larını nereden satın alabilirim?",
           "answer": "RISY token'ları QuickSwap gibi merkezi olmayan borsalarda satın alınabilir. RISY'nin nerede işlem gördüğüne dair en güncel bilgiler için lütfen 'Kaynaklar' bölümümüze bakın.",
+          "isOpen": false
+        },
+        {
+          "question": "Neden %10'luk günlük transfer limiti var?",
+          "answer": "Günlük %10 transfer limiti, Risy DAO'nun piyasa manipülasyonunu önlemek ve daha istikrarlı bir token ekonomisi yaratmak için tasarlanmış temel bir özelliğidir. Alım ve satımlar arasında dengeli bir oran sağlamaya yardımcı olur ve token'ın sürekli büyümesine katkıda bulunur.",
+          "isOpen": false
+        },
+        {
+          "question": "DAO oy gücü nasıl çalışır?",
+          "answer": "DAO'daki oy gücü, sahip olunan RISY token miktarıyla orantılıdır. Token sahipleri ayrıca oy güçlerini başka adreslere devredebilirler. Proje, gerçek bir merkeziyetsizlik sağlamak için olgunlaştıkça oy gücünü daha geniş bir şekilde dağıtmayı hedeflemektedir.",
+          "isOpen": false
+        },
+        {
+          "question": "Transferlerdeki %0.1'lik DAO ücretinin amacı nedir?",
+          "answer": "Transferlerdeki %0.1'lik DAO ücreti, sürekli gelişim, pazarlama ve topluluk girişimlerini finanse etmek için toplanır. Bu ücret, projenin kendini sürdürmesine yardımcı olur ve sürekli iyileştirme ve büyümeyi sağlar.",
+          "isOpen": false
+        },
+        {
+          "question": "Risy DAO'nun gelecek planları nelerdir?",
+          "answer": "Risy DAO'nun gelecek planları arasında DeFi uygulamalarıyla ekosistemi genişletmek, zincirler arası çözümler uygulamak ve yönetim modelini sürekli iyileştirmek yer alıyor. Proje, merkezi olmayan finans alanında öncü bir güç olmayı hedefliyor.",
           "isOpen": false
         }
       ]

@@ -53,39 +53,8 @@
     <script src="assets/lib/js/ethers-5_7_2.umd.min.js"></script>
     <script src="assets/lib/js/risy-connector.js"></script>
     <script src="assets/data.js"></script>
-
-    <script type="text/javascript">
-        const rpcList = [
-            "https://polygon.llamarpc.com",
-            "https://polygon-bor-rpc.publicnode.com",
-            "https://polygon.blockpi.network/v1/rpc/public",
-            "https://polygon.drpc.org",
-            "https://polygon.rpc.blxrbdn.com",
-            "https://api.zan.top/node/v1/polygon/mainnet/public",
-            "https://polygon-mainnet.public.blastapi.io",
-            "https://endpoints.omniatech.io/v1/matic/mainnet/public",
-            "https://polygon.meowrpc.com",
-            "https://rpc-mainnet.matic.quiknode.pro",
-            "https://polygon.rpc.subquery.network/public",
-            "https://polygon.api.onfinality.io/public",
-            "https://polygon-mainnet.4everland.org/v1/37fa9972c1b1cd5fab542c7bdd4cde2f",
-            "https://1rpc.io/matic",
-            "https://polygon-pokt.nodies.app",
-            "https://polygon-mainnet.rpcfast.com?api_key=xbhWBI1Wkguk8SNMu1bvvLurPGLXmgwYeC4S6g2H7WdwFigZSmPWVZRxrskEQwIf",
-            "https://gateway.tenderly.co/public/polygon",
-            "https://polygon.gateway.tenderly.co",
-            "https://polygon-rpc.com",
-            "https://rpc.ankr.com/polygon"
-        ];
-
-        const connector = new RisyConnector(rpcList, {
-            timeout: 5000,
-            retries: 3,
-            debugMode: false
-        });
-    </script>
-
     <script src="assets/script.js"></script>
+
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
     {
@@ -104,7 +73,7 @@
     }
     </script>
 </head>
-<body class="bg-gray-900 text-white" x-data="risyData()">
+<body class="bg-gray-900 text-white" x-data="risyData()" x-init="init">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVR3SJRD"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -114,19 +83,19 @@
             <div class="flex justify-between items-center">
                 <a href="/" class="text-2xl font-bold text-gradient animate__animated animate__fadeIn whitespace-nowrap"><img src="img/logo.png" alt="Risy DAO Logo" class="inline-block w-10 h-10 mx-4 shadow-lg">Risy DAO</a>
                 <div class="hidden md:flex space-x-4 items-center">
-                    <a href="#about" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.about"></a>
-                    <a href="#features" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.features"></a>
-                    <a href="#tokenomics" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.tokenomics"></a>
-                    <a href="#roadmap" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.roadmap"></a>
-                    <a href="#faq" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.faq"></a>
+                    <a href="#about" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.about">About</a>
+                    <a href="#features" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.features">Features</a>
+                    <a href="#tokenomics" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.tokenomics">Tokenomics</a>
+                    <a href="#roadmap" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.roadmap">Roadmap</a>
+                    <a href="#faq" class="hover:text-indigo-400 transition animate__animated animate__fadeIn" data-translate="nav.faq">FAQ</a>
                     <div class="relative" @click.away="languageOpen = false">
                         <button @click="languageOpen = !languageOpen" class="flex items-center space-x-1 hover:text-indigo-400 transition">
                             <span x-text="language.toUpperCase()"></span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div x-show="languageOpen" class="absolute right-0 mt-2 py-2 w-24 bg-white rounded-md shadow-xl z-20">
-                            <a href="#" @click.prevent="switchLanguage('en'); languageOpen = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white" data-translate="languages.en"></a>
-                            <a href="#" @click.prevent="switchLanguage('tr'); languageOpen = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white" data-translate="languages.tr"></a>
+                            <a href="#" @click.prevent="switchLanguage('en'); languageOpen = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white" data-translate="languages.en">English</a>
+                            <a href="#" @click.prevent="switchLanguage('tr'); languageOpen = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white" data-translate="languages.tr">Turkish</a>
                         </div>
                     </div>
                 </div>
@@ -135,16 +104,16 @@
                 </button>
             </div>
             <div x-show="open" class="md:hidden mt-3 space-y-2">
-                <a href="#about" class="block hover:text-indigo-400 transition" data-translate="nav.about"></a>
-                <a href="#features" class="block hover:text-indigo-400 transition" data-translate="nav.features"></a>
-                <a href="#tokenomics" class="block hover:text-indigo-400 transition" data-translate="nav.tokenomics"></a>
-                <a href="#roadmap" class="block hover:text-indigo-400 transition" data-translate="nav.roadmap"></a>
-                <a href="#faq" class="block hover:text-indigo-400 transition" data-translate="nav.faq"></a>
-                <a href="#resources" class="block hover:text-indigo-400 transition" data-translate="nav.resources"></a>
+                <a href="#about" class="block hover:text-indigo-400 transition" data-translate="nav.about">About</a>
+                <a href="#features" class="block hover:text-indigo-400 transition" data-translate="nav.features">Features</a>
+                <a href="#tokenomics" class="block hover:text-indigo-400 transition" data-translate="nav.tokenomics">Tokenomics</a>
+                <a href="#roadmap" class="block hover:text-indigo-400 transition" data-translate="nav.roadmap">Roadmap</a>
+                <a href="#faq" class="block hover:text-indigo-400 transition" data-translate="nav.faq">FAQ</a>
+                <a href="#resources" class="block hover:text-indigo-400 transition" data-translate="nav.resources">Resources</a>
                 <hr>
                 <div class="flex space-x-2 mt-2">
-                    <button @click="switchLanguage('en')" :class="{'font-bold': language === 'en'}" data-translate="languages.en"></button>
-                    <button @click="switchLanguage('tr')" :class="{'font-bold': language === 'tr'}" data-translate="languages.tr"></button>
+                    <button @click="switchLanguage('en')" :class="{'font-bold': language === 'en'}" data-translate="languages.en">English</button>
+                    <button @click="switchLanguage('tr')" :class="{'font-bold': language === 'tr'}" data-translate="languages.tr">Turkish</button>
                 </div>
             </div>
         </nav>
@@ -155,10 +124,10 @@
             <div class="container mx-auto px-6 flex-grow flex items-center">
                 <div class="flex flex-col md:flex-row items-center justify-between w-full">
                     <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0">
-                        <h1 class="text-5xl md:text-6xl font-bold mb-4 animate__animated animate__fadeInDown" data-translate="hero.title"></h1>
-                        <p class="text-xl md:text-2xl mb-4 animate__animated animate__fadeInUp animate__delay-1s" data-translate="hero.subtitle"></p>
-                        <p class="text-lg mb-12 animate__animated animate__fadeInUp animate__delay-2s" data-translate="hero.description"></p>
-                        <a :href="ctaUrl" target="_blank" rel="noopener noreferrer" data-event="go_swap" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-indigo-100 transition animate__animated animate__fadeInUp animate__delay-3s cta-button" data-translate="hero.cta"></a>
+                        <h1 class="text-5xl md:text-6xl font-bold mb-4 animate__animated animate__fadeInDown" data-translate="hero.title">Rise with RISY</h1>
+                        <p class="text-xl md:text-2xl mb-4 animate__animated animate__fadeInUp animate__delay-1s" data-translate="hero.subtitle">The Future of Decentralized Finance</p>
+                        <p class="text-lg mb-12 animate__animated animate__fadeInUp animate__delay-2s" data-translate="hero.description">Risy DAO is revolutionizing DeFi with innovative tokenomics, community governance, and sustainable growth mechanisms.</p>
+                        <a :href="ctaUrl" target="_blank" rel="noopener noreferrer" data-event="go_swap" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-indigo-100 transition animate__animated animate__fadeInUp animate__delay-3s cta-button" data-translate="hero.cta">How to get $RISY</a>
                     </div>
                     <div class="md:w-1/2 flex justify-center md:justify-end animate__animated animate__fadeInRight animate__delay-3s">
                         <img src="img/risy_hero.svg" alt="Risy DAO Concept" class="md:w-3/5 w-3/4 rounded-lg m-auto">
@@ -171,41 +140,41 @@
                     <ul class="flex flex-col md:flex-row justify-center items-center space-y-3 md:space-y-0 md:space-x-2">
                         <li class="w-full md:w-auto">
                             <a :href="dexScreenerUrl + contractAddress" target="_blank" rel="noopener noreferrer" data-event="go_dex_screen" class="block w-full md:w-auto bg-indigo-600 text-white px-6 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                <i class="fas fa-chart-line mr-2" aria-hidden="true"></i><span data-translate="resources.links.dexScreener"></span>
+                                <i class="fas fa-chart-line mr-2" aria-hidden="true"></i><span data-translate="resources.links.dexScreener">DEX Screener</span>
                             </a>
                         </li>
                         <li class="w-full md:w-auto">
                             <a :href="swapUrl + contractAddress" target="_blank" rel="noopener noreferrer" data-event="go_swap" class="block w-full md:w-auto bg-indigo-600 text-white px-6 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                <i class="fas fa-exchange-alt mr-2" aria-hidden="true"></i><span data-translate="resources.links.swap"></span>
+                                <i class="fas fa-exchange-alt mr-2" aria-hidden="true"></i><span data-translate="resources.links.swap">Trade on Swap</span>
                             </a>
                         </li>
                         <li class="w-full md:w-auto">
                             <a :href="tallyUrl" target="_blank" rel="noopener noreferrer" data-event="go_tally" class="block w-full md:w-auto bg-indigo-600 text-white px-6 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                <i class="fas fa-users mr-2" aria-hidden="true"></i><span data-translate="resources.links.goToDao"></span>
+                                <i class="fas fa-users mr-2" aria-hidden="true"></i><span data-translate="resources.links.goToDao">Go to DAO</span>
                             </a>
                         </li>
                         <li class="w-full md:w-auto">
                             <button @click="addToWallet" class="w-full md:w-auto add-to-wallet-btn bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition relative overflow-hidden">
                                 <span class="relative z-10">
                                     <i class="fas fa-wallet mr-2"></i>
-                                    <span data-translate="resources.links.addToWallet"></span>
+                                    <span data-translate="resources.links.addToWallet">Add to Wallet</span>
                                 </span>
                                 <span class="reflection"></span>
                             </button>
                         </li>
                         <li class="w-full md:w-auto">
                             <a :href="scanUrl + contractAddress" target="_blank" rel="noopener noreferrer" data-event="go_contract" class="block w-full md:w-auto bg-indigo-600 text-white px-6 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                <i class="fas fa-file-contract mr-2" aria-hidden="true"></i><span data-translate="resources.links.contract"></span>
+                                <i class="fas fa-file-contract mr-2" aria-hidden="true"></i><span data-translate="resources.links.contract">Smart Contract</span>
                             </a>
                         </li>
                         <li class="w-full md:w-auto">
                             <a :href="whitepaperUrl" target="_blank" rel="noopener noreferrer" data-event="go_whitepaper" class="block w-full md:w-auto bg-indigo-600 text-white px-6 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i><span data-translate="resources.links.whitepaper"></span>
+                                <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i><span data-translate="resources.links.whitepaper">Whitepaper</span>
                             </a>
                         </li>
                         <li class="w-full md:w-auto">
                             <a :href="socialLinks.github" target="_blank" rel="noopener noreferrer" data-event="go_social" class="block w-full md:w-auto bg-indigo-600 text-white px-6 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                <i class="fab fa-github mr-2" aria-hidden="true"></i><span data-translate="resources.links.sourceCode"></span>
+                                <i class="fab fa-github mr-2" aria-hidden="true"></i><span data-translate="resources.links.sourceCode">Source Code</span>
                             </a>
                         </li>
                     </ul>
@@ -215,7 +184,7 @@
 
         <section id="links" class="important-links w-full py-6 bg-gray-900">
             <div id="dexscreener-embed" class="hidden lg:block">
-                <iframe src="https://dexscreener.com/polygon/0xb908228a001cb177ac785659505ebca1d9947ee8?embed=1&theme=dark&trades=0" class="dexscreener-embedder" height="600" width="100%" frameBorder="0" scrolling="no">
+                <iframe :src="'https://dexscreener.com/polygon/' + contractAddress + '?embed=1&theme=dark&trades=0'" class="dexscreener-embedder" height="600" width="100%" frameBorder="0" scrolling="no">
                 </iframe>
             </div>
         </section>
@@ -225,33 +194,68 @@
                 <div class="flex flex-col lg:flex-row gap-12">
                     <div class="lg:w-1/3">
                         <div class="bg-gray-800 bg-opacity-50 p-8 rounded-xl shadow-2xl backdrop-filter backdrop-blur-sm">
-                            <h3 class="text-2xl font-light mb-6 text-center text-white" data-translate="onChainData.title">On-Chain Data</h3>
-                            <div class="space-y-6">
-                                <div class="border-b border-gray-700 pb-4">
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="onChainData.daysPassed">Days Passed</h4>
-                                    <p class="text-2xl font-light" x-text="Math.floor(profitCalculator.daysPassed)"></p>
-                                </div>
-                                <div class="border-b border-gray-700 pb-4">
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="onChainData.currentDailyReturn">Current Daily Return</h4>
-                                    <p class="text-2xl font-light" x-text="(profitCalculator.currentDailyReturn * 100).toFixed(2) + '%'" :class="{ 'text-green-400': profitCalculator.currentDailyReturn > 0, 'text-red-400': profitCalculator.currentDailyReturn < 0 }"></p>
-                                </div>
-                                <div class="border-b border-gray-700 pb-4">
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="onChainData.whatIfFinalAmount">What If Final Amount</h4>
-                                    <p class="text-2xl font-light" x-text="'$' + profitCalculator.whatIfFinalAmount.toFixed(2)" :class="{ 'text-green-400': profitCalculator.whatIfFinalAmount > profitCalculator.parseNumber(profitCalculator.capital), 'text-red-400': profitCalculator.whatIfFinalAmount < profitCalculator.parseNumber(profitCalculator.capital) }"></p>
-                                    <span class="text-xs text-gray-400" data-translate="profitCalculator.capital"></span><span class="text-xs text-gray-400" x-text="': ' + profitCalculator.capital"></span>
-                                </div>
-                                <div class="border-b border-gray-700 pb-4">
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="onChainData.whatIfProfit">What If Profit</h4>
-                                    <p class="text-2xl font-light" x-text="'$' + profitCalculator.whatIfProfit.toFixed(2)" :class="{ 'text-green-400': profitCalculator.whatIfProfit > 0, 'text-red-400': profitCalculator.whatIfProfit < 0 }"></p>
-                                    <span class="text-xs text-gray-400" data-translate="profitCalculator.capital"></span><span class="text-xs text-gray-400" x-text="': ' + profitCalculator.capital"></span>
-                                </div>
-                                <div class="border-b border-gray-700 pb-4">
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="onChainData.currentPercentageRise">Current Percentage Rise</h4>
-                                    <p class="text-2xl font-light" x-text="profitCalculator.currentPercentageRise.toFixed(2) + '%'" :class="{ 'text-green-400': profitCalculator.currentPercentageRise > 0, 'text-red-400': profitCalculator.currentPercentageRise < 0 }"></p>
+                            <h3 class="text-2xl font-light mb-6 text-center text-white" data-translate="onChainData.title">On-chain Token Data</h3>
+                            <div x-show="isLoading" class="text-center py-4">
+                                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                                <p class="mt-2">Loading on-chain data...</p>
+                            </div>
+                            <div x-show="error" class="text-red-500 text-center py-4" x-text="error"></div>
+                            <div x-show="!isLoading && !error" class="space-y-4">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.address">Address</h4>
+                                    <p class="text-sm font-light break-all" x-text="onChainData.address"></p>
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="onChainData.currentXRise">Current X Rise</h4>
-                                    <p class="text-2xl font-light" x-text="profitCalculator.currentXRise.toFixed(2) + 'x'" :class="{ 'text-green-400': profitCalculator.currentXRise > 1, 'text-red-400': profitCalculator.currentXRise < 1 }"></p>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.chain">Chain</h4>
+                                    <p class="text-sm font-light" x-text="onChainData.chain"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.name">Name</h4>
+                                    <p class="text-sm font-light" x-text="onChainData.name"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.symbol">Symbol</h4>
+                                    <p class="text-sm font-light" x-text="onChainData.symbol"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.decimals">Decimals</h4>
+                                    <p class="text-sm font-light" x-text="onChainData.decimals"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.totalSupply">Total Supply</h4>
+                                    <p class="text-sm font-light" x-text="onChainData.totalSupply + ' RISY'"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.initialPrice">Initial Price</h4>
+                                    <p class="text-sm font-light" x-text="'$' + onChainData.initialPrice"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.currentPrice">Current Price</h4>
+                                    <p class="text-sm font-light" x-text="'$' + onChainData.currentPrice"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.launchDate">Launch Date</h4>
+                                    <p class="text-sm font-light" x-text="onChainData.launchDate.toUTCString()"></p>
+                                    <p class="text-xs text-gray-400">
+                                        <span x-ref="timeSinceLaunch"></span>
+                                        <span data-translate="onChainData.timeSinceLaunch">ago</span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.transferLimit">Current Daily Transfer Limit</h4>
+                                    <p class="text-sm font-light" x-text="onChainData.transferLimit"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.maxBalance">Current ICO Hodl Limit</h4>
+                                    <p class="text-sm font-light" x-text="onChainData.maxBalance + ' RISY'"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.daoFee">DAO Fee</h4>
+                                    <p class="text-sm font-light" x-text="onChainData.daoFee + '% on each transfer'"></p>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.contractVersion">Contract Version</h4>
+                                    <p class="text-sm font-light" x-text="'v' + onChainData.version"></p>
                                 </div>
                             </div>
                         </div>
@@ -273,29 +277,29 @@
                                     <input type="text" id="days" x-model="profitCalculator.days" step="1" min="1" class="w-full bg-gray-700 bg-opacity-50 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-200">
                                 </div>
                             </div>
-                            <small class="block text-gray-400 text-xs mb-6" data-translate="profitCalculator.tip"></small>
+                            <small class="block text-gray-400 text-xs mb-6" data-translate="profitCalculator.tip">You can analyse your own investment by entering values in the boxes. Amounts are calculated using the compound interest formula.</small>
                             <div class="space-y-6">
                                 <div class="border-b border-gray-700 pb-4">
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="profitCalculator.finalAmount">Final Amount</h4>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.finalAmount">Final Amount</h4>
                                     <p class="text-2xl font-light" x-text="'$' + profitCalculator.finalAmount.toFixed(2)"></p>
                                 </div>
                                 <div class="border-b border-gray-700 pb-4">
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="profitCalculator.profit">Profit</h4>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.profit">Profit</h4>
                                     <p class="text-2xl font-light" x-text="'$' + profitCalculator.profit.toFixed(2)"></p>
                                 </div>
                                 <div class="border-b border-gray-700 pb-4">
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="profitCalculator.percentageRise">Percentage Rise</h4>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.percentageRise">Percentage Rise</h4>
                                     <p class="text-2xl font-light" x-text="profitCalculator.percentageRise.toFixed(2).replace('NaN','0') + '%'"></p>
                                 </div>
                                 <div class="border-b border-gray-700 pb-4">
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="profitCalculator.xRise">X Rise</h4>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.xRise">X Rise</h4>
                                     <p class="text-2xl font-light" x-text="profitCalculator.xRise.toFixed(2).replace('NaN','0') + 'x'"></p>
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-2" data-translate="profitCalculator.roi">ROI</h4>
+                                    <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.roi">ROI</h4>
                                     <p class="text-2xl font-light">
                                         <span x-text="profitCalculator.roi.toFixed(0).replace('Infinity','∞')"></span>
-                                        <span class="text-sm text-gray-400" data-translate="profitCalculator.roiSuffix"></span>
+                                        <span class="text-sm text-gray-400" data-translate="profitCalculator.roiSuffix">Days</span>
                                     </p>
                                 </div>
                             </div>
@@ -307,8 +311,8 @@
 
         <section id="about" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="about.title"></h2>
-                <p class="font-semibold text-center mb-12" data-translate="about.tagline"></p>
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="about.title">About Risy DAO</h2>
+                <p class="font-semibold text-center mb-12" data-translate="about.tagline">Made with passion and coffee for blockchain nerds by blockchain nerds.</p>
                 <div class="items-center">
                     <div class="animate__animated animate__fadeInLeft">
                         <p class="text-lg mb-6" data-translate="about.description1"></p>
@@ -316,7 +320,8 @@
                         <p class="text-lg mb-6" data-translate="about.description3"></p>
                         <p class="text-lg mb-6" data-translate="about.description4"></p>
                         <p class="text-lg mb-6" data-translate="about.description5"></p>
-                        <p class="text-lg" data-translate="about.description6"></p>
+                        <p class="text-lg mb-6" data-translate="about.description6"></p>
+                        <p class="text-lg" data-translate="about.description7"></p>
                     </div>
                 </div>
             </div>
@@ -324,7 +329,7 @@
 
         <section id="features" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="nav.features"></h2>
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="nav.features">Features</h2>
                 <div class="grid md:grid-cols-3 gap-8">
                     <template x-for="feature in features" :key="feature.title">
                         <div class="bg-gray-900 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn feature-card">
@@ -339,8 +344,8 @@
 
         <section id="tokenomics" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="tokenomics.title"></h2>
-                <p class="font-semibold text-center mb-12" data-translate="tokenomics.chartTitle"></p>
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="tokenomics.title">Tokenomics & Security</h2>
+                <p class="font-semibold text-center mb-12" data-translate="tokenomics.chartTitle">Designed for long-term stability and sustainable growth. Risy DAO undergoes professional security audits before mainnet deployment.</p>
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="animate__animated animate__fadeInLeft">
                         <ul class="space-y-4">
@@ -361,7 +366,7 @@
 
         <section id="roadmap" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="roadmap.title"></h2>
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="roadmap.title">Roadmap</h2>
                 <div class="relative">
                     <div class="absolute h-full w-1 bg-indigo-500 left-1/2 transform -translate-x-1/2"></div>
                     <div class="space-y-12">
@@ -385,7 +390,7 @@
         
         <section id="faq" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="faq.title"></h2>
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="faq.title">Frequently Asked Questions</h2>
                 <div class="space-y-4">
                     <template x-for="(item, index) in getTranslation('faq.items')" :key="index">
                         <div class="bg-gray-800 rounded-lg overflow-hidden">
@@ -416,7 +421,7 @@
                                 x-transition:leave-end="opacity-0 transform scale-y-90" 
                                 class="px-6 pb-4"
                             >
-                                <p x-text="item.answer"></p>
+                                <p x-html="item.answer"></p>
                             </div>
                         </div>
                     </template>
@@ -426,55 +431,55 @@
 
         <section id="medium-cta" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold mb-8 text-gradient animate__animated animate__fadeIn" data-translate="medium.title"></h2>
-                <p class="text-xl mb-8 animate__animated animate__fadeIn" data-translate="medium.description"></p>
+                <h2 class="text-4xl font-bold mb-8 text-gradient animate__animated animate__fadeIn" data-translate="medium.title">Stay Updated</h2>
+                <p class="text-xl mb-8 animate__animated animate__fadeIn" data-translate="medium.description">Subscribe to our Medium blog for the latest insights, updates, and deep dives into the world of Risy DAO.</p>
                 <a :href="socialLinks.medium" target="_blank" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-700 transition animate__animated animate__fadeIn">
                     <i class="fab fa-medium mr-2"></i>
-                    <span data-translate="medium.cta"></span>
+                    <span data-translate="medium.cta">Subscribe to Our Blog</span>
                 </a>
             </div>
         </section>
 
         <section id="resources" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="resources.title"></h2>
+                <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="resources.title">Resources</h2>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeInLeft">
-                        <h3 class="text-2xl font-semibold mb-4" data-translate="resources.links.title"></h3>
+                        <h3 class="text-2xl font-semibold mb-4" data-translate="resources.links.title">Important Links</h3>
                         <ul class="space-y-2">
                             <li>
                                 <a :href="dexScreenerUrl + contractAddress" target="_blank" data-event="go_dex_screen" class="text-indigo-400 hover:text-indigo-300 transition">
-                                    <i class="fas fa-chart-line mr-2"></i><span data-translate="resources.links.dexScreener"></span>
+                                    <i class="fas fa-chart-line mr-2"></i><span data-translate="resources.links.dexScreener">DEX Screener</span>
                                 </a>
                             </li>
                             <li>
                                 <a :href="swapUrl + contractAddress" target="_blank" data-event="go_swap" class="text-indigo-400 hover:text-indigo-300 transition">
-                                    <i class="fas fa-exchange-alt mr-2"></i><span data-translate="resources.links.swap"></span>
+                                    <i class="fas fa-exchange-alt mr-2"></i><span data-translate="resources.links.swap">Trade on Swap</span>
                                 </a>
                             </li>
                             <li>
                                 <a :href="tallyUrl" target="_blank" data-event="go_tally" class="text-indigo-400 hover:text-indigo-300 transition">
-                                    <i class="fas fa-users mr-2"></i><span data-translate="resources.links.goToDao"></span>
+                                    <i class="fas fa-users mr-2"></i><span data-translate="resources.links.goToDao">Go to DAO</span>
                                 </a>
                             </li>
                             <li>
                                 <a :href="scanUrl + contractAddress" target="_blank" data-event="go_contract" class="text-indigo-400 hover:text-indigo-300 transition">
-                                    <i class="fas fa-file-contract mr-2"></i><span data-translate="resources.links.contract"></span>
+                                    <i class="fas fa-file-contract mr-2"></i><span data-translate="resources.links.contract">Smart Contract</span>
                                 </a>
                             </li>
                             <li>
                                 <a :href="whitepaperUrl" target="_blank" data-event="go_whitepaper" class="text-indigo-400 hover:text-indigo-300 transition">
-                                    <i class="fas fa-file-pdf mr-2"></i><span data-translate="resources.links.whitepaper"></span>
+                                    <i class="fas fa-file-pdf mr-2"></i><span data-translate="resources.links.whitepaper">Whitepaper</span>
                                 </a>
                             </li>
                             <li>
                                 <a :href="socialLinks.github" target="_blank" data-event="go_social" class="text-indigo-400 hover:text-indigo-300 transition">
-                                    <i class="fab fa-github mr-2"></i><span data-translate="resources.links.sourceCode"></span>
+                                    <i class="fab fa-github mr-2"></i><span data-translate="resources.links.sourceCode">Source Code</span>
                                 </a>
                             </li>
                         </ul>
                         <div class="mt-6">
-                            <h4 class="text-xl font-semibold mb-2" data-translate="resources.getStarted.tipsTitle"></h4>
+                            <h4 class="text-xl font-semibold mb-2" data-translate="resources.getStarted.tipsTitle">Helpful Tips</h4>
                             <ul class="list-disc list-inside space-y-2">
                                 <template x-for="(tip, index) in getTranslation('resources.getStarted.tips')" :key="index">
                                     <li x-text="tip" class="text-sm text-gray-300"></li>
@@ -483,7 +488,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeInRight">
-                        <h3 class="text-2xl font-semibold mb-4" data-translate="resources.getStarted.title"></h3>
+                        <h3 class="text-2xl font-semibold mb-4" data-translate="resources.getStarted.title">How to Get Started</h3>
                         <ol class="list-decimal list-inside space-y-4">
                             <template x-for="(step, index) in getTranslation('resources.getStarted.steps')" :key="index">
                                 <li x-text="step" class="mb-2"></li>
@@ -493,7 +498,7 @@
                             <button @click="addToWallet" class="w-full md:w-auto add-to-wallet-btn bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition relative overflow-hidden">
                                 <span class="relative z-10">
                                     <i class="fas fa-wallet mr-2"></i>
-                                    <span data-translate="resources.links.addToWallet"></span>
+                                    <span data-translate="resources.links.addToWallet">Add to Wallet</span>
                                 </span>
                                 <span class="reflection"></span>
                             </button>
@@ -509,26 +514,26 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-semibold mb-4">Risy DAO</h3>
-                    <p class="text-gray-400" data-translate="footer.description"></p>
+                    <p class="text-gray-400" data-translate="footer.description">Revolutionizing decentralized finance on the Polygon blockchain.</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4" data-translate="footer.quickLinks"></h3>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="footer.quickLinks">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition" data-translate="nav.about"></a></li>
-                        <li><a href="#features" class="text-gray-400 hover:text-white transition" data-translate="nav.features"></a></li>
-                        <li><a href="#tokenomics" class="text-gray-400 hover:text-white transition" data-translate="nav.tokenomics"></a></li>
-                        <li><a href="#roadmap" class="text-gray-400 hover:text-white transition" data-translate="nav.roadmap"></a></li>
-                        <li><a href="#faq" class="text-gray-400 hover:text-white transition" data-translate="nav.faq"></a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition" data-translate="nav.about">About</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition" data-translate="nav.features">Features</a></li>
+                        <li><a href="#tokenomics" class="text-gray-400 hover:text-white transition" data-translate="nav.tokenomics">Tokenomics</a></li>
+                        <li><a href="#roadmap" class="text-gray-400 hover:text-white transition" data-translate="nav.roadmap">Roadmap</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition" data-translate="nav.faq">FAQ</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4" data-translate="footer.usefulLinks"></h3>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="footer.usefulLinks">Useful Links</h3>
                     <ul class="space-y-2">
-                        <li><a :href="pressKitUrl" data-event="go_press_kit" class="text-gray-400 hover:text-white transition" data-translate="footer.pressKit"></a></li>
+                        <li><a :href="pressKitUrl" data-event="go_press_kit" class="text-gray-400 hover:text-white transition" data-translate="footer.pressKit">Press Kit</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4" data-translate="footer.connect"></h3>
+                    <h3 class="text-xl font-semibold mb-4" data-translate="footer.connect">Connect</h3>
                     <ul class="space-y-2">
                         <li>
                             <a :href="'mailto:' + contactEmail" data-event="go_email" class="text-gray-400 hover:text-white transition">
@@ -559,7 +564,7 @@
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-gray-700 text-center">
-                <p data-translate="footer.copyright"></p>
+                <p data-translate="footer.copyright">© 2024 Risy DAO. All rights reserved.</p>
                 <div class="mt-4 flex justify-center space-x-4">
                     <a :href="socialLinks.twitter" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
                     <a :href="socialLinks.telegram" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
