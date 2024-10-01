@@ -66,22 +66,26 @@ function risyData() {
         onChainData: {
             address: 'Loading...',
             chain: 'Polygon Mainnet',
+            chainDesc: 'Polygon POS (Chain ID: 137 / 0x89)',
             name: 'Loading...',
             symbol: 'Loading...',
             decimals: 0,
             totalSupply: 'Loading...',
-            initialPrice: '0.00000001938',
-            currentPrice: '0.00000001938',
+            totalSupplyUSD: 'Loading...',
+            initialPrice: '0.000000019380',
+            currentPrice: '0.000000019380',
             launchDate: new Date("Jul-03-2024 05:56:16 PM UTC"),
             transferLimit: 'Loading...',
             maxBalance: 'Loading...',
+            maxBalancePercent: 'Loading...',
+            maxBalanceUSD: 'Loading...',
             daoFee: 'Loading...',
             version: 'Loading...'
         },
 
         profitCalculator: {
-            startPrice: "0.00000001938",
-            currentPrice: "0.00000001938",
+            startPrice: "0.000000019380",
+            currentPrice: "0.000000019380",
             startDate: new Date("Jul-03-2024 05:56:16 PM UTC"),
             get currentDate() {
                 return new Date();
@@ -312,8 +316,9 @@ function risyData() {
                     symbol: risyInfo.symbol,
                     decimals: risyInfo.decimals,
                     totalSupply: risyInfo.totalSupply,
-                    transferLimit: `${risyInfo.transferLimit.percent * 100}% per ${risyInfo.transferLimit.timeWindow / 3600} hours (GMT+0)`,
+                    transferLimit: `${risyInfo.transferLimit.percent * 100}% of balance per ${risyInfo.transferLimit.timeWindow / 3600} hours (GMT+0)`,
                     maxBalance: risyInfo.maxBalance,
+                    maxBalancePercent: (risyInfo.maxBalance / risyInfo.totalSupply * 100).toFixed(2),
                     daoFee: risyInfo.daoFee * 100,
                     version: risyInfo.version
                 };
@@ -325,7 +330,9 @@ function risyData() {
                 );
                 this.onChainData.currentPrice = currentPrice.toFixed(12);
                 this.profitCalculator.currentPrice = this.onChainData.currentPrice;
-
+                this.onChainData.totalSupplyUSD = (parseFloat(this.onChainData.totalSupply) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
+                this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
+                this.profitCalculator.capital = this.onChainData.maxBalanceUSD;
             } catch (error) {
                 // Try again after 5 seconds
                 console.error('Error fetching on-chain data:', error);
@@ -380,11 +387,11 @@ function risyData() {
             // Initialize animations and UI components
             this.initAnimations();
 
-            // Start periodic updates
-            this.startPeriodicUpdates();
-
             // Fetch on-chain data
             await this.fetchOnChainData();
+
+            // Start periodic updates
+            this.startPeriodicUpdates();
         },
 
         startPeriodicUpdates() {
@@ -397,6 +404,9 @@ function risyData() {
                     );
                     this.onChainData.currentPrice = currentPrice.toFixed(12);
                     this.profitCalculator.currentPrice = this.onChainData.currentPrice;
+                    this.onChainData.totalSupplyUSD = (parseFloat(this.onChainData.totalSupply) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
+                    this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
+                    this.profitCalculator.capital = this.onChainData.maxBalanceUSD;
                 } catch (error) {
                     console.error('Error updating current price:', error);
                 }

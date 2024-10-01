@@ -74,11 +74,11 @@ var data = {
       "decimals": "Decimals",
       "totalSupply": "Total Supply",
       "initialPrice": "Initial Price",
-      "currentPrice": "Current Price",
+      "currentPrice": "Price",
       "launchDate": "Launch Date",
       "timeSinceLaunch": "ago",
-      "transferLimit": "Current Daily Transfer Limit",
-      "maxBalance": "Current ICO Hodl Limit",
+      "transferLimit": "Transfer Limit",
+      "maxBalance": "ICO Hodl Limit",
       "daoFee": "DAO Fee",
       "contractVersion": "Contract Version"
     },
@@ -128,6 +128,9 @@ var data = {
     "tokenomics": {
       "title": "Tokenomics & Security",
       "items": [
+        "Open Source",
+        "Forever Locked Liquidity",
+        "Democratic DAO Governance",
         "Initial Supply: 1,000,000,000,000 RISY",
         "Maximum Supply: 2x initial supply",
         "Creator Holdings: Only 2% of initial supply",
@@ -342,12 +345,12 @@ var data = {
       "decimals": "Ondalık",
       "totalSupply": "Toplam Arz",
       "initialPrice": "Başlangıç Fiyatı",
-      "currentPrice": "Güncel Fiyat",
+      "currentPrice": "Fiyat",
       "launchDate": "Lansman Tarihi",
       "timeSinceLaunch": "önce",
-      "transferLimit": "Güncel Günlük Transfer Limiti",
-      "maxBalance": "Güncel ICO Hodl Limiti",
-      "daoFee": "DAO Ücreti",
+      "transferLimit": "Transfer Limiti",
+      "maxBalance": "ICO Hodl Limiti",
+      "daoFee": "DAO Komisyonu",
       "contractVersion": "Sözleşme Versiyonu"
     },
     "about": {
@@ -396,6 +399,9 @@ var data = {
     "tokenomics": {
       "title": "Tokenomiks & Güvenlik",
       "items": [
+        "Açık Kaynak",
+        "Ebediyen Kilitli Likidite",
+        "Demokratik DAO Yönetişimi",
         "Başlangıç Arzı: 1,000,000,000,000 RISY",
         "Maksimum Arz: Başlangıç arzının 2 katı",
         "Yaratıcı Hissesi: Sadece başlangıç arzının %2'si",
