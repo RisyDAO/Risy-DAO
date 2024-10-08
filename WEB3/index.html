@@ -100,20 +100,20 @@
                     </div>
                 </div>
                 <button @click="open = !open" class="md:hidden">
-                    <i class="fas fa-bars"></i>
+                    <i class="fas" :class="{'fa-times': open, 'fa-bars': !open}"></i>
                 </button>
             </div>
             <div x-show="open" class="md:hidden mt-3 space-y-2">
-                <a href="#about" class="block hover:text-indigo-400 transition" data-translate="nav.about">About</a>
-                <a href="#features" class="block hover:text-indigo-400 transition" data-translate="nav.features">Features</a>
-                <a href="#tokenomics" class="block hover:text-indigo-400 transition" data-translate="nav.tokenomics">Tokenomics</a>
-                <a href="#roadmap" class="block hover:text-indigo-400 transition" data-translate="nav.roadmap">Roadmap</a>
-                <a href="#faq" class="block hover:text-indigo-400 transition" data-translate="nav.faq">FAQ</a>
-                <a href="#resources" class="block hover:text-indigo-400 transition" data-translate="nav.resources">Resources</a>
+                <a @click="open = !open" href="#about" class="block hover:text-indigo-400 transition" data-translate="nav.about">About</a>
+                <a @click="open = !open" href="#features" class="block hover:text-indigo-400 transition" data-translate="nav.features">Features</a>
+                <a @click="open = !open" href="#tokenomics" class="block hover:text-indigo-400 transition" data-translate="nav.tokenomics">Tokenomics</a>
+                <a @click="open = !open" href="#roadmap" class="block hover:text-indigo-400 transition" data-translate="nav.roadmap">Roadmap</a>
+                <a @click="open = !open" href="#faq" class="block hover:text-indigo-400 transition" data-translate="nav.faq">FAQ</a>
+                <a @click="open = !open" href="#resources" class="block hover:text-indigo-400 transition" data-translate="nav.resources">Resources</a>
                 <hr>
                 <div class="flex space-x-2 mt-2">
-                    <button @click="switchLanguage('en')" :class="{'font-bold': language === 'en'}" data-translate="languages.en">English</button>
-                    <button @click="switchLanguage('tr')" :class="{'font-bold': language === 'tr'}" data-translate="languages.tr">Turkish</button>
+                    <button @click="switchLanguage('en'); open = !open;" :class="{'font-bold': language === 'en'}" data-translate="languages.en">English</button>
+                    <button @click="switchLanguage('tr'); open = !open;" :class="{'font-bold': language === 'tr'}" data-translate="languages.tr">Turkish</button>
                 </div>
             </div>
         </nav>
