@@ -53,8 +53,20 @@
           staticNetwork: true,
           skipFetchSetup: true,
           errorPassThrough: false,
+          
+          headers: {
+            'User-Agent': 'RisyDAO'
+          },
+
+          fetchOptions: {
+            mode: 'cors',
+            cache: "no-cache",
+            credentials: "same-origin",
+            redirect: "follow",
+            referrer: "client"
+          },
+          
           throttleCallback: (attempt, url) => {
-            // Implement throttle logic if needed
           },
           throttleLimit: 1
         });

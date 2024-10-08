@@ -29,7 +29,7 @@ const rpcList = [
 ];
 
 const connector = new RisyConnector(rpcList, {
-    timeout: 30000,
+    timeout: 10000,
     retries: 3,
     debugMode: false
 });
@@ -329,7 +329,6 @@ function risyData() {
                     "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
                 );
                 this.onChainData.currentPrice = currentPrice.toFixed(12);
-                this.profitCalculator.currentPrice = this.onChainData.currentPrice;
                 this.onChainData.totalSupplyUSD = (parseFloat(this.onChainData.totalSupply) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
                 this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
                 this.profitCalculator.capital = this.onChainData.maxBalanceUSD;
@@ -403,10 +402,8 @@ function risyData() {
                         "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
                     );
                     this.onChainData.currentPrice = currentPrice.toFixed(12);
-                    this.profitCalculator.currentPrice = this.onChainData.currentPrice;
                     this.onChainData.totalSupplyUSD = (parseFloat(this.onChainData.totalSupply) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
                     this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
-                    this.profitCalculator.capital = this.onChainData.maxBalanceUSD;
                 } catch (error) {
                     console.error('Error updating current price:', error);
                 }
