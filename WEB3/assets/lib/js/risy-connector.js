@@ -42,6 +42,7 @@
         timeout: 10000,
         retries: 3,
         debugMode: false,
+        cacheExpiry: 60000, // 1 minute default
         ...options
       };
 
@@ -67,12 +68,14 @@
           },
           
           throttleCallback: (attempt, url) => {
+            // Implement throttling logic if needed
           },
           throttleLimit: 1
         });
       });
       
       this.currentProviderIndex = 0;
+      this.cache = new Map();
     }
 
     log(message) {
@@ -106,11 +109,18 @@
       }
     }
 
-    async wrapAsync(func) {
+    async wrapAsync(func, cacheKey = null) {
+      if (cacheKey) {
+        const cachedResult = this.getFromCache(cacheKey);
+        if (cachedResult) return cachedResult;
+      }
+
       let attempts = 0;
       while (attempts < this.options.retries) {
         try {
-          return await func();
+          const result = await func();
+          if (cacheKey) this.setInCache(cacheKey, result);
+          return result;
         } catch (error) {
           this.log(`Error in ${func.name}: ${error.message}`);
           attempts++;
@@ -122,94 +132,110 @@
       }
     }
 
+    getFromCache(key) {
+      const cached = this.cache.get(key);
+      if (cached && Date.now() - cached.timestamp < this.options.cacheExpiry) {
+        return cached.value;
+      }
+      return null;
+    }
+
+    setInCache(key, value) {
+      this.cache.set(key, { value, timestamp: Date.now() });
+    }
+
     // Basic blockchain methods
     getBalance(address) {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
         return provider.getBalance(address);
-      });
+      }, `balance:${address}`);
     }
 
     getBlockNumber() {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
         return provider.getBlockNumber();
-      });
+      }, 'blockNumber');
     }
 
     getGasPrice() {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
         return provider.getGasPrice();
-      });
+      }, 'gasPrice');
     }
 
     getTransaction(txHash) {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
         return provider.getTransaction(txHash);
-      });
+      }, `transaction:${txHash}`);
     }
 
     getTransactionReceipt(txHash) {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
         return provider.getTransactionReceipt(txHash);
-      });
+      }, `transactionReceipt:${txHash}`);
     }
 
     // ERC20 Token methods
     async getERC20Contract(tokenAddress) {
-      const provider = await this.getProvider();
-      return new ethers.Contract(tokenAddress, ERC20_ABI, provider);
+      return this.wrapAsync(async () => {
+        const provider = await this.getProvider();
+        return new ethers.Contract(tokenAddress, ERC20_ABI, provider);
+      }, `erc20contract:${tokenAddress}`);
     }
 
     getTokenName(tokenAddress) {
       return this.wrapAsync(async () => {
         const contract = await this.getERC20Contract(tokenAddress);
         return contract.name();
-      });
+      }, `tokenName:${tokenAddress}`);
     }
 
     getTokenSymbol(tokenAddress) {
       return this.wrapAsync(async () => {
         const contract = await this.getERC20Contract(tokenAddress);
         return contract.symbol();
-      });
+      }, `tokenSymbol:${tokenAddress}`);
     }
 
     getTokenDecimals(tokenAddress) {
       return this.wrapAsync(async () => {
         const contract = await this.getERC20Contract(tokenAddress);
         return contract.decimals();
-      });
+      }, `tokenDecimals:${tokenAddress}`);
     }
 
     getTokenTotalSupply(tokenAddress) {
       return this.wrapAsync(async () => {
         const contract = await this.getERC20Contract(tokenAddress);
         return contract.totalSupply();
-      });
+      }, `tokenTotalSupply:${tokenAddress}`);
     }
 
     getTokenBalance(tokenAddress, accountAddress) {
       return this.wrapAsync(async () => {
         const contract = await this.getERC20Contract(tokenAddress);
         return contract.balanceOf(accountAddress);
-      });
+      }, `tokenBalance:${tokenAddress}:${accountAddress}`);
     }
 
     // Uniswap V2 methods
     async getUniswapV2PairContract(pairAddress) {
-      const provider = await this.getProvider();
-      return new ethers.Contract(pairAddress, UNISWAP_V2_PAIR_ABI, provider);
+      return this.wrapAsync(async () => {
+        const provider = await this.getProvider();
+        return new ethers.Contract(pairAddress, UNISWAP_V2_PAIR_ABI, provider);
+      }, `uniswapv2contract:${pairAddress}`);
     }
 
     getUniswapV2Reserves(pairAddress) {
       return this.wrapAsync(async () => {
         const contract = await this.getUniswapV2PairContract(pairAddress);
         return contract.getReserves();
-      });
+      }, `uniswapv2reserves:${pairAddress}`);
     }
 
     getUniswapV2Tokens(pairAddress) {
@@ -217,15 +243,19 @@
         const contract = await this.getUniswapV2PairContract(pairAddress);
         const [token0, token1] = await Promise.all([contract.token0(), contract.token1()]);
         return { token0, token1 };
-      });
+      }, `uniswapv2tokens:${pairAddress}`);
     }
 
-    calculateUniswapV2PriceAsNum(pairAddress, baseTokenAddress) {
+    async calculateUniswapV2PriceAsNum(pairAddress, baseTokenAddress) {
       return this.wrapAsync(async () => {
-        const reserves = await this.getUniswapV2Reserves(pairAddress);
-        const tokens = await this.getUniswapV2Tokens(pairAddress);
-        const baseTokenDecimals = await this.getTokenDecimals(baseTokenAddress);
-        const quoteTokenDecimals = await this.getTokenDecimals(tokens.token0 === baseTokenAddress ? tokens.token1 : tokens.token0);
+        const [reserves, tokens, baseTokenDecimals] = await Promise.all([
+          this.getUniswapV2Reserves(pairAddress),
+          this.getUniswapV2Tokens(pairAddress),
+          this.getTokenDecimals(baseTokenAddress)
+        ]);
+
+        const quoteTokenAddress = tokens.token0.toLowerCase() === baseTokenAddress.toLowerCase() ? tokens.token1 : tokens.token0;
+        const quoteTokenDecimals = await this.getTokenDecimals(quoteTokenAddress);
 
         const [baseReserve, quoteReserve] = tokens.token0.toLowerCase() === baseTokenAddress.toLowerCase() 
           ? [reserves[0], reserves[1]] 
@@ -233,43 +263,79 @@
         
         const price = baseReserve.mul(ethers.BigNumber.from(10).pow(quoteTokenDecimals + baseTokenDecimals)).div(quoteReserve);
         return ethers.utils.formatUnits(price, baseTokenDecimals) / 10 ** baseTokenDecimals;
-      });
+      }, `uniswapv2price:${pairAddress}:${baseTokenAddress}`);
     }
 
     // RisyDAO specific methods
     async getRisyDAOContract(contractAddress) {
-      const provider = await this.getProvider();
-      return new ethers.Contract(contractAddress, RISY_DAO_ABI, provider);
+      return this.wrapAsync(async () => {
+        const provider = await this.getProvider();
+        return new ethers.Contract(contractAddress, RISY_DAO_ABI, provider);
+      }, `risydaocontract:${contractAddress}`);
     }
 
-    getRisyDAOInfo(contractAddress) {
+    async getRisyDAOInfo(contractAddress) {
+      const contract = await this.getRisyDAOContract(contractAddress);
+      
+      const [basicInfo, limits, financials] = await Promise.all([
+        this.getRisyDAOBasicInfo(contract),
+        this.getRisyDAOLimits(contract),
+        this.getRisyDAOFinancials(contract)
+      ]);
+
+      return {
+        ...basicInfo,
+        ...limits,
+        ...financials
+      };
+    }
+
+    async getRisyDAOBasicInfo(contract) {
       return this.wrapAsync(async () => {
-        const contract = await this.getRisyDAOContract(contractAddress);
-        const [name, symbol, decimals, totalSupply, transferLimit, maxBalance, daoFee, version] = await Promise.all([
+        const [name, symbol, decimals, version] = await Promise.all([
           contract.name(),
           contract.symbol(),
           contract.decimals(),
-          contract.totalSupply(),
-          contract.getTransferLimit(),
-          contract.getMaxBalance(),
-          contract.getDAOFee(),
           contract.getVersion()
         ]);
 
+        return { name, symbol, decimals, version: version.toString() };
+      }, `risydaobasicinfo:${contract.address}`);
+    }
+
+    async getRisyDAOLimits(contract) {
+      return this.wrapAsync(async () => {
+        const [transferLimit, maxBalance] = await Promise.all([
+          contract.getTransferLimit(),
+          contract.getMaxBalance()
+        ]);
+
+        const decimals = await contract.decimals();
+
         return {
-          name,
-          symbol,
-          decimals,
-          totalSupply: ethers.utils.formatUnits(totalSupply, decimals),
           transferLimit: {
             timeWindow: transferLimit[0].toNumber(),
             percent: ethers.utils.formatUnits(transferLimit[1], decimals)
           },
-          maxBalance: ethers.utils.formatUnits(maxBalance, decimals),
-          daoFee: ethers.utils.formatUnits(daoFee, decimals),
-          version: version.toString()
+          maxBalance: ethers.utils.formatUnits(maxBalance, decimals)
         };
-      });
+      }, `risydaolimits:${contract.address}`);
+    }
+
+    async getRisyDAOFinancials(contract) {
+      return this.wrapAsync(async () => {
+        const [totalSupply, daoFee] = await Promise.all([
+          contract.totalSupply(),
+          contract.getDAOFee()
+        ]);
+
+        const decimals = await contract.decimals();
+
+        return {
+          totalSupply: ethers.utils.formatUnits(totalSupply, decimals),
+          daoFee: ethers.utils.formatUnits(daoFee, decimals)
+        };
+      }, `risydaofinancials:${contract.address}`);
     }
   }
 

@@ -29,9 +29,10 @@ const rpcList = [
 ];
 
 const connector = new RisyConnector(rpcList, {
-    timeout: 30000,
-    retries: 3,
-    debugMode: false
+    timeout: 5000,
+    retries: 2,
+    debugMode: false,
+    cacheExpiry: 30000
 });
 
 // Detect user's preferred language
