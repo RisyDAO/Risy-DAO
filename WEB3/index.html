@@ -137,7 +137,7 @@
             
             <nav id="important-links" class="w-full py-4 bg-gray-800 bg-opacity-75 animate__animated animate__fadeInUp animate__delay-3s" aria-label="Important links">
                 <div class="mx-auto px-4">
-                    <ul class="flex flex-col">
+                    <ul class="flex flex-col gap-4">
                         <li class="w-full lg:hidden">
                             <button @click="addToWallet" class="w-full add-to-wallet-btn bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition relative overflow-hidden">
                                 <span class="relative z-10">
@@ -150,13 +150,13 @@
                         <li>
                             <ul class="grid grid-cols-2 lg:flex lg:flex-row justify-center items-center gap-4">
                                 <li class="w-full">
-                                    <a :href="dexScreenerUrl + contractAddress" target="_blank" rel="noopener noreferrer" data-event="go_dex_screen" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                        <i class="fas fa-chart-line mr-2" aria-hidden="true"></i><span data-translate="resources.links.dexScreener">DEX Screener</span>
+                                    <a :href="tallyUrl" target="_blank" rel="noopener noreferrer" data-event="go_tally" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
+                                        <i class="fas fa-users mr-2" aria-hidden="true"></i><span data-translate="resources.links.goToDao">Go to DAO</span>
                                     </a>
                                 </li>
                                 <li class="w-full">
-                                    <a :href="tallyUrl" target="_blank" rel="noopener noreferrer" data-event="go_tally" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                        <i class="fas fa-users mr-2" aria-hidden="true"></i><span data-translate="resources.links.goToDao">Go to DAO</span>
+                                    <a :href="scannerUrl + liquidityAddresses[0]" target="_blank" rel="noopener noreferrer" data-event="go_dex_screen" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
+                                        <i class="fas fa-chart-line mr-2" aria-hidden="true"></i><span data-translate="resources.links.scanner">DEX Scanner</span>
                                     </a>
                                 </li>
                                 <li class="w-full">
@@ -179,13 +179,13 @@
                                     </a>
                                 </li>
                                 <li class="w-full">
-                                    <a :href="whitepaperUrl" target="_blank" rel="noopener noreferrer" data-event="go_whitepaper" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                        <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i><span data-translate="resources.links.whitepaper">Whitepaper</span>
+                                    <a :href="socialLinks.github" target="_blank" rel="noopener noreferrer" data-event="go_social" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
+                                        <i class="fab fa-github mr-2" aria-hidden="true"></i><span data-translate="resources.links.sourceCode">Source Code</span>
                                     </a>
                                 </li>
                                 <li class="w-full">
-                                    <a :href="socialLinks.github" target="_blank" rel="noopener noreferrer" data-event="go_social" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
-                                        <i class="fab fa-github mr-2" aria-hidden="true"></i><span data-translate="resources.links.sourceCode">Source Code</span>
+                                    <a :href="whitepaperUrl" target="_blank" rel="noopener noreferrer" data-event="go_whitepaper" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
+                                        <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i><span data-translate="resources.links.whitepaper">Whitepaper</span>
                                     </a>
                                 </li>
                             </ul>
@@ -196,8 +196,8 @@
         </section>
 
         <section id="links" class="important-links w-full lg:py-6 bg-gray-900">
-            <div id="dexscreener-embed" class="hidden lg:block">
-                <iframe :src="'https://dexscreener.com/polygon/' + contractAddress + '?embed=1&theme=dark&trades=0'" class="dexscreener-embedder" height="600" width="100%" frameBorder="0" scrolling="no">
+            <div id="scanner-embed-wrap">
+                <iframe :src="'https://www.geckoterminal.com/polygon_pos/pools/' + liquidityAddresses[0] + '?embed=1&info=0&swaps=0'" class="scanner-embed" height="600" width="100%" frameBorder="0" scrolling="no" allow="clipboard-write" allowfullscreen title="Risy DAO Token (RISY) Price Chart">
                 </iframe>
             </div>
         </section>
@@ -465,8 +465,8 @@
                         <h3 class="text-2xl font-semibold mb-4" data-translate="resources.links.title">Important Links</h3>
                         <ul class="space-y-2">
                             <li>
-                                <a :href="dexScreenerUrl + contractAddress" target="_blank" data-event="go_dex_screen" class="text-indigo-400 hover:text-indigo-300 transition">
-                                    <i class="fas fa-chart-line mr-2"></i><span data-translate="resources.links.dexScreener">DEX Screener</span>
+                                <a :href="scannerUrl + contractAddress" target="_blank" data-event="go_dex_screen" class="text-indigo-400 hover:text-indigo-300 transition">
+                                    <i class="fas fa-chart-line mr-2"></i><span data-translate="resources.links.scanner">DEX Scanner</span>
                                 </a>
                             </li>
                             <li>

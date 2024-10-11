@@ -2,8 +2,13 @@ var data = {
   "common": {
     "config": {
       "contractAddress": "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199",
+      "liquidityAddresses": [
+        "0xb908228a001cb177ac785659505ebca1d9947ee8",
+        "0x8341b5240e05552d85e78bcd691b2982c3e4deaf",
+        "0xa0d3ee50d6932c554c958d3567d32898575884c5"
+      ],
       "ctaUrl": "https://risydao.medium.com/the-9-steps-not-10-hitchhikers-guide-to-defi-f6d767f264cd",
-      "dexScreenerUrl": "https://dexscreener.com/polygon/",
+      "scannerUrl": "https://www.geckoterminal.com/polygon_pos/pools/",
       "swapUrl": "https://quickswap.exchange/#/swap?currency0=ETH&swapIndex=1&currency1=",
       "tallyUrl": "https://www.tally.xyz/gov/risydao",
       "scanUrl": "https://polygonscan.com/token/",
@@ -247,7 +252,7 @@ var data = {
       "title": "Resources",
       "links": {
         "title": "Important Links",
-        "dexScreener": "DEX Screener",
+        "scanner": "DEX Scanner",
         "swap": "Trade on Swap",
         "goToDao": "Go to DAO",
         "addToWallet": "Add to Wallet",
@@ -518,7 +523,7 @@ var data = {
       "title": "Kaynaklar",
       "links": {
         "title": "Önemli Bağlantılar",
-        "dexScreener": "DEX Tarayıcı",
+        "scanner": "DEX Tarayıcı",
         "swap": "Swapte İşlem Yap",
         "goToDao": "DAO'ya Git",
         "addToWallet": "Cüzdana Ekle",

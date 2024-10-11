@@ -49,9 +49,14 @@ function risyData() {
         language: detectLanguage(),
         translations: data,
         contractAddress: '0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199',
+        liquidityAddresses: [
+            "0xb908228a001cb177ac785659505ebca1d9947ee8",
+            "0x8341b5240e05552d85e78bcd691b2982c3e4deaf",
+            "0xa0d3ee50d6932c554c958d3567d32898575884c5"
+        ],
         ctaUrl: '',
         whitepaperUrl: '',
-        dexScreenerUrl: '',
+        scannerUrl: '',
         swapUrl: '',
         tallyUrl: '',
         socialLinks: {},
@@ -364,9 +369,10 @@ function risyData() {
             const commonConfig = this.translations.common.config;
             
             this.contractAddress = commonConfig.contractAddress;
+            this.liquidityAddresses = commonConfig.liquidityAddresses;
             this.ctaUrl = commonConfig.ctaUrl;
             this.scanUrl = commonConfig.scanUrl;
-            this.dexScreenerUrl = commonConfig.dexScreenerUrl;
+            this.scannerUrl = commonConfig.scannerUrl;
             this.swapUrl = commonConfig.swapUrl;
             this.tallyUrl = commonConfig.tallyUrl;
             this.socialLinks = commonConfig.socialLinks;
