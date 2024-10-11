@@ -78,9 +78,9 @@
       this.cache = new Map();
     }
 
-    log(message) {
+    log(message, level = 'info') {
       if (this.options.debugMode) {
-        console.log(`RisyConnector: ${message}`);
+        console[level](`RisyConnector: ${message}`);
       }
     }
 
@@ -104,7 +104,7 @@
         this.log(`Successfully connected to provider at index ${index}`);
         return provider;
       } catch (error) {
-        this.log('All providers failed or timed out');
+        this.log('All providers failed or timed out', 'error');
         throw new Error("All RPC attempts failed");
       }
     }
@@ -122,12 +122,22 @@
           if (cacheKey) this.setInCache(cacheKey, result);
           return result;
         } catch (error) {
-          this.log(`Error in ${func.name}: ${error.message}`);
+          this.log(`Error in ${func.name}: ${error.message}`, 'error');
+          this.log(`Stack trace: ${error.stack}`, 'error');
+
+          if (error.message.includes("Cannot read properties of null (reading 'call')")) {
+            this.log("Contract initialization error detected. Possible network issue or incorrect contract address.", 'error');
+            // Clear the cache for this contract to force re-initialization on next attempt
+            if (cacheKey && cacheKey.startsWith('contract:')) {
+              this.cache.delete(cacheKey);
+            }
+          }
+
           attempts++;
           if (attempts >= this.options.retries) {
             throw error;
           }
-          await new Promise(resolve => setTimeout(resolve, 1000 * attempts));
+          await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempts)));
         }
       }
     }
@@ -184,8 +194,11 @@
     async getERC20Contract(tokenAddress) {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
-        return new ethers.Contract(tokenAddress, ERC20_ABI, provider);
-      }, `erc20contract:${tokenAddress}`);
+        const contract = new ethers.Contract(tokenAddress, ERC20_ABI, provider);
+        // Perform a simple call to check if the contract is initialized correctly
+        await contract.name();
+        return contract;
+      }, `contract:erc20:${tokenAddress}`);
     }
 
     getTokenName(tokenAddress) {
@@ -227,8 +240,11 @@
     async getUniswapV2PairContract(pairAddress) {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
-        return new ethers.Contract(pairAddress, UNISWAP_V2_PAIR_ABI, provider);
-      }, `uniswapv2contract:${pairAddress}`);
+        const contract = new ethers.Contract(pairAddress, UNISWAP_V2_PAIR_ABI, provider);
+        // Perform a simple call to check if the contract is initialized correctly
+        await contract.token0();
+        return contract;
+      }, `contract:uniswapv2:${pairAddress}`);
     }
 
     getUniswapV2Reserves(pairAddress) {
@@ -270,24 +286,32 @@
     async getRisyDAOContract(contractAddress) {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
-        return new ethers.Contract(contractAddress, RISY_DAO_ABI, provider);
-      }, `risydaocontract:${contractAddress}`);
+        const contract = new ethers.Contract(contractAddress, RISY_DAO_ABI, provider);
+        // Perform a simple call to check if the contract is initialized correctly
+        await contract.name();
+        return contract;
+      }, `contract:risydao:${contractAddress}`);
     }
 
     async getRisyDAOInfo(contractAddress) {
-      const contract = await this.getRisyDAOContract(contractAddress);
-      
-      const [basicInfo, limits, financials] = await Promise.all([
-        this.getRisyDAOBasicInfo(contract),
-        this.getRisyDAOLimits(contract),
-        this.getRisyDAOFinancials(contract)
-      ]);
+      try {
+        const contract = await this.getRisyDAOContract(contractAddress);
+        
+        const [basicInfo, limits, financials] = await Promise.all([
+          this.getRisyDAOBasicInfo(contract),
+          this.getRisyDAOLimits(contract),
+          this.getRisyDAOFinancials(contract)
+        ]);
 
-      return {
-        ...basicInfo,
-        ...limits,
-        ...financials
-      };
+        return {
+          ...basicInfo,
+          ...limits,
+          ...financials
+        };
+      } catch (error) {
+        this.log(`Error fetching RisyDAO info: ${error.message}`, 'error');
+        throw error;
+      }
     }
 
     async getRisyDAOBasicInfo(contract) {
