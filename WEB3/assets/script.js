@@ -30,7 +30,7 @@ const rpcList = [
 
 const connector = new RisyConnector(rpcList, {
     timeout: 5000,
-    retries: 2,
+    retries: 3,
     debugMode: false,
     cacheExpiry: 30000
 });
