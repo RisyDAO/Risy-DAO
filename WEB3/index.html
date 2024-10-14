@@ -284,14 +284,17 @@
                                 <div class="space-y-2">
                                     <label for="dailyReturn" class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.dailyReturn">Daily Return (%)</label>
                                     <input type="text" id="dailyReturn" x-model="profitCalculator.dailyReturn" step="0.01" min="0" max="100" class="w-full bg-gray-700 bg-opacity-50 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-200">
+                                    <p class="text-xs text-gray-400"><span class="font-bold" data-translate="onChainData.currentDailyReturn"></span><span x-text="': ' + (profitCalculator.currentDailyReturn * 100).toFixed(2) + '%'"></span></p>
                                 </div>
                                 <div class="space-y-2">
                                     <label for="capital" class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.capital">Capital ($)</label>
                                     <input type="text" id="capital" x-model="profitCalculator.capital" step="1" min="0" class="w-full bg-gray-700 bg-opacity-50 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-200">
+                                    <p class="text-xs text-gray-400"><span class="font-bold" data-translate="onChainData.maxBalance"></span><span x-text="': ' + onChainData.maxBalance + ' RISY ($' + onChainData.maxBalanceUSD + ')'"></span></p>
                                 </div>
                                 <div class="space-y-2">
                                     <label for="days" class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.days">Number of Days</label>
                                     <input type="text" id="days" x-model="profitCalculator.days" step="1" min="1" class="w-full bg-gray-700 bg-opacity-50 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-200">
+                                    <p class="text-xs text-gray-400"><span class="font-bold" data-translate="onChainData.daysPassed"></span><span x-text="': ' + profitCalculator.daysPassed.toFixed(0)"></span></p>
                                 </div>
                             </div>
                             <small class="block text-gray-400 text-xs mb-6" data-translate="profitCalculator.tip">You can analyse your own investment by entering values in the boxes. Amounts are calculated using the compound interest formula.</small>
