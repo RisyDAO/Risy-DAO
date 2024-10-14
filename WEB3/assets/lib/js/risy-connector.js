@@ -39,43 +39,28 @@
 
       this.rpcList = rpcList;
       this.options = {
-        timeout: 10000,
+        timeout: 5000,
         retries: 3,
         debugMode: false,
         cacheExpiry: 60000, // 1 minute default
+        providerUpdateInterval: 60000, // 1 minute
         ...options
       };
 
-      this.providers = this.rpcList.map((url) => {
-        return new ethers.providers.JsonRpcProvider({
-          url,
-          name: url,
-          chainId: 137,
-          staticNetwork: true,
-          skipFetchSetup: true,
-          errorPassThrough: false,
-          
-          headers: {
-            'User-Agent': 'RisyDAO'
-          },
-
-          fetchOptions: {
-            mode: 'cors',
-            cache: "no-cache",
-            credentials: "same-origin",
-            redirect: "follow",
-            referrer: "client"
-          },
-          
-          throttleCallback: (attempt, url) => {
-            // Implement throttling logic if needed
-          },
-          throttleLimit: 1
-        });
-      });
-      
-      this.currentProviderIndex = 0;
+      this.providers = this.rpcList.map(this.createProvider.bind(this));
+      this.currentProvider = null;
       this.cache = new Map();
+      this.lastProviderUpdate = 0;
+      this.providerFailures = new Map();
+    }
+
+    createProvider(url) {
+      return new ethers.providers.JsonRpcProvider({
+        url,
+        timeout: this.options.timeout,
+        staticNetwork: true,
+        headers: { 'User-Agent': 'RisyDAO' },
+      });
     }
 
     log(message, level = 'info') {
@@ -84,29 +69,47 @@
       }
     }
 
-    async getProvider() {
-      this.log('Starting provider race');
-      
-      const providerPromises = this.providers.map((provider, index) => {
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('Provider request timed out')), this.options.timeout);
-        });
+    async updateCurrentProvider() {
+      const now = Date.now();
+      if (now - this.lastProviderUpdate < this.options.providerUpdateInterval && this.currentProvider) {
+        return this.currentProvider;
+      }
 
-        return Promise.race([
-          provider.getBlockNumber().then(() => ({ provider, index })).catch(error => ({ error, index })),
-          timeoutPromise
-        ]).catch(error => ({ error, index }));
+      this.log('Updating current provider');
+      
+      const providerPromises = this.providers.map(async (provider, index) => {
+        if (this.providerFailures.get(index) > 5) {
+          return null; // Skip providers that have failed too many times
+        }
+        try {
+          await provider.getBlockNumber();
+          this.providerFailures.set(index, 0); // Reset failure count on success
+          return provider;
+        } catch (error) {
+          this.providerFailures.set(index, (this.providerFailures.get(index) || 0) + 1);
+          return null;
+        }
       });
 
-      try {
-        const { provider, index } = await Promise.race(providerPromises);
-        this.currentProviderIndex = index;
-        this.log(`Successfully connected to provider at index ${index}`);
-        return provider;
-      } catch (error) {
-        this.log('All providers failed or timed out', 'error');
-        throw new Error("All RPC attempts failed");
+      const results = await Promise.all(providerPromises);
+      const workingProviders = results.filter(provider => provider !== null);
+
+      if (workingProviders.length > 0) {
+        this.currentProvider = workingProviders[0];
+        this.lastProviderUpdate = now;
+        this.log(`Successfully updated current provider`);
+      } else {
+        throw new Error("All providers failed");
       }
+
+      return this.currentProvider;
+    }
+
+    async getProvider() {
+      if (!this.currentProvider) {
+        await this.updateCurrentProvider();
+      }
+      return this.currentProvider;
     }
 
     async wrapAsync(func, cacheKey = null) {
@@ -123,20 +126,11 @@
           return result;
         } catch (error) {
           this.log(`Error in ${func.name}: ${error.message}`, 'error');
-          this.log(`Stack trace: ${error.stack}`, 'error');
-
-          if (error.message.includes("Cannot read properties of null (reading 'call')")) {
-            this.log("Contract initialization error detected. Possible network issue or incorrect contract address.", 'error');
-            // Clear the cache for this contract to force re-initialization on next attempt
-            if (cacheKey && cacheKey.startsWith('contract:')) {
-              this.cache.delete(cacheKey);
-            }
-          }
-
           attempts++;
           if (attempts >= this.options.retries) {
             throw error;
           }
+          await this.updateCurrentProvider();
           await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempts)));
         }
       }
@@ -194,10 +188,7 @@
     async getERC20Contract(tokenAddress) {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
-        const contract = new ethers.Contract(tokenAddress, ERC20_ABI, provider);
-        // Perform a simple call to check if the contract is initialized correctly
-        await contract.name();
-        return contract;
+        return new ethers.Contract(tokenAddress, ERC20_ABI, provider);
       }, `contract:erc20:${tokenAddress}`);
     }
 
@@ -240,10 +231,7 @@
     async getUniswapV2PairContract(pairAddress) {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
-        const contract = new ethers.Contract(pairAddress, UNISWAP_V2_PAIR_ABI, provider);
-        // Perform a simple call to check if the contract is initialized correctly
-        await contract.token0();
-        return contract;
+        return new ethers.Contract(pairAddress, UNISWAP_V2_PAIR_ABI, provider);
       }, `contract:uniswapv2:${pairAddress}`);
     }
 
@@ -286,10 +274,7 @@
     async getRisyDAOContract(contractAddress) {
       return this.wrapAsync(async () => {
         const provider = await this.getProvider();
-        const contract = new ethers.Contract(contractAddress, RISY_DAO_ABI, provider);
-        // Perform a simple call to check if the contract is initialized correctly
-        await contract.name();
-        return contract;
+        return new ethers.Contract(contractAddress, RISY_DAO_ABI, provider);
       }, `contract:risydao:${contractAddress}`);
     }
 
