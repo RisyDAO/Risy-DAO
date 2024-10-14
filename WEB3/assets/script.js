@@ -32,7 +32,8 @@ const connector = new RisyConnector(rpcList, {
     timeout: 5000,
     retries: 3,
     debugMode: false,
-    cacheExpiry: 30000
+    cacheExpiry: 30000,
+    providerUpdateInterval: 59000
 });
 
 // Detect user's preferred language
