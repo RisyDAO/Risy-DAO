@@ -179,6 +179,11 @@ function risyData() {
                 const element = document.querySelector(`[data-language="${code}"]`);
                 if (element) element.textContent = name;
             }
+
+            // Tarih gösterimini güncelle
+            if (this.onChainData.launchDate) {
+                document.querySelector('[data-translate="onChainData.launchDate"]').nextElementSibling.textContent = this.getLocalizedLaunchDate();
+            }
         },
 
         getTranslation(key) {
@@ -325,7 +330,8 @@ function risyData() {
                     symbol: risyInfo.symbol,
                     decimals: risyInfo.decimals,
                     totalSupply: risyInfo.totalSupply,
-                    transferLimit: `${risyInfo.transferLimit.percent * 100}% of balance per ${risyInfo.transferLimit.timeWindow / 3600} hours (GMT+0)`,
+                    transferLimitPercent: (risyInfo.transferLimit.percent * 100).toFixed(2),
+                    transferLimitHours: (risyInfo.transferLimit.timeWindow / 3600).toString(),
                     maxBalance: risyInfo.maxBalance,
                     maxBalancePercent: (risyInfo.maxBalance / risyInfo.totalSupply * 100).toFixed(2),
                     daoFee: risyInfo.daoFee * 100,
@@ -344,7 +350,7 @@ function risyData() {
             } catch (error) {
                 // Try again after 5 seconds
                 console.error('Error fetching on-chain data:', error);
-                this.error = 'Failed to fetch on-chain data.<br>Please check your network connection.<br><br>Trying again in 5 seconds or refresh page...';
+                this.error = this.getTranslation('onChainData.fetchError');
                 setTimeout(()=>{
                     this.error = null;
                     this.isLoading = true;
@@ -365,7 +371,7 @@ function risyData() {
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            return `${years}y ${months % 12}m ${days % 30}d ${hours}h ${minutes}m ${seconds}s`;
+            return `${years}${this.getTranslation('onChainData.year')} ${months % 12}${this.getTranslation('onChainData.month')} ${days % 30}${this.getTranslation('onChainData.day')} ${hours}${this.getTranslation('onChainData.hour')} ${minutes}${this.getTranslation('onChainData.minute')} ${seconds}${this.getTranslation('onChainData.second')}`;
         },
 
         async init() {
@@ -573,6 +579,18 @@ function risyData() {
                 }
             };
             window.requestAnimationFrame(step);
+        },
+
+        getLocalizedLaunchDate() {
+            return this.onChainData.launchDate.toLocaleString(this.language, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZoneName: 'short'
+            });
         }
     };
 }

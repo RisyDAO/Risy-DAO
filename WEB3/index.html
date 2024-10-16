@@ -210,7 +210,7 @@
                             <h3 class="text-2xl font-light mb-6 text-center text-white" data-translate="onChainData.title">On-chain Token Data</h3>
                             <div x-show="isLoading" class="text-center py-4">
                                 <i class="fas fa-spinner fa-spin fa-2x"></i>
-                                <p class="mt-2">Loading on-chain data...</p>
+                                <p class="mt-2" data-translate="onChainData.loading">Loading on-chain data...</p>
                             </div>
                             <div x-show="error" class="text-red-500 text-center py-4" x-html="error"></div>
                             <div x-show="!isLoading && !error" class="space-y-4">
@@ -238,8 +238,14 @@
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.totalSupply">Total Supply</h4>
-                                    <p class="text-sm font-light" x-text="onChainData.totalSupply + ' RISY'"></p>
-                                    <p class="text-xs text-gray-400" x-text="'Market Cap: $' + onChainData.totalSupplyUSD"></p>
+                                    <p class="text-sm font-light">
+                                        <span x-text="onChainData.totalSupply"></span>
+                                        <span> RISY</span>
+                                    </p>
+                                    <p class="text-xs text-gray-400">
+                                        <span data-translate="onChainData.marketCap">Market Cap:</span>
+                                        <span x-text="'$' + onChainData.totalSupplyUSD"></span>
+                                    </p>
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.initialPrice">Initial Price</h4>
@@ -251,7 +257,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.launchDate">Launch Date</h4>
-                                    <p class="text-sm font-light" x-text="onChainData.launchDate.toUTCString()"></p>
+                                    <p class="text-sm font-light" x-text="getLocalizedLaunchDate()"></p>
                                     <p class="text-xs text-gray-400">
                                         <span x-ref="timeSinceLaunch"></span>
                                         <span data-translate="onChainData.timeSinceLaunch">ago</span>
@@ -259,16 +265,32 @@
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.transferLimit">Current Daily Transfer Limit</h4>
-                                    <p class="text-sm font-light" x-text="onChainData.transferLimit"></p>
+                                    <p class="text-sm font-light">
+                                        <span x-text="onChainData.transferLimitPercent"></span>
+                                        <span>% </span>
+                                        <span data-translate="onChainData.transferLimitDesc">of balance per</span>
+                                        <span x-text="onChainData.transferLimitHours"></span>
+                                        <span data-translate="onChainData.hours">hours</span>
+                                        <span> (GMT+0)</span>
+                                    </p>
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.maxBalance">Current ICO Hodl Limit</h4>
-                                    <p class="text-sm font-light" x-text="onChainData.maxBalance + ' RISY (' + onChainData.maxBalancePercent + '% of total supply)'"></p>
+                                    <p class="text-sm font-light">
+                                        <span x-text="onChainData.maxBalance"></span>
+                                        <span> RISY (</span>
+                                        <span x-text="onChainData.maxBalancePercent"></span>
+                                        <span data-translate="onChainData.ofTotalSupply">% of total supply</span>
+                                        <span>)</span>
+                                    </p>
                                     <p class="text-xs text-gray-400" x-text="'$' + onChainData.maxBalanceUSD"></p>
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.daoFee">DAO Fee</h4>
-                                    <p class="text-sm font-light" x-text="onChainData.daoFee + '% on each transfer'"></p>
+                                    <p class="text-sm font-light">
+                                        <span x-text="onChainData.daoFee"></span>
+                                        <span data-translate="onChainData.onEachTransfer">% on each transfer</span>
+                                    </p>
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="onChainData.contractVersion">Contract Version</h4>
