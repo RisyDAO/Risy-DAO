@@ -148,6 +148,11 @@
       this.cache.set(key, { value, timestamp: Date.now() });
     }
 
+    clearCache() {
+      this.cache.clear();
+      this.log('Cache cleared', 'info');
+    }
+
     // Basic blockchain methods
     getBalance(address) {
       return this.wrapAsync(async () => {

@@ -301,23 +301,23 @@
                             <div class="space-y-6">
                                 <div class="border-b border-gray-700 pb-4">
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.finalAmount">Final Amount</h4>
-                                    <p class="text-2xl font-light" x-text="'$' + profitCalculator.finalAmount.toFixed(2)"></p>
+                                    <p class="text-2xl font-light" :class="{'text-profit-positive': profitCalculator.profit > 0, 'text-profit-negative': profitCalculator.profit < 0}" x-text="'$' + profitCalculator.finalAmount.toFixed(2)"></p>
                                 </div>
                                 <div class="border-b border-gray-700 pb-4">
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.profit">Profit</h4>
-                                    <p class="text-2xl font-light" x-text="'$' + profitCalculator.profit.toFixed(2)"></p>
+                                    <p class="text-2xl font-light" :class="{'text-profit-positive': profitCalculator.profit > 0, 'text-profit-negative': profitCalculator.profit < 0}" x-text="'$' + profitCalculator.profit.toFixed(2)"></p>
                                 </div>
                                 <div class="border-b border-gray-700 pb-4">
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.percentageRise">Percentage Rise</h4>
-                                    <p class="text-2xl font-light" x-text="profitCalculator.percentageRise.toFixed(2).replace('NaN','0') + '%'"></p>
+                                    <p class="text-2xl font-light" :class="{'text-profit-positive': profitCalculator.percentageRise > 0, 'text-profit-negative': profitCalculator.percentageRise < 0}" x-text="profitCalculator.percentageRise.toFixed(2).replace('NaN','0') + '%'"></p>
                                 </div>
                                 <div class="border-b border-gray-700 pb-4">
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.xRise">X Rise</h4>
-                                    <p class="text-2xl font-light" x-text="profitCalculator.xRise.toFixed(2).replace('NaN','0') + 'x'"></p>
+                                    <p class="text-2xl font-light" :class="{'text-profit-positive': profitCalculator.xRise > 1, 'text-profit-negative': profitCalculator.xRise < 1}" x-text="profitCalculator.xRise.toFixed(2).replace('NaN','0') + 'x'"></p>
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.roi">ROI</h4>
-                                    <p class="text-2xl font-light">
+                                    <p class="text-2xl font-light" :class="{'text-profit-positive': profitCalculator.roi < profitCalculator.days, 'text-profit-negative': profitCalculator.roi > profitCalculator.days || profitCalculator.roi < 0}">
                                         <span x-text="profitCalculator.roi.toFixed(0).replace('Infinity','∞')"></span>
                                         <span class="text-sm text-gray-400" data-translate="profitCalculator.roiSuffix">Days</span>
                                     </p>
