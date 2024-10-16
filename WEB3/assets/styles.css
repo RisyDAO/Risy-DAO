@@ -295,8 +295,7 @@ footer a:hover {
 #scanner-embed-wrap {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 en boy oranı için */
-    height: 0;
+    height: 600px;
     overflow: hidden;
 }
 
