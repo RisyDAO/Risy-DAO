@@ -187,6 +187,8 @@ function risyData() {
             if (this.onChainData.launchDate) {
                 document.querySelector('[data-translate="onChainData.launchDate"]').nextElementSibling.textContent = this.getLocalizedLaunchDate();
             }
+
+            this.createPieChart();
         },
 
         getTranslation(key) {
@@ -405,11 +407,11 @@ function risyData() {
             // Set content data
             this.updateContent();
 
-            // Initialize profit calculator
-            await this.profitCalculator.init();
-
             // Initialize animations and UI components
             this.initAnimations();
+
+            // Initialize profit calculator
+            await this.profitCalculator.init();
 
             // Fetch on-chain data
             await this.fetchOnChainData();
@@ -611,6 +613,77 @@ function risyData() {
                 second: '2-digit',
                 timeZoneName: 'short'
             });
+        },
+
+        createPieChart() {
+            const chartData = this.getTranslation('tokenomics.chartData');
+            if (!Array.isArray(chartData)) {
+                console.error('chartData is not an array:', chartData);
+                return;
+            }
+            
+            const chartContainer = document.getElementById('tokenomics-chart');
+            const legendContainer = document.getElementById('tokenomics-legend');
+
+            // Clear previous chart and legend
+            chartContainer.innerHTML = '';
+            legendContainer.innerHTML = '';
+
+            // Create conic-gradient for pie chart
+            let conicGradient = '';
+            let startAngle = 0;
+
+            chartData.forEach((item, index) => {
+                const endAngle = startAngle + (item.value / 100) * 360;
+                conicGradient += `${item.color} ${startAngle}deg ${endAngle}deg${index < chartData.length - 1 ? ',' : ''}`;
+                startAngle = endAngle;
+            });
+
+            chartContainer.style.background = `conic-gradient(${conicGradient})`;
+
+            // Create legend
+            chartData.forEach(item => {
+                const legendItem = document.createElement('div');
+                legendItem.classList.add('legend-item');
+                legendItem.innerHTML = `
+                    <div class="legend-color" style="background-color: ${item.color};"></div>
+                    <div>${item.label}: ${item.value}%</div>
+                `;
+                legendContainer.appendChild(legendItem);
+            });
+
+            // Add hover effect
+            chartContainer.addEventListener('mousemove', (e) => {
+                const rect = chartContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const angle = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+                
+                let hoveredSlice = null;
+                let currentAngle = 0;
+                
+                for (const item of chartData) {
+                    currentAngle += item.value * 3.6;
+                    if (angle <= currentAngle) {
+                        hoveredSlice = item;
+                        break;
+                    }
+                }
+                
+                if (hoveredSlice) {
+                    chartContainer.title = `${hoveredSlice.label}: ${hoveredSlice.value}%`;
+                    chartContainer.style.cursor = 'pointer';
+                } else {
+                    chartContainer.title = '';
+                    chartContainer.style.cursor = 'default';
+                }
+            });
+        },
+
+        getCoordinatesForAngle(angle) {
+            const x = 32 + 32 * Math.cos(angle * Math.PI / 180);
+            const y = 32 + 32 * Math.sin(angle * Math.PI / 180);
+            return [x, y];
         }
     };
 }

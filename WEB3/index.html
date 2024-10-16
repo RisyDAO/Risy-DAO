@@ -415,7 +415,16 @@
                         <a href="img/risy_dao_tests.png" target="_blank"><img src="img/risy_dao_tests.png" alt="Risy DAO Tests" class="w-full rounded-lg m-auto"></a>
                     </div>
                 </div>
-                <!-- Tokenomics & Security bölümünün sonuna ekleyin -->
+
+                <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-12 mt-6 text-center" data-translate="tokenomics.distributionTitle">Initial Supply Distribution</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center">
+                        <div id="tokenomics-chart" class="h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative mb-6 md:mb-0 md:mr-12 lg:mr-36"></div>
+                        <div id="tokenomics-legend" class="space-y-2"></div>
+                    </div>
+                    <p class="max-w-3xl m-auto mb-6 mt-12 text-sm text-gray-400" x-html="getTranslation('tokenomics.chartNote')"></p>
+                </div>
+
                 <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-lg">
                     <h3 class="text-2xl font-semibold mb-6 text-center" data-translate="tokenomics.proofs">Proofs & Transparency</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

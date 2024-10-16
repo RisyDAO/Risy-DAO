@@ -174,6 +174,13 @@ var data = {
         "Daily Transfer Limit: 10% of balance",
         "ICO Max Balance: 0.75% (~=7500000000 RISY) during ICO period"
       ],
+      "chartData": [
+        { "label": "Creator 1 (Developer)", "value": 2, "color": "#6366F1" },
+        { "label": "Creator 2 (Investor)", "value": 2, "color": "#2DD4BF" },
+        { "label": "RISY/USDC Liquidity", "value": 48, "color": "#16A34A" },
+        { "label": "RISY/PAXG Liquidity", "value": 48, "color": "#FFA500" }
+      ],
+      "chartNote": "<strong>Note:</strong> No initial supply is allocated for advertising, marketing, airdrops, or team financing. The 0.1% DAO fee is more than sufficient for these purposes, providing a long-term solution rather than a short-term fix.",
       "chartTitle": "Designed for long-term stability and sustainable growth. Risy DAO undergoes professional security audits before mainnet deployment.",
       "proofs": "Proofs & Transparency",
       "liquidityLock": "Liquidity Lock Proof",
@@ -187,7 +194,8 @@ var data = {
       "creator2Balance": "Creator 2 (Investor) Balance",
       "tokenContract": "Token Smart Contract",
       "daoContract": "DAO Smart Contract",
-      "tokenHolders": "Token Holders List"
+      "tokenHolders": "Token Holders List",
+      "distributionTitle": "Initial Supply Distribution"
     },
     "roadmap": {
       "title": "Roadmap",
@@ -480,6 +488,13 @@ var data = {
         "Günlük Transfer Limiti: Bakiyenin %10'u",
         "ICO Maksimum Bakiye: ICO süresince %0.75"
       ],
+      "chartData": [
+        { "label": "Yaratıcı 1 (Geliştirici)", "value": 2, "color": "#6366F1" },
+        { "label": "Yaratıcı 2 (Yatırımcı)", "value": 2, "color": "#2DD4BF" },
+        { "label": "RISY/USDC Likidite", "value": 48, "color": "#16A34A" },
+        { "label": "RISY/PAXG Likidite", "value": 48, "color": "#FFA500" }
+      ],
+      "chartNote": "<strong>Not:</strong> Başlangıç arzından reklam, pazarlama, airdroplar veya ekip finansmanı için pay ayrılmamıştır. %0.1'lik DAO ücreti bu amaçlar için fazlasıyla yeterlidir ve kısa vadeli bir çözümden ziyade uzun vadeli bir çözüm sunmaktadır.",
       "chartTitle": "Uzun vadeli istikrar ve sürdürülebilir büyüme için tasarlandı. Risy DAO, ana ağ dağıtımından önce profesyonel güvenlik denetimlerinden geçer.",
       "proofs": "Kanıtlar & Şeffaflık",
       "liquidityLock": "Likidite Kilidi Kanıtı",
@@ -493,7 +508,8 @@ var data = {
       "creator2Balance": "Yaratıcı 2 (Yatırımcı) Bakiyesi",
       "tokenContract": "Token Akıllı Sözleşmesi",
       "daoContract": "DAO Akıllı Sözleşmesi",
-      "tokenHolders": "Token Sahipleri Listesi"
+      "tokenHolders": "Token Sahipleri Listesi",
+      "distributionTitle": "Başlangıç Arzı Dağılımı"
     },
     "roadmap": {
       "title": "Yol Haritası",
