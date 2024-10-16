@@ -51,6 +51,7 @@ function risyData() {
         language: detectLanguage(),
         translations: data,
         contractAddress: '0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199',
+        daoAddress: '0xD74E510a6472B20910ABCF8a3945E445b16aE11A',
         liquidityAddresses: [
             "0xb908228a001cb177ac785659505ebca1d9947ee8",
             "0x8341b5240e05552d85e78bcd691b2982c3e4deaf",
@@ -87,7 +88,9 @@ function risyData() {
             maxBalancePercent: 'Loading...',
             maxBalanceUSD: 'Loading...',
             daoFee: 'Loading...',
-            version: 'Loading...'
+            version: 'Loading...',
+            daoTreasuryBalance: 'Loading...',
+            daoTreasuryValueUSD: 'Loading...',
         },
 
         profitCalculator: {
@@ -347,6 +350,11 @@ function risyData() {
                 this.onChainData.totalSupplyUSD = (parseFloat(this.onChainData.totalSupply) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
                 this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
                 this.profitCalculator.capital = this.onChainData.maxBalanceUSD;
+
+                // DAO hazine bakiyesini al
+                const daoTreasuryBalance = await connector.getDAOTreasuryBalance(this.daoAddress, this.contractAddress);
+                this.onChainData.daoTreasuryBalance = parseFloat(daoTreasuryBalance).toFixed(2);
+                this.onChainData.daoTreasuryValueUSD = (parseFloat(daoTreasuryBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
             } catch (error) {
                 // Try again after 5 seconds
                 console.error('Error fetching on-chain data:', error);
@@ -379,6 +387,7 @@ function risyData() {
             const commonConfig = this.translations.common.config;
             
             this.contractAddress = commonConfig.contractAddress;
+            this.daoAddress = commonConfig.daoAddress;
             this.liquidityAddresses = commonConfig.liquidityAddresses;
             this.ctaUrl = commonConfig.ctaUrl;
             this.scanUrl = commonConfig.scanUrl;
@@ -429,6 +438,17 @@ function risyData() {
             setInterval(() => {
                 this.$refs.timeSinceLaunch.textContent = this.getTimeSinceLaunch();
             }, 1000);
+
+            // Update DAO treasury balance every 30 seconds
+            setInterval(async () => {
+                try {
+                    const daoTreasuryBalance = await connector.getDAOTreasuryBalance(this.daoAddress, this.contractAddress);
+                    this.onChainData.daoTreasuryBalance = parseFloat(daoTreasuryBalance).toFixed(2);
+                    this.onChainData.daoTreasuryValueUSD = (parseFloat(daoTreasuryBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
+                } catch (error) {
+                    console.error('Error updating DAO treasury balance:', error);
+                }
+            }, 30000);
         },
 
         initAnimations() {

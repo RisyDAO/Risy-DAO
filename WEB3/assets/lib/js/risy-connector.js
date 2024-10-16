@@ -351,6 +351,16 @@
         };
       }, `risydaofinancials:${contract.address}`);
     }
+
+    // RisyConnector sınıfına eklenecek yeni metod
+    async getDAOTreasuryBalance(daoAddress, tokenAddress) {
+      return this.wrapAsync(async () => {
+        const contract = await this.getERC20Contract(tokenAddress);
+        const balance = await contract.balanceOf(daoAddress);
+        const decimals = await contract.decimals();
+        return ethers.utils.formatUnits(balance, decimals);
+      }, `daoTreasuryBalance:${daoAddress}:${tokenAddress}`);
+    }
   }
 
   // Expose the RisyConnector to the global scope

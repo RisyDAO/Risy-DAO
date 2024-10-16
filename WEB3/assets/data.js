@@ -2,6 +2,7 @@ var data = {
   "common": {
     "config": {
       "contractAddress": "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199",
+      "daoAddress": "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199",
       "liquidityAddresses": [
         "0xb908228a001cb177ac785659505ebca1d9947ee8",
         "0x8341b5240e05552d85e78bcd691b2982c3e4deaf",
@@ -21,6 +22,18 @@ var data = {
         "medium": "https://risydao.medium.com"
       },
       "contactEmail": "info@risy.io",
+      "liquidityLockProofs": {
+        "risyUsdc": "https://polygonscan.com/token/0xb908228a001cb177ac785659505ebca1d9947ee8#balances",
+        "risyPaxg": "https://polygonscan.com/token/0x8341b5240e05552d85e78bcd691b2982c3e4deaf#balances"
+      },
+      "ownershipTransferProof": "https://polygonscan.com/tx/0xd04847dda53dea80b428c2613eff3a824295b57bf2aac2e350e0601be596053a#eventlog",
+      "creatorAddress": "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d",
+      "creatorBalanceUrl": "https://polygonscan.com/token/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199?a=0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d",
+      "creator2Address": "0xFbCEa4A93af36338Ce4678da4C39F5748e743ef7",
+      "creator2BalanceUrl": "https://polygonscan.com/token/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199?a=0xFbCEa4A93af36338Ce4678da4C39F5748e743ef7",
+      "tokenContractUrl": "https://polygonscan.com/address/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199#code",
+      "daoContractUrl": "https://polygonscan.com/address/0xD74E510a6472B20910ABCF8a3945E445b16aE11A#code",
+      "tokenHoldersUrl": "https://polygonscan.com/token/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199#balances"
     },
   },
   "en": {
@@ -100,6 +113,9 @@ var data = {
       "ofTotalSupply": "% of total supply",
       "onEachTransfer": "% on each transfer",
       "transferLimitDesc": "of balance per",
+      "daoTreasury": "DAO Treasury",
+      "daoTreasuryValue": "Value:",
+      "daoTreasuryNote": "Unspent DAO revenues are distributed as dividends."
     },
     "about": {
       "title": "About Risy DAO",
@@ -158,7 +174,20 @@ var data = {
         "Daily Transfer Limit: 10% of balance",
         "ICO Max Balance: 0.75% (~=7500000000 RISY) during ICO period"
       ],
-      "chartTitle": "Designed for long-term stability and sustainable growth. Risy DAO undergoes professional security audits before mainnet deployment."
+      "chartTitle": "Designed for long-term stability and sustainable growth. Risy DAO undergoes professional security audits before mainnet deployment.",
+      "proofs": "Proofs & Transparency",
+      "liquidityLock": "Liquidity Lock Proof",
+      "sourceCode": "Source Code",
+      "viewOnGithub": "View on GitHub",
+      "ownershipTransfer": "Ownership Transfer to DAO",
+      "viewTransferProof": "View Ownership Transfer Proof",
+      "risyUsdcLpTokens": "RISY/USDC LP Tokens",
+      "risyPaxgLpTokens": "RISY/PAXG LP Tokens",
+      "creator1Balance": "Creator 1 (Developer) Balance",
+      "creator2Balance": "Creator 2 (Investor) Balance",
+      "tokenContract": "Token Smart Contract",
+      "daoContract": "DAO Smart Contract",
+      "tokenHolders": "Token Holders List"
     },
     "roadmap": {
       "title": "Roadmap",
@@ -385,6 +414,9 @@ var data = {
       "ofTotalSupply": "% toplam arzın",
       "onEachTransfer": "% her transferde",
       "transferLimitDesc": "bakiyenin her",
+      "daoTreasury": "DAO Hazinesi",
+      "daoTreasuryValue": "Değer:",
+      "daoTreasuryNote": "Harcanmamış DAO gelirleri temettü olarak dağıtılır."
     },
     "about": {
       "title": "Risy DAO Hakkında",
@@ -416,7 +448,7 @@ var data = {
       {
         "icon": "fa-coins",
         "title": "İstikrar ve Finansman",
-        "description": "Hem USD hem de altınla korelasyon, çeşitli piyasa koşullarına karşı istikrar sağlar. Transferlerde %0.1 DAO ücreti, sürekli gelişim ve topluluk girişimlerini finanse eder."
+        "description": "Hem USD hem de altınla korelasyon, çeşitli piyasa koşullarına karşı istikrar sunar. Transferlerde %0.1 DAO ücreti, sürekli gelişim ve topluluk girişimlerini finanse eder."
       },
       {
         "icon": "fa-tachometer-alt",
@@ -443,7 +475,20 @@ var data = {
         "Günlük Transfer Limiti: Bakiyenin %10'u",
         "ICO Maksimum Bakiye: ICO süresince %0.75"
       ],
-      "chartTitle": "Uzun vadeli istikrar ve sürdürülebilir büyüme için tasarlandı. Risy DAO, ana ağ dağıtımından önce profesyonel güvenlik denetimlerinden geçer."
+      "chartTitle": "Uzun vadeli istikrar ve sürdürülebilir büyüme için tasarlandı. Risy DAO, ana ağ dağıtımından önce profesyonel güvenlik denetimlerinden geçer.",
+      "proofs": "Kanıtlar & Şeffaflık",
+      "liquidityLock": "Likidite Kilidi Kanıtı",
+      "sourceCode": "Kaynak Kodu",
+      "viewOnGithub": "GitHub'da Görüntüle",
+      "ownershipTransfer": "DAO'ya Sahiplik Transferi",
+      "viewTransferProof": "SahiplikTransfer Kanıtını Görüntüle",
+      "risyUsdcLpTokens": "RISY/USDC LP Token'ları",
+      "risyPaxgLpTokens": "RISY/PAXG LP Token'ları",
+      "creator1Balance": "Yaratıcı 1 (Geliştirici) Bakiyesi",
+      "creator2Balance": "Yaratıcı 2 (Yatırımcı) Bakiyesi",
+      "tokenContract": "Token Akıllı Sözleşmesi",
+      "daoContract": "DAO Akıllı Sözleşmesi",
+      "tokenHolders": "Token Sahipleri Listesi"
     },
     "roadmap": {
       "title": "Yol Haritası",
