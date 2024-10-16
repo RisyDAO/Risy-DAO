@@ -481,7 +481,7 @@ var data = {
       "sourceCode": "Kaynak Kodu",
       "viewOnGithub": "GitHub'da Görüntüle",
       "ownershipTransfer": "DAO'ya Sahiplik Transferi",
-      "viewTransferProof": "SahiplikTransfer Kanıtını Görüntüle",
+      "viewTransferProof": "Sahiplik Transfer Kanıtını Görüntüle",
       "risyUsdcLpTokens": "RISY/USDC LP Token'ları",
       "risyPaxgLpTokens": "RISY/PAXG LP Token'ları",
       "creator1Balance": "Yaratıcı 1 (Geliştirici) Bakiyesi",
