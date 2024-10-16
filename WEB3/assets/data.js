@@ -491,8 +491,8 @@ var data = {
       "chartData": [
         { "label": "Yaratıcı 1 (Geliştirici)", "value": 2, "color": "#6366F1" },
         { "label": "Yaratıcı 2 (Yatırımcı)", "value": 2, "color": "#2DD4BF" },
-        { "label": "RISY/USDC Likidite", "value": 48, "color": "#16A34A" },
-        { "label": "RISY/PAXG Likidite", "value": 48, "color": "#FFA500" }
+        { "label": "RISY/USDC Likiditesi", "value": 48, "color": "#16A34A" },
+        { "label": "RISY/PAXG Likiditesi", "value": 48, "color": "#FFA500" }
       ],
       "chartNote": "<strong>Not:</strong> Başlangıç arzından reklam, pazarlama, airdroplar veya ekip finansmanı için pay ayrılmamıştır. %0.1'lik DAO ücreti bu amaçlar için fazlasıyla yeterlidir ve kısa vadeli bir çözümden ziyade uzun vadeli bir çözüm sunmaktadır.",
       "chartTitle": "Uzun vadeli istikrar ve sürdürülebilir büyüme için tasarlandı. Risy DAO, ana ağ dağıtımından önce profesyonel güvenlik denetimlerinden geçer.",
