@@ -38,11 +38,7 @@ const connector = new RisyConnector(rpcList, {
 
 // Detect user's preferred language
 function detectLanguage() {
-    const savedLang = localStorage.getItem('preferred-language');
-    if (savedLang) return savedLang;
-    
-    const userLang = navigator.language || navigator.userLanguage;
-    return userLang.startsWith('tr') ? 'tr' : 'en';
+    return localStorage.getItem('preferred-language') || (navigator.language || navigator.userLanguage).startsWith('tr') ? 'tr' : 'en';
 }
 
 // Alpine.js data function
@@ -326,8 +322,12 @@ function risyData() {
             try {
                 this.isLoading = true;
                 this.error = null;
-                const risyInfo = await connector.getRisyDAOInfo(this.contractAddress);
-                
+                const [risyInfo, currentPrice, daoTreasuryBalance] = await Promise.all([
+                    connector.getRisyDAOInfo(this.contractAddress),
+                    connector.calculateUniswapV2PriceAsNum("0xb908228A001CB177ac785659505EBCa1d9947EE8", "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"),
+                    connector.getDAOTreasuryBalance(this.daoAddress, this.contractAddress)
+                ]);
+
                 this.onChainData = {
                     ...this.onChainData,
                     address: this.contractAddress,
@@ -340,28 +340,20 @@ function risyData() {
                     maxBalance: risyInfo.maxBalance,
                     maxBalancePercent: (risyInfo.maxBalance / risyInfo.totalSupply * 100).toFixed(2),
                     daoFee: risyInfo.daoFee * 100,
-                    version: risyInfo.version
+                    version: risyInfo.version,
+                    currentPrice: currentPrice.toFixed(12),
+                    daoTreasuryBalance: parseFloat(daoTreasuryBalance).toFixed(2)
                 };
 
-                // Fetch current price
-                const currentPrice = await connector.calculateUniswapV2PriceAsNum(
-                    "0xb908228A001CB177ac785659505EBCa1d9947EE8",
-                    "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
-                );
-                this.onChainData.currentPrice = currentPrice.toFixed(12);
-                this.onChainData.totalSupplyUSD = (parseFloat(this.onChainData.totalSupply) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
-                this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
+                this.onChainData.totalSupplyUSD = (parseFloat(this.onChainData.totalSupply) * currentPrice).toFixed(2);
+                this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * currentPrice).toFixed(2);
+                this.onChainData.daoTreasuryValueUSD = (parseFloat(daoTreasuryBalance) * currentPrice).toFixed(2);
+                
                 this.profitCalculator.capital = this.onChainData.maxBalanceUSD;
-
-                // Get DAO treasury balance
-                const daoTreasuryBalance = await connector.getDAOTreasuryBalance(this.daoAddress, this.contractAddress);
-                this.onChainData.daoTreasuryBalance = parseFloat(daoTreasuryBalance).toFixed(2);
-                this.onChainData.daoTreasuryValueUSD = (parseFloat(daoTreasuryBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
             } catch (error) {
-                // Try again after 5 seconds
                 console.error('Error fetching on-chain data:', error);
                 this.error = this.getTranslation('onChainData.fetchError');
-                setTimeout(()=>{
+                setTimeout(() => {
                     this.error = null;
                     this.isLoading = true;
                     this.fetchOnChainData();
@@ -410,39 +402,31 @@ function risyData() {
             // Initialize animations and UI components
             this.initAnimations();
 
-            // Initialize profit calculator
-            await this.profitCalculator.init();
+            // Performans iyileştirmesi için Promise.all kullanımı
+            await Promise.all([
+                this.profitCalculator.init(),
+                this.fetchOnChainData()
+            ]);
 
-            // Fetch on-chain data
-            await this.fetchOnChainData();
-
-            // Start periodic updates
             this.startPeriodicUpdates();
         },
 
         startPeriodicUpdates() {
-            // Update current price every 30 seconds
-            setInterval(async () => {
+            const updatePrice = async () => {
                 try {
                     const currentPrice = await connector.calculateUniswapV2PriceAsNum(
                         "0xb908228A001CB177ac785659505EBCa1d9947EE8",
                         "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
                     );
                     this.onChainData.currentPrice = currentPrice.toFixed(12);
-                    this.onChainData.totalSupplyUSD = (parseFloat(this.onChainData.totalSupply) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
-                    this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
+                    this.onChainData.totalSupplyUSD = (parseFloat(this.onChainData.totalSupply) * currentPrice).toFixed(2);
+                    this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * currentPrice).toFixed(2);
                 } catch (error) {
                     console.error('Error updating current price:', error);
                 }
-            }, 30000);
+            };
 
-            // Update time since launch every second
-            setInterval(() => {
-                this.$refs.timeSinceLaunch.textContent = this.getTimeSinceLaunch();
-            }, 1000);
-
-            // Update DAO treasury balance every 30 seconds
-            setInterval(async () => {
+            const updateDAOTreasuryBalance = async () => {
                 try {
                     const daoTreasuryBalance = await connector.getDAOTreasuryBalance(this.daoAddress, this.contractAddress);
                     this.onChainData.daoTreasuryBalance = parseFloat(daoTreasuryBalance).toFixed(2);
@@ -450,7 +434,13 @@ function risyData() {
                 } catch (error) {
                     console.error('Error updating DAO treasury balance:', error);
                 }
-            }, 30000);
+            };
+
+            setInterval(updatePrice, 30000);
+            setInterval(updateDAOTreasuryBalance, 30000);
+            setInterval(() => {
+                this.$refs.timeSinceLaunch.textContent = this.getTimeSinceLaunch();
+            }, 1000);
         },
 
         initAnimations() {
@@ -694,72 +684,37 @@ document.addEventListener('alpine:init', () => {
 });
 
 // Log events for ad tracking
-function logEvent(eventName="click", eventVal = 0) {
-    console.log(`Logging event: ${eventName} with value: ${eventVal}`);
+function logEvent(eventName = "click", eventValue = 0) {
+    console.log(`Logging event: ${eventName} with value: ${eventValue}`);
 
-    switch (eventName) {
-        case 'go_swap':
-            // Bitmedia
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689cbc67f3ea2b25c892697',eventId:'go_swap',event:'conversion',eventValue:eventVal});
-            break;
-        case 'go_tally':
-            // Bitmedia
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689cf007f3ea2b25c89318c',eventId:'go_tally',event:'conversion',eventValue:eventVal});
-            break;
-        case 'go_whitepaper':
-            // Bitmedia
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689cf5e0afb82138bf9c3b6',eventId:'go_whitepaper',event:'conversion',eventValue:eventVal});
-            break;
-        case 'go_press_kit':
-            // Bitmedia
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689cfd00afb82138bf9c55b',eventId:'go_press_kit',event:'conversion',eventValue:eventVal});
-            break;
-        case 'go_social':
-            // Bitmedia
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d0080afb82138bf9c619',eventId:'go_social',event:'conversion',eventValue:eventVal});
-            break;
-        case 'go_contract':
-            // Bitmedia
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d0520afb82138bf9c6a9',eventId:'go_contract',event:'conversion',eventValue:eventVal});
-            break;
-        case 'go_dex_screen':
-            // Bitmedia
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d0af0afb82138bf9c78a',eventId:'go_dex_screen',event:'conversion',eventValue:eventVal});
-            break;
-        case 'go_email':
-            // Bitmedia
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d3400afb82138bf9d8d2',eventId:'go_email',event:'conversion',eventValue:eventVal});
-            break;
-        case 'click':
-            // Bitmedia
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d3ec0afb82138bf9ddc2',eventId:'click',event:'conversion',eventValue:eventVal});
-            break;
-        default:
-            window.BMDataLayer=window.BMDataLayer||[];window.BMDataLayer.push({conversionID:'6689d3ec0afb82138bf9ddc2',eventId:'click',event:'conversion',eventValue:eventVal});
-            break;
-    }
+    const eventMap = {
+        go_swap: '6689cbc67f3ea2b25c892697',
+        go_tally: '6689cf007f3ea2b25c89318c',
+        go_whitepaper: '6689cf5e0afb82138bf9c3b6',
+        go_press_kit: '6689cfd00afb82138bf9c55b',
+        go_social: '6689d0080afb82138bf9c619',
+        go_contract: '6689d0520afb82138bf9c6a9',
+        go_dex_screen: '6689d0af0afb82138bf9c78a',
+        go_email: '6689d3400afb82138bf9d8d2',
+        click: '6689d3ec0afb82138bf9ddc2'
+    };
+
+    const conversionID = eventMap[eventName] || eventMap.click;
+    window.BMDataLayer = window.BMDataLayer || [];
+    window.BMDataLayer.push({
+        conversionID,
+        eventId: eventName,
+        event: 'conversion',
+        eventValue
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Log whole click events
     document.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target.tagName === 'A') {
-            const eventName = target.getAttribute('data-event');
-            const eventVal = target.getAttribute('data-event-value');
-            if (eventName) {
-                if (eventVal) {
-                    logEvent(eventName, eventVal);
-                } else {
-                    logEvent(eventName);
-                }
-            } else {
-                if (eventVal) {
-                    logEvent('click', eventVal);
-                } else {
-                    logEvent();
-                }
-            }
+        if (e.target.tagName === 'A') {
+            const eventName = e.target.getAttribute('data-event') || 'click';
+            const eventValue = e.target.getAttribute('data-event-value') || 0;
+            logEvent(eventName, eventValue);
         }
     });
 });
