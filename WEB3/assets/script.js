@@ -355,6 +355,7 @@ function risyData() {
 
                 // DAO hazine bakiyesini al
                 const daoTreasuryBalance = await connector.getDAOTreasuryBalance(this.daoAddress, this.contractAddress);
+                console.log(daoTreasuryBalance);
                 this.onChainData.daoTreasuryBalance = parseFloat(daoTreasuryBalance).toFixed(2);
                 this.onChainData.daoTreasuryValueUSD = (parseFloat(daoTreasuryBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
             } catch (error) {

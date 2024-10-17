@@ -366,9 +366,9 @@
         <section id="about" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="about.title">About Risy DAO</h2>
-                <p class="font-semibold text-center mb-12" data-translate="about.tagline">Made with passion and coffee for blockchain nerds by blockchain nerds.</p>
+                <p class="font-semibold text-center mb-12 animate__animated animate__fadeIn animate__delay-1s" data-translate="about.tagline">Made with passion and coffee for blockchain nerds by blockchain nerds.</p>
                 <div class="items-center">
-                    <div class="animate__animated animate__fadeInLeft">
+                    <div class="animate__animated animate__fadeInLeft animate__delay-2s">
                         <p class="text-lg mb-6" data-translate="about.description1"></p>
                         <p class="text-lg mb-6" data-translate="about.description2"></p>
                         <p class="text-lg mb-6" data-translate="about.description3"></p>
@@ -385,8 +385,8 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="nav.features">Features</h2>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <template x-for="feature in features" :key="feature.title">
-                        <div class="bg-gray-900 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn feature-card">
+                    <template x-for="(feature, index) in features" :key="feature.title">
+                        <div class="bg-gray-900 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn feature-card" :class="{'animate__delay-1s': index % 3 === 1, 'animate__delay-2s': index % 3 === 2}">
                             <i :class="['fas', feature.icon, 'text-4xl', 'text-indigo-500', 'mb-4']"></i>
                             <h3 class="text-xl font-semibold mb-2" x-text="feature.title"></h3>
                             <p x-text="feature.description"></p>
@@ -416,7 +416,7 @@
                     </div>
                 </div>
 
-                <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn animate__delay-1s">
                     <h3 class="text-2xl font-semibold mb-12 mt-6 text-center" data-translate="tokenomics.distributionTitle">Initial Supply Distribution</h3>
                     <div class="flex flex-col md:flex-row items-center justify-center">
                         <div id="tokenomics-chart" class="h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative mb-6 md:mb-0 md:mr-12 lg:mr-36"></div>
@@ -425,9 +425,9 @@
                     <p class="max-w-3xl m-auto mb-6 mt-12 text-sm text-gray-400" x-html="getTranslation('tokenomics.chartNote')"></p>
                 </div>
 
-                <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn animate__delay-1s">
                     <h3 class="text-2xl font-semibold mb-6 text-center" data-translate="tokenomics.proofs">Proofs & Transparency</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="proofs-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
                         <div>
                             <h4 class="text-xl font-semibold mb-4" data-translate="tokenomics.liquidityLock">Liquidity Lock Proof</h4>
                             <ul class="space-y-3">
@@ -464,11 +464,11 @@
                             </ul>
                         </div>
                         <div>
-                            <h4 class="text-xl font-semibold mb-4" data-translate="tokenomics.ownershipTransfer">Ownership & Distribution</h4>
+                            <h4 class="text-xl font-semibold mb-4" data-translate="tokenomics.ownershipDistribution">Ownership & Distribution</h4>
                             <ul class="space-y-3">
                                 <li>
                                     <a :href="translations.common.config.ownershipTransferProof" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fas fa-exchange-alt mr-2"></i><span data-translate="tokenomics.viewTransferProof">View Transfer Proof</span>
+                                        <i class="fas fa-exchange-alt mr-2"></i><span data-translate="tokenomics.viewTransferProof">Token Ownership Transfer Proof</span>
                                     </a>
                                 </li>
                                 <li>
@@ -522,7 +522,7 @@
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="faq.title">Frequently Asked Questions</h2>
                 <div class="space-y-4">
                     <template x-for="(item, index) in getTranslation('faq.items')" :key="index">
-                        <div class="bg-gray-800 rounded-lg overflow-hidden">
+                        <div class="bg-gray-800 rounded-lg overflow-hidden animate__animated animate__fadeIn" :class="{'animate__delay-1s': index % 2 === 1}">
                             <button 
                                 class="w-full py-4 px-6 text-left font-semibold flex justify-between items-center focus:outline-none"
                                 @click="item.isOpen = !item.isOpen"
@@ -641,11 +641,11 @@
     <footer class="bg-gray-800 py-12">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-8">
-                <div>
+                <div class="animate__animated animate__fadeIn">
                     <h3 class="text-xl font-semibold mb-4">Risy DAO</h3>
                     <p class="text-gray-400" data-translate="footer.description">Revolutionizing decentralized finance on the Polygon blockchain.</p>
                 </div>
-                <div>
+                <div class="animate__animated animate__fadeIn animate__delay-1s">
                     <h3 class="text-xl font-semibold mb-4" data-translate="footer.quickLinks">Quick Links</h3>
                     <ul class="space-y-2">
                         <li><a href="#about" class="text-gray-400 hover:text-white transition" data-translate="nav.about">About</a></li>
@@ -655,13 +655,13 @@
                         <li><a href="#faq" class="text-gray-400 hover:text-white transition" data-translate="nav.faq">FAQ</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="animate__animated animate__fadeIn animate__delay-2s">
                     <h3 class="text-xl font-semibold mb-4" data-translate="footer.usefulLinks">Useful Links</h3>
                     <ul class="space-y-2">
                         <li><a :href="pressKitUrl" data-event="go_press_kit" class="text-gray-400 hover:text-white transition" data-translate="footer.pressKit">Press Kit</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="animate__animated animate__fadeIn animate__delay-3s">
                     <h3 class="text-xl font-semibold mb-4" data-translate="footer.connect">Connect</h3>
                     <ul class="space-y-2">
                         <li>
@@ -692,7 +692,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center animate__animated animate__fadeIn animate__delay-4s">
                 <p data-translate="footer.copyright">© 2024 Risy DAO. All rights reserved.</p>
                 <div class="mt-4 flex justify-center space-x-4">
                     <a :href="socialLinks.twitter" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>

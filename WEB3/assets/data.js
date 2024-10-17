@@ -2,7 +2,7 @@ var data = {
   "common": {
     "config": {
       "contractAddress": "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199",
-      "daoAddress": "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199",
+      "daoAddress": "0xD74E510a6472B20910ABCF8a3945E445b16aE11A",
       "liquidityAddresses": [
         "0xb908228a001cb177ac785659505ebca1d9947ee8",
         "0x8341b5240e05552d85e78bcd691b2982c3e4deaf",
@@ -175,19 +175,19 @@ var data = {
         "ICO Max Balance: 0.75% (~=7500000000 RISY) during ICO period"
       ],
       "chartData": [
-        { "label": "Creator 1 (Developer)", "value": 2, "color": "#6366F1" },
-        { "label": "Creator 2 (Investor)", "value": 2, "color": "#2DD4BF" },
         { "label": "RISY/USDC Liquidity", "value": 48, "color": "#16A34A" },
-        { "label": "RISY/PAXG Liquidity", "value": 48, "color": "#FFA500" }
+        { "label": "RISY/PAXG Liquidity", "value": 48, "color": "#FFA500" },
+        { "label": "Creator 1 (Developer)", "value": 2, "color": "#6366F1" },
+        { "label": "Creator 2 (Investor)", "value": 2, "color": "#2DD4BF" }
       ],
       "chartNote": "<strong>Note:</strong> No initial supply is allocated for advertising, marketing, airdrops, or team financing. The 0.1% DAO fee is more than sufficient for these purposes, providing a long-term solution rather than a short-term fix.",
       "chartTitle": "Designed for long-term stability and sustainable growth. Risy DAO undergoes professional security audits before mainnet deployment.",
       "proofs": "Proofs & Transparency",
-      "liquidityLock": "Liquidity Lock Proof",
-      "sourceCode": "Source Code",
+      "liquidityLock": "Liquidity Lock Proofs",
+      "sourceCode": "Source Codes",
       "viewOnGithub": "View on GitHub",
-      "ownershipTransfer": "Ownership Transfer to DAO",
-      "viewTransferProof": "View Ownership Transfer Proof",
+      "ownershipDistribution": "Ownership & Distributions",
+      "viewTransferProof": "Token Ownership Transfer Proof",
       "risyUsdcLpTokens": "RISY/USDC LP Tokens",
       "risyPaxgLpTokens": "RISY/PAXG LP Tokens",
       "creator1Balance": "Creator 1 (Developer) Balance",
@@ -489,19 +489,19 @@ var data = {
         "ICO Maksimum Bakiye: ICO süresince %0.75"
       ],
       "chartData": [
-        { "label": "Yaratıcı 1 (Geliştirici)", "value": 2, "color": "#6366F1" },
-        { "label": "Yaratıcı 2 (Yatırımcı)", "value": 2, "color": "#2DD4BF" },
         { "label": "RISY/USDC Likiditesi", "value": 48, "color": "#16A34A" },
-        { "label": "RISY/PAXG Likiditesi", "value": 48, "color": "#FFA500" }
+        { "label": "RISY/PAXG Likiditesi", "value": 48, "color": "#FFA500" },
+        { "label": "Yaratıcı 1 (Geliştirici)", "value": 2, "color": "#6366F1" },
+        { "label": "Yaratıcı 2 (Yatırımcı)", "value": 2, "color": "#2DD4BF" }
       ],
       "chartNote": "<strong>Not:</strong> Başlangıç arzından reklam, pazarlama, airdroplar veya ekip finansmanı için pay ayrılmamıştır. %0.1'lik DAO ücreti bu amaçlar için fazlasıyla yeterlidir ve kısa vadeli bir çözümden ziyade uzun vadeli bir çözüm sunmaktadır.",
       "chartTitle": "Uzun vadeli istikrar ve sürdürülebilir büyüme için tasarlandı. Risy DAO, ana ağ dağıtımından önce profesyonel güvenlik denetimlerinden geçer.",
       "proofs": "Kanıtlar & Şeffaflık",
-      "liquidityLock": "Likidite Kilidi Kanıtı",
-      "sourceCode": "Kaynak Kodu",
+      "liquidityLock": "Likidite Kilidi Kanıtları",
+      "sourceCode": "Kaynak Kodları",
       "viewOnGithub": "GitHub'da Görüntüle",
-      "ownershipTransfer": "DAO'ya Sahiplik Transferi",
-      "viewTransferProof": "Sahiplik Transfer Kanıtını Görüntüle",
+      "ownershipDistribution": "Sahiplik & Dağılımlar",
+      "viewTransferProof": "Token Sahipliği Transfer Kanıtı",
       "risyUsdcLpTokens": "RISY/USDC LP Token'ları",
       "risyPaxgLpTokens": "RISY/PAXG LP Token'ları",
       "creator1Balance": "Yaratıcı 1 (Geliştirici) Bakiyesi",
