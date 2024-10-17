@@ -353,9 +353,8 @@ function risyData() {
                 this.onChainData.maxBalanceUSD = (parseFloat(this.onChainData.maxBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
                 this.profitCalculator.capital = this.onChainData.maxBalanceUSD;
 
-                // DAO hazine bakiyesini al
+                // Get DAO treasury balance
                 const daoTreasuryBalance = await connector.getDAOTreasuryBalance(this.daoAddress, this.contractAddress);
-                console.log(daoTreasuryBalance);
                 this.onChainData.daoTreasuryBalance = parseFloat(daoTreasuryBalance).toFixed(2);
                 this.onChainData.daoTreasuryValueUSD = (parseFloat(daoTreasuryBalance) * parseFloat(this.onChainData.currentPrice)).toFixed(2);
             } catch (error) {
