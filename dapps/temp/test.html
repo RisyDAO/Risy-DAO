@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Ethereum dApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body x-data="app()">
+    <h1>Simple Ethereum dApp</h1>
+    <button x-show="!isConnected" @click="connectWallet">Connect Wallet</button>
+    <div x-show="isConnected">
+        <p>Connected Account: <span x-text="account"></span></p>
+        <p>Account Balance: <span x-text="balance"></span> ETH</p>
+        <h2>Send Ether</h2>
+        <input type="text" x-model="amount" placeholder="Amount in ETH">
+        <button @click="sendEther">Send</button>
+    </div>
+    <p x-text="message"></p>
+
+    <script>
+        function app() {
+            return {
+                isConnected: false,
+                account: '',
+                balance: '',
+                amount: '',
+                message: '',
+                provider: null,
+                signer: null,
+
+                async connectWallet() {
+                    if (typeof window.ethereum !== 'undefined') {
+                        try {
+                            this.provider = new ethers.providers.Web3Provider(window.ethereum);
+                            await this.provider.send("eth_requestAccounts", []);
+                            this.signer = this.provider.getSigner();
+                            this.account = await this.signer.getAddress();
+                            this.isConnected = true;
+                            this.updateBalance();
+                        } catch (error) {
+                            this.message = "Failed to connect wallet: " + error.message;
+                        }
+                    } else {
+                        this.message = "Please install MetaMask!";
+                    }
+                },
+
+                async updateBalance() {
+                    if (this.isConnected) {
+                        const balance = await this.provider.getBalance(this.account);
+                        this.balance = ethers.utils.formatEther(balance);
+                    }
+                },
+
+                async sendEther() {
+                    if (!this.isConnected) {
+                        this.message = "Please connect your wallet first.";
+                        return;
+                    }
+
+                    const recipientAddress = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"; // Example address
+                    const amountInEther = this.amount;
+
+                    try {
+                        const tx = await this.signer.sendTransaction({
+                            to: recipientAddress,
+                            value: ethers.utils.parseEther(amountInEther)
+                        });
+                        this.message = `Transaction sent! Hash: ${tx.hash}`;
+                        await tx.wait();
+                        this.message = "Transaction confirmed!";
+                        this.updateBalance();
+                    } catch (error) {
+                        this.message = "Failed to send Ether: " + error.message;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
