@@ -164,6 +164,11 @@
                                         <i class="fas fa-exchange-alt mr-2" aria-hidden="true"></i><span data-translate="resources.links.swap">Trade on Swap</span>
                                     </a>
                                 </li>
+                                <li class="w-full">
+                                    <a :href="earnFreeRisyUrl" target="_blank" rel="noopener noreferrer" data-event="go_earn_free_risy" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
+                                        <i class="fas fa-gift mr-2" aria-hidden="true"></i><span data-translate="resources.links.earnFreeRisy">Earn Free RISY</span>
+                                    </a>
+                                </li>
                                 <li class="w-full hidden lg:list-item">
                                     <button @click="addToWallet" class="w-full add-to-wallet-btn bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition relative overflow-hidden">
                                         <span class="relative z-10">
@@ -186,6 +191,11 @@
                                 <li class="w-full">
                                     <a :href="whitepaperUrl" target="_blank" rel="noopener noreferrer" data-event="go_whitepaper" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
                                         <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i><span data-translate="resources.links.whitepaper">Whitepaper</span>
+                                    </a>
+                                </li>
+                                <li class="w-full">
+                                    <a :href="analyticsUrl" target="_blank" rel="noopener noreferrer" data-event="go_analytics" class="block w-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold hover:bg-indigo-700 transition rounded text-center">
+                                        <i class="fas fa-chart-bar mr-2" aria-hidden="true"></i><span data-translate="resources.links.analytics">Analytics</span>
                                     </a>
                                 </li>
                             </ul>
@@ -587,6 +597,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a :href="earnFreeRisyUrl" target="_blank" data-event="go_earn_free_risy" class="text-indigo-400 hover:text-indigo-300 transition">
+                                    <i class="fas fa-gift mr-2"></i><span data-translate="resources.links.earnFreeRisy">Earn Free RISY</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a :href="tallyUrl" target="_blank" data-event="go_tally" class="text-indigo-400 hover:text-indigo-300 transition">
                                     <i class="fas fa-users mr-2"></i><span data-translate="resources.links.goToDao">Go to DAO</span>
                                 </a>
@@ -599,6 +614,11 @@
                             <li>
                                 <a :href="whitepaperUrl" target="_blank" data-event="go_whitepaper" class="text-indigo-400 hover:text-indigo-300 transition">
                                     <i class="fas fa-file-pdf mr-2"></i><span data-translate="resources.links.whitepaper">Whitepaper</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a :href="analyticsUrl" target="_blank" data-event="go_analytics" class="text-indigo-400 hover:text-indigo-300 transition">
+                                    <i class="fas fa-chart-bar mr-2"></i><span data-translate="resources.links.analytics">Analytics</span>
                                 </a>
                             </li>
                             <li>

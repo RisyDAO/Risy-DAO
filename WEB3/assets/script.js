@@ -385,6 +385,8 @@ function risyData() {
             this.liquidityAddresses = commonConfig.liquidityAddresses;
             this.ctaUrl = commonConfig.ctaUrl;
             this.scanUrl = commonConfig.scanUrl;
+            this.analyticsUrl = commonConfig.analyticsUrl;
+            this.earnFreeRisyUrl = commonConfig.earnFreeRisyUrl;
             this.scannerUrl = commonConfig.scannerUrl;
             this.swapUrl = commonConfig.swapUrl;
             this.tallyUrl = commonConfig.tallyUrl;

@@ -13,6 +13,8 @@ var data = {
       "swapUrl": "https://quickswap.exchange/#/swap?currency0=ETH&swapIndex=1&currency1=",
       "tallyUrl": "https://www.tally.xyz/gov/risydao",
       "scanUrl": "https://polygonscan.com/token/",
+      "analyticsUrl": "https://dune.com/risydao/risydaoanalytics",
+      "earnFreeRisyUrl": "https://app.galxe.com/quest/RisyDAO",
       "pressKitUrl": "press-kit.zip",
       "socialLinks": {
         "twitter": "https://twitter.com/RisyDAO",
@@ -315,7 +317,9 @@ var data = {
         "switchToPolygon": "Switch to Polygon",
         "contract": "Smart Contract",
         "whitepaper": "Whitepaper",
-        "sourceCode": "Source Code"
+        "sourceCode": "Source Code",
+        "analytics": "Analytics",
+        "earnFreeRisy": "Earn Free RISY"
       },
       "getStarted": {
         "title": "How to Get Started",
@@ -629,7 +633,9 @@ var data = {
         "switchToPolygon": "Polygon'a Geç",
         "contract": "Akıllı Sözleşme",
         "whitepaper": "Teknik Doküman",
-        "sourceCode": "Kaynak Kodu"
+        "sourceCode": "Kaynak Kodu",
+        "analytics": "Analitik",
+        "earnFreeRisy": "Ücretsiz RISY Kazan"
       },
       "getStarted": {
         "title": "Nasıl Başlanır",
