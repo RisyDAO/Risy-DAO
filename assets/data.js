@@ -642,7 +642,7 @@ var data = {
         "whitepaper": "Teknik Doküman",
         "sourceCode": "Kaynak Kodu",
         "analytics": "Analitik",
-        "earnFreeRisy": "Ücretsiz RISY Kazan"
+        "earnFreeRisy": "Ücretsiz RISY"
       },
       "getStarted": {
         "title": "Nasıl Başlanır",

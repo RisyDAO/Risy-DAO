@@ -410,7 +410,7 @@ function risyData() {
             // Initialize animations and UI components
             this.initAnimations();
 
-            // Performans iyileştirmesi için Promise.all kullanımı
+            // Using Promise.all for performance improvement
             await Promise.all([
                 this.profitCalculator.init(),
                 this.fetchOnChainData()

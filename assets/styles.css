@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-/* Temel stiller */
+/* Basic styles */
 body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Gradyan arka planlar */
+/* Gradient backgrounds */
 .gradient-bg {
     background: linear-gradient(135deg, #6366F1, #3B82F6, #2DD4BF);
 }
@@ -17,7 +17,7 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-/* Animasyonlar */
+/* Animations */
 .animate-float {
     animation: float 6s ease-in-out infinite;
 }
@@ -28,36 +28,21 @@ body {
     100% { transform: translateY(0px); }
 }
 
-/* Başlık stilleri */
+/* Header styles */
 header {
     transition: background-color 0.3s ease;
 }
 
-/* Kahraman bölümü stilleri */
+/* Hero section styles */
 #hero {
     overflow: hidden;
 }
 
 #hero .container {
-    padding-top: 80px; /* Başlık yüksekliğinize göre ayarlayın */
+    padding-top: 80px;
 }
 
-/* Önemli bağlantılar stilleri */
-.important-links {
-    background-color: rgba(17, 24, 39, 0.8); /* bg-gray-800 biraz şeffaflıkla */
-    backdrop-filter: blur(4px);
-}
-
-.important-links a {
-    transition: all 0.3s ease;
-}
-
-.important-links a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Özellik kartı stilleri */
+/* Feature card styles */
 .feature-card {
     transition: all 0.3s ease;
 }
@@ -67,7 +52,7 @@ header {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Tokenomics stilleri */
+/* Tokenomics styles */
 #tokenomics ul {
     list-style-type: none;
     padding-left: 0;
@@ -96,7 +81,7 @@ header {
     }
 }
 
-/* SSS stilleri */
+/* FAQ styles */
 .faq-item {
     border-bottom: 1px solid #4B5563;
 }
@@ -123,12 +108,12 @@ header {
     display: block;
 }
 
-/* Altbilgi stilleri */
+/* Footer styles */
 footer a:hover {
     text-decoration: underline;
 }
 
-/* Dil açılır menüsü */
+/* Language dropdown */
 .language-dropdown {
     position: relative;
 }
@@ -158,7 +143,7 @@ footer a:hover {
     background-color: #f1f1f1;
 }
 
-/* Özel kaydırma çubuğu */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -176,9 +161,9 @@ footer a:hover {
     background: #6B7280;
 }
 
-/* Duyarlı stiller */
+/* Responsive styles */
 @media (max-width: 768px) {
-    .important-links a {
+    .embeds a {
         width: 100%;
         text-align: center;
     }
@@ -194,7 +179,7 @@ footer a:hover {
     }
 }
 
-/* Erişilebilirlik */
+/* Accessibility */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -207,7 +192,7 @@ footer a:hover {
     border-width: 0;
 }
 
-/* Yazdırma stilleri */
+/* Print styles */
 @media print {
     .no-print {
         display: none;
@@ -221,8 +206,6 @@ footer a:hover {
         content: " (" attr(href) ")";
     }
 }
-
-/* Bunu styles.css dosyanıza ekleyin */
 
 .add-to-wallet-btn {
     position: relative;
@@ -256,7 +239,7 @@ footer a:hover {
     }
 }
 
-/* Kar Hesaplayıcı Stilleri */
+/* Profit Calculator Styles */
 #profit-calculator input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
@@ -291,7 +274,7 @@ footer a:hover {
     color: #f87171;
 }
 
-/* Scanner embed stilleri */
+/* Scanner embed styles */
 #scanner-embed-wrap {
     position: relative;
     width: 100%;
