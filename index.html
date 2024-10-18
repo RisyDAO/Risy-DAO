@@ -666,10 +666,12 @@
                 <h2 class="text-2xl font-bold mb-4 text-center animate__animated animate__fadeIn" data-translate="alternativeMirrors.title">Alternative Mirrors</h2>
                 <div id="alternative-mirrors" class="flex justify-center">
                     <template x-for="(mirror, index) in alternativeMirrors" :key="mirror.url">
-                        <a :href="mirror.url" 
-                           class="text-indigo-400 hover:text-indigo-300 transition mr-4 animate__animated animate__fadeIn" 
-                           :class="{'animate__delay-1s': index % 3 === 1, 'animate__delay-2s': index % 3 === 2}"
-                           x-text="mirror.name"></a>
+                        <span class="animate__animated animate__fadeIn" :class="{'animate__delay-1s': index % 3 === 1, 'animate__delay-2s': index % 3 === 2}">
+                            <a :href="mirror.url" 
+                               class="text-indigo-400 hover:text-indigo-300 transition"
+                               x-text="mirror.name"></a>
+                            <span x-show="index < alternativeMirrors.length - 1" class="text-gray-400 mx-2">|</span>
+                        </span>
                     </template>
                 </div>
             </div>
