@@ -175,8 +175,8 @@ var data = {
         "ICO Max Balance: 0.75% (~=7500000000 RISY) during ICO period"
       ],
       "chartData": [
-        { "label": "RISY/USDC Liquidity", "value": 48, "color": "#16A34A" },
-        { "label": "RISY/PAXG Liquidity", "value": 48, "color": "#FFA500" },
+        { "label": "RISY/USDC Liquidity", "value": 48, "color": "#85BB65" },
+        { "label": "RISY/PAXG Liquidity", "value": 48, "color": "#D4AF37" },
         { "label": "Creator 1 (Developer)", "value": 2, "color": "#6366F1" },
         { "label": "Creator 2 (Investor)", "value": 2, "color": "#2DD4BF" }
       ],
@@ -489,8 +489,8 @@ var data = {
         "ICO Maksimum Bakiye: ICO süresince %0.75"
       ],
       "chartData": [
-        { "label": "RISY/USDC Likiditesi", "value": 48, "color": "#16A34A" },
-        { "label": "RISY/PAXG Likiditesi", "value": 48, "color": "#FFA500" },
+        { "label": "RISY/USDC Likiditesi", "value": 48, "color": "#85BB65" },
+        { "label": "RISY/PAXG Likiditesi", "value": 48, "color": "#D4AF37" },
         { "label": "Yaratıcı 1 (Geliştirici)", "value": 2, "color": "#6366F1" },
         { "label": "Yaratıcı 2 (Yatırımcı)", "value": 2, "color": "#2DD4BF" }
       ],
