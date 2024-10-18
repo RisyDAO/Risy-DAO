@@ -115,7 +115,7 @@ var data = {
       "transferLimitDesc": "of balance per",
       "daoTreasury": "DAO Treasury",
       "daoTreasuryValue": "Value:",
-      "daoTreasuryNote": "Unspent DAO revenues are distributed as dividends."
+      "daoTreasuryNote": "Unspent DAO revenues are distributed as dividends to hodlers."
     },
     "about": {
       "title": "About Risy DAO",
@@ -429,7 +429,7 @@ var data = {
       "transferLimitDesc": "bakiyenin her",
       "daoTreasury": "DAO Hazinesi",
       "daoTreasuryValue": "Değer:",
-      "daoTreasuryNote": "Harcanmamış DAO gelirleri temettü olarak dağıtılır."
+      "daoTreasuryNote": "Harcanmamış DAO gelirleri token sahiplerine temettü olarak dağıtılır."
     },
     "about": {
       "title": "Risy DAO Hakkında",
