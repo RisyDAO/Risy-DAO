@@ -8,7 +8,7 @@
             "type": "msedge",
             "request": "launch",
             "name": "Open index.html",
-            "file": "/home/cahit/Masaüstü/PROJELER/BLOCKCHAIN/Risy-DAO/WEB3/index.html"
+            "file": "/home/cahit/Masaüstü/PROJELER/BLOCKCHAIN/Risy-DAO/index.html"
         }
     ]
 }

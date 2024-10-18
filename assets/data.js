@@ -35,7 +35,11 @@ var data = {
       "creator2BalanceUrl": "https://polygonscan.com/token/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199?a=0xFbCEa4A93af36338Ce4678da4C39F5748e743ef7",
       "tokenContractUrl": "https://polygonscan.com/address/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199#code",
       "daoContractUrl": "https://polygonscan.com/address/0xD74E510a6472B20910ABCF8a3945E445b16aE11A#code",
-      "tokenHoldersUrl": "https://polygonscan.com/token/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199#balances"
+      "tokenHoldersUrl": "https://polygonscan.com/token/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199#balances",
+      "mirrors": [
+        { name: 'Centralized Mirror', url: 'https://risy.io' },
+        { name: 'GitHub Mirror', url: 'https://risydao.github.io/Risy-DAO/' }
+      ]
     },
   },
   "en": {
@@ -352,6 +356,9 @@ var data = {
       "pressKit": "Press Kit",
       "connect": "Connect",
       "copyright": "© 2024 Risy DAO. All rights reserved."
+    },
+    "alternativeMirrors": {
+        "title": "Alternative Mirrors"
     }
   },
   "tr": {
@@ -668,6 +675,9 @@ var data = {
       "pressKit": "Basın Kiti",
       "connect": "Bağlantılar",
       "copyright": "© 2024 Risy DAO. Tüm hakları saklıdır."
+    },
+    "alternativeMirrors": {
+        "title": "Alternatif Yansılar"
     }
   }
 };

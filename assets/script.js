@@ -66,6 +66,9 @@ function risyData() {
         faqItems: [],
         isLoading: true,
         error: null,
+        mirrors: data.common.config.mirrors,
+        currentMirror: null,
+        alternativeMirrors: [],
 
         onChainData: {
             address: 'Loading...',
@@ -401,6 +404,9 @@ function risyData() {
             // Set content data
             this.updateContent();
 
+            // Update mirrors
+            this.updateMirrors();
+
             // Initialize animations and UI components
             this.initAnimations();
 
@@ -676,7 +682,12 @@ function risyData() {
             const x = 32 + 32 * Math.cos(angle * Math.PI / 180);
             const y = 32 + 32 * Math.sin(angle * Math.PI / 180);
             return [x, y];
-        }
+        },
+
+        updateMirrors() {
+            this.currentMirror = this.mirrors.find(mirror => window.location.href.startsWith(mirror.url)) || this.mirrors[0];
+            this.alternativeMirrors = this.mirrors.filter(mirror => mirror !== this.currentMirror);
+        },
     };
 }
 
