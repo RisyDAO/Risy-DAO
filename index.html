@@ -83,7 +83,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <header class="fixed w-full z-10 bg-gray-900 bg-opacity-90 backdrop-blur-md">
-        <nav class="container mx-auto px-6 py-3" x-data="{ open: false, languageOpen: false }">
+        <nav class="container mx-auto px-6 py-3" x-data="{ open: false, languageOpen: false }" @click.away="open = false">
             <div class="flex justify-between items-center">
                 <a href="/" class="text-2xl font-bold text-gradient animate__animated animate__fadeIn whitespace-nowrap"><img src="img/logo.png" alt="Risy DAO Logo" class="inline-block w-10 h-10 mx-4 shadow-lg">Risy DAO</a>
                 <div class="hidden md:flex space-x-4 items-center">
@@ -102,22 +102,38 @@
                             <a href="#" @click.prevent="switchLanguage('tr'); languageOpen = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white" data-translate="languages.tr">Turkish</a>
                         </div>
                     </div>
+
+                    <div class="flex space-x-2 mr-4 inline-block md:hidden lg:inline-block">
+                        <a :href="socialLinks.twitter" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a :href="socialLinks.telegram" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
+                        <a :href="socialLinks.discord" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord"></i></a>
+                        <a :href="socialLinks.github" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
+                        <a :href="socialLinks.medium" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-medium"></i></a>
+                    </div>
                 </div>
                 <button @click="open = !open" class="md:hidden">
                     <i class="fas" :class="{'fa-times': open, 'fa-bars': !open}"></i>
                 </button>
             </div>
             <div x-show="open" class="md:hidden mt-3 space-y-2">
-                <a @click="open = !open" href="#about" class="block hover:text-indigo-400 transition" data-translate="nav.about">About</a>
-                <a @click="open = !open" href="#features" class="block hover:text-indigo-400 transition" data-translate="nav.features">Features</a>
-                <a @click="open = !open" href="#tokenomics" class="block hover:text-indigo-400 transition" data-translate="nav.tokenomics">Tokenomics</a>
-                <a @click="open = !open" href="#roadmap" class="block hover:text-indigo-400 transition" data-translate="nav.roadmap">Roadmap</a>
-                <a @click="open = !open" href="#faq" class="block hover:text-indigo-400 transition" data-translate="nav.faq">FAQ</a>
-                <a @click="open = !open" href="#resources" class="block hover:text-indigo-400 transition" data-translate="nav.resources">Resources</a>
+                <div class="grid grid-cols-5 mt-4">
+                    <a :href="socialLinks.twitter" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-twitter"></i></a>
+                    <a :href="socialLinks.telegram" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-telegram"></i></a>
+                    <a :href="socialLinks.discord" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-discord"></i></a>
+                    <a :href="socialLinks.github" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-github"></i></a>
+                    <a :href="socialLinks.medium" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-medium"></i></a>
+                </div>
+                <hr>
+                <a @click="open = false" href="#about" class="block hover:text-indigo-400 transition" data-translate="nav.about">About</a>
+                <a @click="open = false" href="#features" class="block hover:text-indigo-400 transition" data-translate="nav.features">Features</a>
+                <a @click="open = false" href="#tokenomics" class="block hover:text-indigo-400 transition" data-translate="nav.tokenomics">Tokenomics</a>
+                <a @click="open = false" href="#roadmap" class="block hover:text-indigo-400 transition" data-translate="nav.roadmap">Roadmap</a>
+                <a @click="open = false" href="#faq" class="block hover:text-indigo-400 transition" data-translate="nav.faq">FAQ</a>
+                <a @click="open = false" href="#resources" class="block hover:text-indigo-400 transition" data-translate="nav.resources">Resources</a>
                 <hr>
                 <div class="flex space-x-2 mt-2">
-                    <button @click="switchLanguage('en'); open = !open;" :class="{'font-bold': language === 'en'}" data-translate="languages.en">English</button>
-                    <button @click="switchLanguage('tr'); open = !open;" :class="{'font-bold': language === 'tr'}" data-translate="languages.tr">Turkish</button>
+                    <button @click="switchLanguage('en'); open = false;" :class="{'font-bold': language === 'en'}" data-translate="languages.en">English</button>
+                    <button @click="switchLanguage('tr'); open = false;" :class="{'font-bold': language === 'tr'}" data-translate="languages.tr">Turkish</button>
                 </div>
             </div>
         </nav>
