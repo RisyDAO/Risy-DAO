@@ -69,15 +69,30 @@ header {
 }
 
 #tokenomics-chart {
-    width: 256px;
-    height: 256px;
+    width: 128px;
+    height: 128px;
     border-radius: 50%;
 }
 
+@media (min-width: 375px) {
+    #tokenomics-chart {
+        width: 256px;
+        height: 256px;
+    }
+}
+
 @media (min-width: 768px) {
+    #tokenomics .flex-col {
+        align-items: flex-start;
+    }
+
     #tokenomics-chart {
         width: 320px;
         height: 320px;
+    }
+
+    #tokenomics-legend {
+        max-width: 320px;
     }
 }
 

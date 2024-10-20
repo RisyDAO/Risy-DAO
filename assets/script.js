@@ -524,11 +524,11 @@ function risyData() {
         animateTokenomics() {
             anime({
                 targets: '#tokenomics li',
-                translateX: [-50, 0],
+                translateX: [-30, 0],
                 opacity: [0, 1],
-                delay: anime.stagger(100, {start: 300}),
+                delay: anime.stagger(50, {start: 200}),
                 easing: 'easeOutQuad',
-                duration: 800
+                duration: 500
             });
         },
 
@@ -648,33 +648,6 @@ function risyData() {
                     <div>${item.label}: ${item.value}%</div>
                 `;
                 legendContainer.appendChild(legendItem);
-            });
-
-            // Add hover effect
-            chartContainer.addEventListener('mousemove', (e) => {
-                const rect = chartContainer.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                const angle = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
-                
-                let hoveredSlice = null;
-                let currentAngle = 0;
-                
-                for (const item of chartData) {
-                    currentAngle += item.value * 3.6;
-                    if (angle <= currentAngle) {
-                        hoveredSlice = item;
-                        break;
-                    }
-                }
-                
-                if (hoveredSlice) {
-                    chartContainer.title = `${hoveredSlice.label}: ${hoveredSlice.value}%`;
-                    chartContainer.style.cursor = 'pointer';
-                } else {
-                    chartContainer.title = '';
-                    chartContainer.style.cursor = 'default';
-                }
             });
         },
 

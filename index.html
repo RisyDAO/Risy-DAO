@@ -446,77 +446,79 @@
                     </div>
                 </div>
 
-                <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn animate__delay-1s">
-                    <h3 class="text-2xl font-semibold mb-12 mt-6 text-center" data-translate="tokenomics.distributionTitle">Initial Supply Distribution</h3>
-                    <div class="flex flex-col md:flex-row items-center justify-center">
-                        <div id="tokenomics-chart" class="h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative mb-6 md:mb-0 md:mr-12 lg:mr-36"></div>
-                        <div id="tokenomics-legend" class="space-y-2"></div>
+                <div class="mt-12 flex flex-col md:flex-row gap-12">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn animate__delay-1s md:w-1/2 lg:w-2/3">
+                        <h3 class="text-2xl font-semibold text-center" data-translate="tokenomics.distributionTitle">Initial Supply Distribution</h3>
+                        <div class="flex flex-col lg:flex-row items-center justify-center">
+                            <div id="tokenomics-chart" class="m-auto w-full md:h-80 relative my-12"></div>
+                            <div id="tokenomics-legend" class="m-auto mb-12 lg:mb-auto lg:ml-0 space-y-2"></div>
+                        </div>
+                        <p class="text-sm text-gray-400" x-html="getTranslation('tokenomics.chartNote')"></p>
                     </div>
-                    <p class="max-w-3xl m-auto mb-6 mt-12 text-sm text-gray-400" x-html="getTranslation('tokenomics.chartNote')"></p>
-                </div>
 
-                <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn animate__delay-1s">
-                    <h3 class="text-2xl font-semibold mb-6 text-center" data-translate="tokenomics.proofs">Proofs & Transparency</h3>
-                    <div class="proofs-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                        <div>
-                            <h4 class="text-xl font-semibold mb-4" data-translate="tokenomics.liquidityLock">Liquidity Lock Proof</h4>
-                            <ul class="space-y-3">
-                                <li>
-                                    <a :href="translations.common.config.liquidityLockProofs.risyUsdc" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fas fa-lock mr-2"></i><span data-translate="tokenomics.risyUsdcLpTokens">RISY/USDC LP Tokens</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a :href="translations.common.config.liquidityLockProofs.risyPaxg" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fas fa-lock mr-2"></i><span data-translate="tokenomics.risyPaxgLpTokens">RISY/PAXG LP Tokens</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-semibold mb-4" data-translate="tokenomics.sourceCode">Source Code</h4>
-                            <ul class="space-y-3">
-                                <li>
-                                    <a :href="socialLinks.github" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fab fa-github mr-2"></i><span data-translate="tokenomics.viewOnGithub">View on GitHub</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a :href="translations.common.config.tokenContractUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fas fa-file-code mr-2"></i><span data-translate="tokenomics.tokenContract">Token Smart Contract</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a :href="translations.common.config.daoContractUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fas fa-file-code mr-2"></i><span data-translate="tokenomics.daoContract">DAO Smart Contract</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-semibold mb-4" data-translate="tokenomics.ownershipDistribution">Ownership & Distribution</h4>
-                            <ul class="space-y-3">
-                                <li>
-                                    <a :href="translations.common.config.ownershipTransferProof" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fas fa-exchange-alt mr-2"></i><span data-translate="tokenomics.viewTransferProof">Token Ownership Transfer Proof</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a :href="translations.common.config.creatorBalanceUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fas fa-user-shield mr-2"></i><span data-translate="tokenomics.creator1Balance">Creator 1 (Developer) Balance</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a :href="translations.common.config.creator2BalanceUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fas fa-user-tie mr-2"></i><span data-translate="tokenomics.creator2Balance">Creator 2 (Investor) Balance</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a :href="translations.common.config.tokenHoldersUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
-                                        <i class="fas fa-users mr-2"></i><span data-translate="tokenomics.tokenHolders">Token Holders List</span>
-                                    </a>
-                                </li>
-                            </ul>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg animate__animated animate__fadeIn animate__delay-1s md:w-1/2 lg:w-1/3">
+                        <h3 class="text-xl sm:text-2xl font-semibold mb-6 text-center" data-translate="tokenomics.proofs">Proofs & Transparency</h3>
+                        <div class="text-sm sm:text-base proofs-grid grid grid-cols-1 gap-6">
+                            <div>
+                                <h4 class="text-base sm:text-xl font-semibold mb-4" data-translate="tokenomics.liquidityLock">Liquidity Lock Proof</h4>
+                                <ul class="space-y-3">
+                                    <li>
+                                        <a :href="translations.common.config.liquidityLockProofs.risyUsdc" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                            <i class="fas fa-lock mr-2"></i><span data-translate="tokenomics.risyUsdcLpTokens">RISY/USDC LP Tokens</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a :href="translations.common.config.liquidityLockProofs.risyPaxg" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                            <i class="fas fa-lock mr-2"></i><span data-translate="tokenomics.risyPaxgLpTokens">RISY/PAXG LP Tokens</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-base sm:text-xl font-semibold mb-4" data-translate="tokenomics.sourceCode">Source Code</h4>
+                                <ul class="space-y-3">
+                                    <li>
+                                        <a :href="socialLinks.github" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                            <i class="fab fa-github mr-2"></i><span data-translate="tokenomics.viewOnGithub">View on GitHub</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a :href="translations.common.config.tokenContractUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                            <i class="fas fa-file-code mr-2"></i><span data-translate="tokenomics.tokenContract">Token Smart Contract</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a :href="translations.common.config.daoContractUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                            <i class="fas fa-file-code mr-2"></i><span data-translate="tokenomics.daoContract">DAO Smart Contract</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-base sm:text-xl font-semibold mb-4" data-translate="tokenomics.ownershipDistribution">Ownership & Distribution</h4>
+                                <ul class="space-y-3">
+                                    <li>
+                                        <a :href="translations.common.config.ownershipTransferProof" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                            <i class="fas fa-exchange-alt mr-2"></i><span data-translate="tokenomics.viewTransferProof">Token Ownership Transfer Proof</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a :href="translations.common.config.creatorBalanceUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                            <i class="fas fa-user-shield mr-2"></i><span data-translate="tokenomics.creator1Balance">Creator 1 (Developer) Balance</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a :href="translations.common.config.creator2BalanceUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                            <i class="fas fa-user-tie mr-2"></i><span data-translate="tokenomics.creator2Balance">Creator 2 (Investor) Balance</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a :href="translations.common.config.tokenHoldersUrl" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                            <i class="fas fa-users mr-2"></i><span data-translate="tokenomics.tokenHolders">Token Holders List</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -552,7 +554,7 @@
                 <h2 class="text-4xl font-bold mb-12 text-center text-gradient animate__animated animate__fadeIn" data-translate="faq.title">Frequently Asked Questions</h2>
                 <div class="space-y-4">
                     <template x-for="(item, index) in getTranslation('faq.items')" :key="index">
-                        <div class="bg-gray-800 rounded-lg overflow-hidden animate__animated animate__fadeIn" :class="{'animate__delay-1s': index % 2 === 1}">
+                        <div class="bg-gray-800 rounded-lg overflow-hidden animate__animated animate__fadeIn">
                             <button 
                                 class="w-full py-4 px-6 text-left font-semibold flex justify-between items-center focus:outline-none"
                                 @click="item.isOpen = !item.isOpen"
