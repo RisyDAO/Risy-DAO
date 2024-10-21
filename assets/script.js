@@ -495,8 +495,6 @@ function risyData() {
                     if (entry.isIntersecting) {
                         if (entry.target.id === 'features') {
                             this.animateFeatures();
-                        } else if (entry.target.id === 'tokenomics') {
-                            this.animateTokenomics();
                         } else if (entry.target.id === 'roadmap') {
                             this.animateRoadmap();
                         }
@@ -506,7 +504,6 @@ function risyData() {
             }, observerOptions);
 
             observer.observe(document.getElementById('features'));
-            observer.observe(document.getElementById('tokenomics'));
             observer.observe(document.getElementById('roadmap'));
         },
 
@@ -518,17 +515,6 @@ function risyData() {
                 delay: anime.stagger(100, {start: 300}),
                 easing: 'easeOutElastic(1, .5)',
                 duration: 1000
-            });
-        },
-
-        animateTokenomics() {
-            anime({
-                targets: '#tokenomics li',
-                translateX: [-30, 0],
-                opacity: [0, 1],
-                delay: anime.stagger(50, {start: 200}),
-                easing: 'easeOutQuad',
-                duration: 500
             });
         },
 
