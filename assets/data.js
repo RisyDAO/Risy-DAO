@@ -358,7 +358,8 @@ var data = {
       "copyright": "© 2024 Risy DAO. All rights reserved."
     },
     "alternativeMirrors": {
-        "title": "Alternative Mirrors"
+        "title": "Alternative Mirrors",
+        "description": "Access Risy DAO through different mirrors for better availability."
     }
   },
   "tr": {
@@ -677,7 +678,8 @@ var data = {
       "copyright": "© 2024 Risy DAO. Tüm hakları saklıdır."
     },
     "alternativeMirrors": {
-        "title": "Alternatif Yansılar"
+        "title": "Alternatif Yansılar",
+        "description": "Daha iyi erişilebilirlik için Risy DAO'ya farklı yansılardan ulaşın."
     }
   }
 };

@@ -232,6 +232,26 @@
             </div>
         </section>
 
+        <!-- Embeds section'ından sonra, on-chain data section'ından önce ekleyelim -->
+        <section id="mirrors" class="py-4 bg-gradient-to-b from-gray-900 to-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col items-center justify-center space-y-2">
+                    <h3 class="text-lg font-medium text-gray-400" data-translate="alternativeMirrors.title">Alternative Mirrors</h3>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <template x-for="mirror in alternativeMirrors" :key="mirror.url">
+                            <a :href="mirror.url"
+                               class="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm text-gray-300 hover:text-white transition-colors duration-200 flex items-center space-x-2 border border-gray-700 hover:border-gray-600"
+                               :title="mirror.name">
+                                <i class="fa fa-globe"></i>
+                                <span x-text="mirror.name"></span>
+                            </a>
+                        </template>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2" data-translate="alternativeMirrors.description">Access Risy DAO through different mirrors for better availability.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="on-chain-data" class="pb-8 pt-4 bg-gradient-to-b from-gray-900 to-gray-800">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="flex flex-col lg:flex-row gap-8">
