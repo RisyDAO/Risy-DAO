@@ -95,7 +95,7 @@ Risy DAO addresses several critical issues in the cryptocurrency space:
 1. Clone the repository:
    ```
    git clone https://github.com/RisyDAO/Risy-DAO.git
-   cd risy-dao
+   cd Risy-DAO
    ```
 
 2. Install dependencies:
