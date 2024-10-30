@@ -41,14 +41,6 @@ function detectLanguage() {
     return localStorage.getItem('preferred-language') || (navigator.language || navigator.userLanguage).startsWith('tr') ? 'tr' : 'en';
 }
 
-// Konfigürasyon değerlerini ekleyelim
-const config = {
-    mirrors: {
-        checkInterval: 5 * 60 * 1000, // 5 dakika
-        timeout: 10000, // 5 saniye
-    }
-};
-
 // Alpine.js data function
 function risyData() {
     return {
@@ -658,7 +650,7 @@ function risyData() {
         async checkMirrorStatus(mirror) {
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), config.mirrors.timeout);
+                const timeoutId = setTimeout(() => controller.abort(), 10000);
 
                 const response = await fetch(mirror.url, {
                     method: 'GET',
@@ -701,15 +693,8 @@ function risyData() {
                 this.alternativeMirrors = this.activeMirrors
                     .filter(mirror => mirror.url !== this.currentMirror.url);
             } catch (error) {
-                console.error('Error updating mirrors:', error);
+                console.warn('Error updating mirrors:', error);
             }
-        },
-
-        startMirrorChecks() {
-            this.updateMirrors();
-            setInterval(() => {
-                this.updateMirrors();
-            }, config.mirrors.checkInterval);
         },
     };
 }
