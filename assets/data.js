@@ -39,7 +39,7 @@ var data = {
       "mirrors": [
         { name: 'Centralized Mirror', url: 'https://risy.io' },
         { name: 'GitHub Mirror', url: 'https://risydao.github.io/Risy-DAO/' },
-        { name: 'IPFS Mirror', url: 'https://ipfs.io/ipfs/bafybeid2s6tesjaetkilhumltut4px6jqsxn4n5s6vmycrlcy5xlqdhjxe' }
+        { name: 'IPFS Mirror', url: 'https://ipfs.io/ipfs/bafybeiecry2eguq6tv3jlor5kzjbeknmebddz6kgfdauu25iq2uhemckji' }
       ]
     },
   },
