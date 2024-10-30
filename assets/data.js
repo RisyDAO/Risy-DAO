@@ -38,7 +38,8 @@ var data = {
       "tokenHoldersUrl": "https://polygonscan.com/token/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199#balances",
       "mirrors": [
         { name: 'Centralized Mirror', url: 'https://risy.io' },
-        { name: 'GitHub Mirror', url: 'https://risydao.github.io/Risy-DAO/' }
+        { name: 'GitHub Mirror', url: 'https://risydao.github.io/Risy-DAO/' },
+        { name: 'IPFS Mirror', url: 'https://ipfs.io/ipfs/bafybeiep7nrp4gfc6vmthw6ugpu4ucl5cmi36crwrsykml4ohsqy56wx7a' }
       ]
     },
   },
