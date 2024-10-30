@@ -69,7 +69,6 @@ function risyData() {
         mirrors: data.common.config.mirrors,
         currentMirror: null,
         alternativeMirrors: [],
-        activeMirrors: [],
 
         onChainData: {
             address: 'Loading...',
@@ -411,9 +410,6 @@ function risyData() {
             // Initialize animations and UI components
             this.initAnimations();
 
-            // Start mirror checks
-            this.startMirrorChecks();
-
             // Using Promise.all for performance improvement
             await Promise.all([
                 this.profitCalculator.init(),
@@ -687,10 +683,8 @@ function risyData() {
                 );
 
                 // Filter active mirrors
-                this.activeMirrors = mirrorStatuses.filter(mirror => mirror.isActive);
-
-                // Update alternative mirrors (excluding current mirror)
-                this.alternativeMirrors = this.activeMirrors
+                this.alternativeMirrors = mirrorStatuses
+                    .filter(mirror => mirror.isActive)
                     .filter(mirror => mirror.url !== this.currentMirror.url);
             } catch (error) {
                 console.warn('Error updating mirrors:', error);
