@@ -41,6 +41,14 @@ function detectLanguage() {
     return localStorage.getItem('preferred-language') || (navigator.language || navigator.userLanguage).startsWith('tr') ? 'tr' : 'en';
 }
 
+// Konfigürasyon değerlerini ekleyelim
+const config = {
+    mirrors: {
+        checkInterval: 5 * 60 * 1000, // 5 dakika
+        timeout: 5000, // 5 saniye
+    }
+};
+
 // Alpine.js data function
 function risyData() {
     return {
@@ -69,6 +77,7 @@ function risyData() {
         mirrors: data.common.config.mirrors,
         currentMirror: null,
         alternativeMirrors: [],
+        activeMirrors: [],
 
         onChainData: {
             address: 'Loading...',
@@ -410,6 +419,9 @@ function risyData() {
             // Initialize animations and UI components
             this.initAnimations();
 
+            // Start mirror checks
+            this.startMirrorChecks();
+
             // Using Promise.all for performance improvement
             await Promise.all([
                 this.profitCalculator.init(),
@@ -643,9 +655,60 @@ function risyData() {
             return [x, y];
         },
 
-        updateMirrors() {
-            this.currentMirror = this.mirrors.find(mirror => window.location.href.startsWith(mirror.url)) || this.mirrors[0];
-            this.alternativeMirrors = this.mirrors.filter(mirror => mirror !== this.currentMirror);
+        async checkMirrorStatus(mirror) {
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), config.mirrors.timeout);
+
+                const response = await fetch(mirror.url, {
+                    method: 'GET',
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                // If response is OK, the mirror is active
+                return response.ok;
+            } catch (error) {
+                if (error.name === 'AbortError') {
+                    console.log(`Mirror ${mirror.url} timed out`);
+                } else {
+                    console.log(`Mirror ${mirror.url} is not accessible:`, error);
+                }
+                return false;
+            }
+        },
+
+        async updateMirrors() {
+            try {
+                // Find current URL
+                const currentUrl = window.location.href;
+                this.currentMirror = this.mirrors.find(mirror => currentUrl.startsWith(mirror.url)) || this.mirrors[0];
+
+                // Check all mirrors (current mirror is always active)
+                const mirrorStatuses = await Promise.all(
+                    this.mirrors.map(async mirror => ({
+                        ...mirror,
+                        isActive: mirror.url === this.currentMirror.url ? true : await this.checkMirrorStatus(mirror)
+                    }))
+                );
+
+                // Filter active mirrors
+                this.activeMirrors = mirrorStatuses.filter(mirror => mirror.isActive);
+
+                // Update alternative mirrors (excluding current mirror)
+                this.alternativeMirrors = this.activeMirrors
+                    .filter(mirror => mirror.url !== this.currentMirror.url);
+            } catch (error) {
+                console.error('Error updating mirrors:', error);
+            }
+        },
+
+        startMirrorChecks() {
+            this.updateMirrors();
+            setInterval(() => {
+                this.updateMirrors();
+            }, config.mirrors.checkInterval);
         },
     };
 }
