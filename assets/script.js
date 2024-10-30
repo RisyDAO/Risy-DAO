@@ -45,7 +45,7 @@ function detectLanguage() {
 const config = {
     mirrors: {
         checkInterval: 5 * 60 * 1000, // 5 minutes
-        timeout: 5000, // 5 seconds
+        timeout: 10000, // 10 seconds
         cacheExpiry: 4 * 60 * 1000, // 4 minutes (should be slightly shorter than checkInterval)
     }
 };
