@@ -41,17 +41,13 @@ function detectLanguage() {
     return localStorage.getItem('preferred-language') || (navigator.language || navigator.userLanguage).startsWith('tr') ? 'tr' : 'en';
 }
 
-// Let's update the configuration values
+// Konfigürasyon değerlerini ekleyelim
 const config = {
     mirrors: {
-        checkInterval: 5 * 60 * 1000, // 5 minutes
-        timeout: 10000, // 10 seconds
-        cacheExpiry: 4 * 60 * 1000, // 4 minutes (should be slightly shorter than checkInterval)
+        checkInterval: 5 * 60 * 1000, // 5 dakika
+        timeout: 10000, // 5 saniye
     }
 };
-
-// Let's add a new Map for caching
-const mirrorStatusCache = new Map();
 
 // Alpine.js data function
 function risyData() {
@@ -661,16 +657,6 @@ function risyData() {
 
         async checkMirrorStatus(mirror) {
             try {
-                // Cache control
-                const cachedStatus = mirrorStatusCache.get(mirror.url);
-                if (cachedStatus) {
-                    const { status, timestamp } = cachedStatus;
-                    // If cache hasn't expired, return cached status
-                    if (Date.now() - timestamp < config.mirrors.cacheExpiry) {
-                        return status;
-                    }
-                }
-
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), config.mirrors.timeout);
 
@@ -681,14 +667,8 @@ function risyData() {
 
                 clearTimeout(timeoutId);
 
-                // Cache the status
-                const status = response.ok;
-                mirrorStatusCache.set(mirror.url, {
-                    status,
-                    timestamp: Date.now()
-                });
-
-                return status;
+                // If response is OK, the mirror is active
+                return response.ok;
             } catch (error) {
                 if (error.name === 'AbortError') {
                     console.log(`Mirror ${mirror.url} timed out`);
@@ -696,22 +676,13 @@ function risyData() {
                     console.log(`Mirror ${mirror.url} is not accessible:`, error);
                 }
 
-                // Cache the status as false
-                mirrorStatusCache.set(mirror.url, {
-                    status: false,
-                    timestamp: Date.now()
-                });
-
                 return false;
             }
         },
 
         async updateMirrors() {
             try {
-                // Clear the cache
-                mirrorStatusCache.clear();
-
-                // Find the current URL
+                // Find current URL
                 const currentUrl = window.location.href;
                 this.currentMirror = this.mirrors.find(mirror => currentUrl.startsWith(mirror.url)) || this.mirrors[0];
 
