@@ -690,6 +690,29 @@ function risyData() {
                 console.warn('Error updating mirrors:', error);
             }
         },
+
+        // Sosyal medya ikonu render helper'ı
+        renderSocialIcon(icon) {
+            if (!icon) return '';
+            
+            // Font Awesome icon kontrolü
+            if (icon.startsWith('fa')) {
+                return `<i class="${icon}"></i>`;
+            }
+            
+            // SVG URL kontrolü
+            if (icon.endsWith('.svg')) {
+                return `<img src="${icon}" class="w-4 h-4 inline-block">`;
+            }
+            
+            // PNG/JPG URL kontrolü
+            if (icon.match(/\.(png|jpg|jpeg|gif)$/i)) {
+                return `<img src="${icon}" class="w-4 h-4 inline-block">`;
+            }
+            
+            // Varsayılan olarak link ikonu
+            return '<i class="fas fa-link"></i>';
+        },
     };
 }
 

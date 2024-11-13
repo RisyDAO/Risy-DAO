@@ -17,11 +17,36 @@ var data = {
       "earnFreeRisyUrl": "https://app.galxe.com/quest/RisyDAO",
       "pressKitUrl": "press-kit.zip",
       "socialLinks": {
-        "twitter": "https://twitter.com/RisyDAO",
-        "telegram": "https://t.me/RisyDAOCommunity",
-        "discord": "https://discord.gg/zuSBq2XBjc",
-        "github": "https://github.com/RisyDAO",
-        "medium": "https://risydao.medium.com"
+        "twitter": {
+          "url": "https://twitter.com/RisyDAO",
+          "icon": "fab fa-twitter",
+          "label": "X (Twitter)"
+        },
+        "telegram": {
+          "url": "https://t.me/RisyDAOCommunity",
+          "icon": "fab fa-telegram",
+          "label": "Telegram"
+        },
+        "discord": {
+          "url": "https://discord.gg/zuSBq2XBjc",
+          "icon": "fab fa-discord",
+          "label": "Discord"
+        },
+        "github": {
+          "url": "https://github.com/RisyDAO",
+          "icon": "fab fa-github",
+          "label": "GitHub"
+        },
+        "medium": {
+          "url": "https://risydao.medium.com",
+          "icon": "fab fa-medium",
+          "label": "Medium"
+        },
+        "dexTools": {
+          "url": "https://www.dextools.io/app/tr/polygon/pair-explorer/0xb908228a001cb177ac785659505ebca1d9947ee8?t=1731509851759",
+          "icon": "img/dex_tools.png",
+          "label": "DEX Tools"
+        }
       },
       "contactEmail": "info@risy.io",
       "liquidityLockProofs": {

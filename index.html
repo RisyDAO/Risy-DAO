@@ -106,11 +106,14 @@
                     </div>
 
                     <div class="flex space-x-1 inline-block md:hidden lg:inline-block">
-                        <a :href="socialLinks.twitter" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
-                        <a :href="socialLinks.telegram" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
-                        <a :href="socialLinks.discord" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord"></i></a>
-                        <a :href="socialLinks.github" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
-                        <a :href="socialLinks.medium" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-medium"></i></a>
+                        <template x-for="(social, platform) in socialLinks" :key="platform">
+                            <a :href="social.url" 
+                               target="_blank" 
+                               class="text-gray-400 hover:text-white transition"
+                               :title="social.label">
+                                <span x-html="renderSocialIcon(social.icon)"></span>
+                            </a>
+                        </template>
                     </div>
                 </div>
                 <button x-on:click="open = !open" class="md:hidden">
@@ -119,11 +122,14 @@
             </div>
             <div x-show="open" class="md:hidden mt-3 space-y-2">
                 <div class="grid grid-cols-5 mt-4">
-                    <a :href="socialLinks.twitter" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-twitter"></i></a>
-                    <a :href="socialLinks.telegram" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-telegram"></i></a>
-                    <a :href="socialLinks.discord" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-discord"></i></a>
-                    <a :href="socialLinks.github" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-github"></i></a>
-                    <a :href="socialLinks.medium" target="_blank" class="text-gray-400 hover:text-white transition flex justify-center"><i class="fab fa-medium"></i></a>
+                    <template x-for="(social, platform) in socialLinks" :key="platform">
+                        <a :href="social.url" 
+                           target="_blank" 
+                           class="text-gray-400 hover:text-white transition flex justify-center"
+                           :title="social.label">
+                            <span x-html="renderSocialIcon(social.icon)"></span>
+                        </a>
+                    </template>
                 </div>
                 <hr>
                 <a x-on:click="open = false" href="#about" class="block hover:text-indigo-400 transition" data-translate="nav.about">About</a>
@@ -733,26 +739,17 @@
                                 <i class="fas fa-envelope mr-2"></i><span x-text="contactEmail"></span>
                             </a>
                         </li>
-                        <li>
-                            <a :href="socialLinks.twitter" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition">
-                                <i class="fab fa-twitter mr-2"></i>X (Twitter)
-                            </a>
-                        </li>
-                        <li>
-                            <a :href="socialLinks.telegram" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition">
-                                <i class="fab fa-telegram mr-2"></i>Telegram
-                            </a>
-                        </li>
-                        <li>
-                            <a :href="socialLinks.discord" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition">
-                                <i class="fab fa-discord mr-2"></i>Discord
-                            </a>
-                        </li>
-                        <li>
-                            <a :href="socialLinks.github" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition">
-                                <i class="fab fa-github mr-2"></i>GitHub
-                            </a>
-                        </li>
+                        <template x-for="(social, platform) in socialLinks" :key="platform">
+                            <li>
+                                <a :href="social.url" 
+                                   target="_blank" 
+                                   data-event="go_social" 
+                                   class="text-gray-400 hover:text-white transition">
+                                    <span x-html="renderSocialIcon(social.icon)" class="mr-2"></span>
+                                    <span x-text="social.label"></span>
+                                </a>
+                            </li>
+                        </template>
                     </ul>
                 </div>
             </div>
@@ -770,11 +767,15 @@
                 </div>
                 <p data-translate="footer.copyright" class="animate__animated animate__fadeIn animate__delay-2s">© 2024 Risy DAO. All rights reserved.</p>
                 <div class="mt-4 flex justify-center space-x-4 animate__animated animate__fadeIn animate__delay-3s">
-                    <a :href="socialLinks.twitter" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
-                    <a :href="socialLinks.telegram" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
-                    <a :href="socialLinks.discord" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord"></i></a>
-                    <a :href="socialLinks.github" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
-                    <a :href="socialLinks.medium" target="_blank" data-event="go_social" class="text-gray-400 hover:text-white transition"><i class="fab fa-medium"></i></a>
+                    <template x-for="(social, platform) in socialLinks" :key="platform">
+                        <a :href="social.url" 
+                           target="_blank" 
+                           data-event="go_social" 
+                           class="text-gray-400 hover:text-white transition"
+                           :title="social.label">
+                            <span x-html="renderSocialIcon(social.icon)"></span>
+                        </a>
+                    </template>
                 </div>
             </div>
         </div>
