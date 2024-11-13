@@ -655,8 +655,9 @@ function risyData() {
 
                 clearTimeout(timeoutId);
 
-                // If response is OK, the mirror is active
-                return response.ok;
+                // If response is OK and contains the text "RISY", the mirror is active
+                const text = await response.text();
+                return response.ok && text.includes('RISY');
             } catch (error) {
                 if (error.name === 'AbortError') {
                     console.log(`Mirror ${mirror.url} timed out`);
