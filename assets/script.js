@@ -646,7 +646,7 @@ function risyData() {
         async checkMirrorStatus(mirror) {
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000);
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
 
                 const response = await fetch(mirror.url, {
                     method: 'GET',
