@@ -66,8 +66,7 @@ var data = {
         { name: 'GitHub Mirror', url: 'https://risydao.github.io/Risy-DAO/' },
         { name: 'IPFS Mirror', url: 'https://ipfs.io/ipfs/bafybeiecry2eguq6tv3jlor5kzjbeknmebddz6kgfdauu25iq2uhemckji' },
         { name: 'DWeb IPFS Mirror', url: 'https://dweb.link/ipfs/bafybeiecry2eguq6tv3jlor5kzjbeknmebddz6kgfdauu25iq2uhemckji' },
-        { name: 'FLK-IPFS Mirror', url: 'https://bafybeiecry2eguq6tv3jlor5kzjbeknmebddz6kgfdauu25iq2uhemckji.ipfs.flk-ipfs.xyz' },
-        { name: 'IPFS-CYOU Mirror', url: 'https://bafybeiecry2eguq6tv3jlor5kzjbeknmebddz6kgfdauu25iq2uhemckji.ipfs.ipfs.cyou' }
+        { name: 'FLK-IPFS Mirror', url: 'https://bafybeiecry2eguq6tv3jlor5kzjbeknmebddz6kgfdauu25iq2uhemckji.ipfs.flk-ipfs.xyz' }
       ]
     },
   },
