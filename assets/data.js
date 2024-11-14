@@ -43,7 +43,7 @@ var data = {
           "label": "Medium"
         },
         "dexTools": {
-          "url": "https://www.dextools.io/app/tr/polygon/pair-explorer/0xb908228a001cb177ac785659505ebca1d9947ee8?t=1731509851759",
+          "url": "https://www.dextools.io/app/tr/polygon/pair-explorer/0xb908228a001cb177ac785659505ebca1d9947ee8",
           "icon": "img/dex_tools.png",
           "label": "DEX Tools"
         }
