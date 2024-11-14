@@ -670,10 +670,20 @@ function risyData() {
 
         async updateMirrors() {
             try {
-                // Find current URL
-                const currentUrl = window.location.href;
-                this.currentMirror = this.mirrors.find(mirror => currentUrl.startsWith(mirror.url)) || this.mirrors[0];
-
+                // Get base URL of current location
+                const currentBaseUrl = new URL(window.location.href).origin;
+                
+                // Find current mirror by comparing base URLs
+                this.currentMirror = this.mirrors.find(mirror => {
+                    try {
+                        const mirrorBaseUrl = new URL(mirror.url).origin;
+                        return currentBaseUrl === mirrorBaseUrl;
+                    } catch (error) {
+                        console.warn(`Invalid mirror URL: ${mirror.url}`, error);
+                        return false;
+                    }
+                }) || this.mirrors[0];
+        
                 // Check all mirrors (current mirror is always active)
                 const mirrorStatuses = await Promise.all(
                     this.mirrors.map(async mirror => ({
@@ -681,7 +691,7 @@ function risyData() {
                         isActive: mirror.url === this.currentMirror.url ? true : await this.checkMirrorStatus(mirror)
                     }))
                 );
-
+        
                 // Filter active mirrors
                 this.alternativeMirrors = mirrorStatuses
                     .filter(mirror => mirror.isActive)
