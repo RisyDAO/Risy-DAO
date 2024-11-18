@@ -670,18 +670,29 @@ function risyData() {
 
         async updateMirrors() {
             try {
-                // Get base URL of current location
-                const currentBaseUrl = new URL(window.location.href).origin;
-                
-                // Find current mirror by comparing base URLs
-                this.currentMirror = this.mirrors.find(mirror => {
+                // Get main domain from URL
+                const getCurrentDomain = (url) => {
                     try {
-                        const mirrorBaseUrl = new URL(mirror.url).origin;
-                        return currentBaseUrl === mirrorBaseUrl;
+                        const hostname = new URL(url).hostname;
+                        // Check if IP address
+                        if (/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(hostname)) {
+                            return hostname;
+                        }
+                        // Split domain by dots and get last two parts
+                        const parts = hostname.split('.');
+                        return parts.slice(-2).join('.');
                     } catch (error) {
-                        console.warn(`Invalid mirror URL: ${mirror.url}`, error);
-                        return false;
+                        console.warn(`Invalid URL: ${url}`, error);
+                        return null;
                     }
+                };
+        
+                const currentDomain = getCurrentDomain(window.location.href);
+                
+                // Find current mirror
+                this.currentMirror = this.mirrors.find(mirror => {
+                    const mirrorDomain = getCurrentDomain(mirror.url);
+                    return currentDomain === mirrorDomain;
                 }) || this.mirrors[0];
         
                 // Check all mirrors (current mirror is always active)
