@@ -233,6 +233,96 @@
             </nav>
         </section>
 
+        <section class="video-section p-6 container mx-auto"
+            x-data="{ isOpen: false }"
+            x-show="translations.common.config.youtubeVideos[language]"
+            x-cloak
+        >
+            <div class="video-container">
+                <!-- Dropdown Trigger -->
+                <button 
+                    x-on:click="isOpen = !isOpen" 
+                    class="w-full flex items-center justify-between p-4 rounded-lg bg-gray-800 bg-opacity-50 backdrop-blur-sm hover:bg-opacity-70 transition-all duration-300 group"
+                >
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center">
+                            <i class="fas fa-play text-white transform group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <div class="text-left">
+                            <h2 class="text-2xl font-bold text-gradient" data-translate="video.title">Watch & Learn</h2>
+                            <p class="text-gray-400 hidden md:block" data-translate="video.subtitle">Discover how Risy DAO is revolutionizing DeFi</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 transform transition-transform duration-300"
+                       :class="{'rotate-180': isOpen}"></i>
+                </button>
+
+                <!-- Dropdown Content -->
+                <div 
+                    x-show="isOpen"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform -translate-y-4"
+                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 transform translate-y-0"
+                    x-transition:leave-end="opacity-0 transform -translate-y-4"
+                    class="mt-6"
+                >
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Video Column -->
+                        <div class="video-frame-container animate__animated animate__fadeIn">
+                            <div class="aspect-w-16 aspect-h-9">
+                                <iframe
+                                    :src="isOpen ? translations.common.config.youtubeVideos[language] : ''"
+                                    class="w-full"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                    loading="lazy"
+                                    title="Risy DAO Video"
+                                    height="550px"
+                                ></iframe>
+                            </div>
+                            <div class="video-decorations">
+                                <div class="decoration-circle top-0 left-0"></div>
+                                <div class="decoration-circle bottom-0 right-0"></div>
+                            </div>
+                        </div>
+
+                        <!-- Content Column -->
+                        <div class="space-y-6 animate__animated animate__fadeIn animate__delay-1s">
+                            <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 backdrop-blur-sm">
+                                <h3 class="text-xl font-semibold mb-4" data-translate="video.highlights">Key Highlights</h3>
+                                <ul class="space-y-3">
+                                    <template x-for="(highlight, index) in getTranslation('video.keyPoints')" :key="index">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-indigo-400 mt-1 mr-3"></i>
+                                            <span x-text="highlight"></span>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 backdrop-blur-sm">
+                                <h3 class="text-xl font-semibold mb-4" data-translate="video.callToAction">Ready to Join?</h3>
+                                <p class="text-gray-300 mb-4" data-translate="video.ctaText">Start your journey with Risy DAO today and be part of the DeFi revolution.</p>
+                                <div class="flex flex-wrap gap-4">
+                                    <a :href="swapUrl + contractAddress" target="_blank" class="btn-primary">
+                                        <i class="fas fa-exchange-alt mr-2"></i>
+                                        <span data-translate="video.getStarted">Get Started</span>
+                                    </a>
+                                    <a :href="socialLinks.telegram.url" target="_blank" class="btn-secondary">
+                                        <i class="fab fa-telegram mr-2"></i>
+                                        <span data-translate="video.joinCommunity">Join Community</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="embeds" class="container mx-auto embeds w-full lg:py-6 bg-gray-900">
             <div id="scanner-embed-wrap">
                 <iframe :src="'https://www.geckoterminal.com/polygon_pos/pools/' + liquidityAddresses[0] + '?embed=1&info=0&swaps=0'" class="scanner-embed" height="600" width="100%" frameBorder="0" scrolling="no" allow="clipboard-write" allowfullscreen title="Risy DAO Token (RISY) Price Chart">

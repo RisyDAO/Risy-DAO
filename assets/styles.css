@@ -322,3 +322,226 @@ footer a:hover {
     width: fit-content;
     margin: 0 auto;
 }
+
+/* Video section styles */
+.video-section {
+    @apply relative overflow-hidden;
+}
+
+.video-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10;
+}
+
+/* Video section başlık ve metin stilleri */
+.video-section h2 {
+    @apply text-4xl md:text-4xl lg:text-4xl font-bold;
+}
+
+.video-section p {
+    @apply text-base md:text-lg;
+}
+
+/* Dropdown trigger button stilleri */
+.video-section button {
+    @apply w-full flex items-center justify-between p-4 rounded-lg transition-all duration-300 group;
+    background: linear-gradient(315deg, rgba(99, 102, 241, 0.15), rgba(45, 212, 191, 0.15));
+}
+
+/* Play icon container */
+.video-section .w-12 {
+    @apply min-w-[3rem] h-12 rounded-full bg-indigo-600 flex items-center justify-center flex-shrink-0;
+}
+
+/* Play icon */
+.video-section .fa-play {
+    @apply text-lg transition-transform;
+}
+
+/* Başlık container */
+.video-section .text-left {
+    @apply ml-4 flex-grow;
+}
+
+/* Video section başlığı */
+.video-section .text-2xl {
+    @apply text-xl md:text-2xl font-bold text-gradient;
+}
+
+/* Video section alt başlığı */
+.video-section .text-gray-400 {
+    @apply text-sm md:text-base;
+}
+
+/* Mobil responsive düzenlemeler */
+@media (max-width: 768px) {
+    .video-section {
+        @apply py-8;
+    }
+    
+    .video-section button {
+        @apply p-3;
+    }
+    
+    .video-section .w-12 {
+        @apply min-w-[2.5rem] w-10 h-10;
+    }
+    
+    .video-section .text-left {
+        @apply ml-3;
+    }
+}
+
+/* Diğer video section stilleri aynı kalacak... */
+
+.video-frame-container,
+.video-section .bg-gray-800 {
+    background: linear-gradient(315deg, rgba(99, 102, 241, 0.1), rgba(45, 212, 191, 0.1));
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    @apply rounded-xl p-4 shadow-2xl transition duration-300;
+}
+
+.video-frame-container:hover,
+.video-section .bg-gray-800:hover {
+    background: linear-gradient(315deg, rgba(99, 102, 241, 0.15), rgba(45, 212, 191, 0.15));
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.video-section button,
+.video-section .bg-gray-800 {
+    background: linear-gradient(315deg, rgba(99, 102, 241, 0.15), rgba(45, 212, 191, 0.15));
+    @apply backdrop-blur-md border border-indigo-500/20;
+}
+
+.video-section button:hover,
+.video-section .bg-gray-800:hover {
+    background: linear-gradient(315deg, rgba(99, 102, 241, 0.2), rgba(45, 212, 191, 0.2));
+}
+
+.video-section ul li {
+    @apply relative pl-8 leading-relaxed mb-3;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+    border-radius: 4px;
+    padding: 0.5rem 1rem 0.5rem 2rem;
+}
+
+.video-section ul li:hover {
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, transparent 100%);
+}
+
+.decoration-circle:nth-child(1) {
+    background: linear-gradient(315deg, rgba(99, 102, 241, 0.2), transparent);
+}
+
+.decoration-circle:nth-child(2) {
+    background: linear-gradient(315deg, rgba(45, 212, 191, 0.2), transparent);
+}
+
+.video-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(99, 102, 241, 0.3), 
+        rgba(45, 212, 191, 0.3), 
+        transparent
+    );
+}
+
+@media (max-width: 768px) {
+    .video-section {
+        padding: 2rem 1rem;
+    }
+    
+    .video-frame-container,
+    .video-section .bg-gray-800 {
+        padding: 1rem;
+    }
+}
+
+/* Responsive improvements */
+@media (min-width: 1024px) {
+    .video-container {
+        @apply px-8;
+    }
+    
+    .video-frame-container {
+        @apply mr-4;
+    }
+}
+
+/* Dark mode optimization */
+.video-frame-container::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl p-px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(45, 212, 191, 0.2));
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Loading state */
+.video-frame-container.loading::after {
+    content: '';
+    @apply absolute inset-0 bg-gray-900/90 rounded-lg flex items-center justify-center text-2xl text-white;
+}
+
+/* Dropdown trigger styles */
+.btn-primary {
+    @apply bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors duration-300 inline-flex items-center;
+}
+
+.btn-secondary {
+    @apply bg-gray-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-600 transition-colors duration-300 inline-flex items-center;
+}
+
+/* Decorative elements */
+.video-decorations {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.decoration-circle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(45, 212, 191, 0.1));
+    filter: blur(40px);
+}
+
+.decoration-circle:nth-child(1) {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(45, 212, 191, 0.05));
+}
+
+.decoration-circle:nth-child(2) {
+    background: linear-gradient(135deg, rgba(45, 212, 191, 0.15), rgba(99, 102, 241, 0.05));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {    
+    .video-frame-container {
+        padding: 0.75rem;
+    }
+    
+    .decoration-circle {
+        width: 100px;
+        height: 100px;
+    }
+}

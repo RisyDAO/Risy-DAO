@@ -67,7 +67,11 @@ var data = {
         { name: 'IPFS Mirror', url: 'https://ipfs.io/ipfs/bafybeiar3ydtfoojqgujxhtr5u7swx3gtokvccgrbhm7bzeoc7qwdo5usa' },
         { name: 'DWeb IPFS Mirror', url: 'https://dweb.link/ipfs/bafybeiar3ydtfoojqgujxhtr5u7swx3gtokvccgrbhm7bzeoc7qwdo5usa' },
         { name: 'FLK-IPFS Mirror', url: 'https://bafybeiar3ydtfoojqgujxhtr5u7swx3gtokvccgrbhm7bzeoc7qwdo5usa.ipfs.flk-ipfs.xyz' }
-      ]
+      ],
+      "youtubeVideos": {
+        //"en": "https://www.youtube.com/embed/Y6P0VWBvyYU",
+        //"tr": "https://www.youtube.com/embed/TbwluuIYeuQ"
+      }
     },
   },
   "en": {
@@ -388,6 +392,22 @@ var data = {
     "alternativeMirrors": {
         "title": "Alternative Mirrors",
         "description": "Access Risy DAO through different mirrors for better availability."
+    },
+    "video": {
+        "title": "Watch & Learn",
+        "subtitle": "Discover how Risy DAO is revolutionizing DeFi",
+        "highlights": "Key Highlights",
+        "keyPoints": [
+            "Understanding the revolutionary 10% daily transfer limit",
+            "How Risy DAO ensures continuous price growth",
+            "Community governance and decision-making process",
+            "Sustainable tokenomics and revenue distribution",
+            "Future development roadmap and vision"
+        ],
+        "callToAction": "Ready to Join?",
+        "ctaText": "Start your journey with Risy DAO today and be part of the DeFi revolution.",
+        "getStarted": "Get Started",
+        "joinCommunity": "Join Community"
     }
   },
   "tr": {
@@ -708,6 +728,22 @@ var data = {
     "alternativeMirrors": {
         "title": "Alternatif Yansılar",
         "description": "Daha iyi erişilebilirlik için Risy DAO'ya farklı yansılardan ulaşın."
+    },
+    "video": {
+        "title": "İzle & Öğren",
+        "subtitle": "Risy DAO'nun DeFi'yi nasıl devrimleştirdiğini keşfedin",
+        "highlights": "Öne Çıkanlar",
+        "keyPoints": [
+            "Devrim niteliğindeki günlük %10 transfer limitini anlama",
+            "Risy DAO'nun sürekli fiyat artışını nasıl sağladığı",
+            "Topluluk yönetişimi ve karar alma süreci",
+            "Sürdürülebilir tokenomik ve gelir dağıtımı",
+            "Gelecek geliştirme yol haritası ve vizyon"
+        ],
+        "callToAction": "Katılmaya Hazır mısınız?",
+        "ctaText": "Risy DAO ile yolculuğunuza bugün başlayın ve DeFi devriminin bir parçası olun.",
+        "getStarted": "Hemen Başla",
+        "joinCommunity": "Topluluğa Katıl"
     }
   }
 };
