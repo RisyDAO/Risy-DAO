@@ -358,11 +358,11 @@ var data = {
         "steps": [
           "Set up a Polygon-compatible wallet (e.g., MetaMask, Trust Wallet)",
           "Add the Polygon network to your wallet",
-          "Acquire MATIC tokens for gas fees",
+          "Acquire POL tokens for gas fees",
           "Use the 'Add to Wallet' button on our website",
           "Visit QuickSwap or another supported DEX",
           "Connect your wallet to the DEX",
-          "Swap MATIC or other supported tokens for RISY",
+          "Swap POL or other supported tokens for RISY",
           "Join our Discord or Telegram community",
           "Participate in DAO governance by voting on proposals"
         ],
@@ -678,11 +678,11 @@ var data = {
         "steps": [
           "Polygon uyumlu bir cüzdan kurun (örn. MetaMask, Trust Wallet)",
           "Cüzdanınıza Polygon ağını ekleyin",
-          "Gas ücretleri için MATIC token'ları edinin",
+          "Gas ücretleri için POL token'ları edinin",
           "Web sitemizde 'Cüzdana Ekle' butonunu kullanın",
           "QuickSwap veya desteklenen başka bir DEX'i ziyaret edin",
           "Cüzdanınızı DEX'e bağlayın",
-          "MATIC veya diğer desteklenen token'ları RISY ile takas edin",
+          "POL veya diğer desteklenen token'ları RISY ile takas edin",
           "Discord veya Telegram topluluğumuza katılın",
           "Önerilere oy vererek DAO yönetişimine katılın"
         ],
