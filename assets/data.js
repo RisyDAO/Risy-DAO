@@ -8,7 +8,6 @@ var data = {
         "0x8341b5240e05552d85e78bcd691b2982c3e4deaf",
         "0xa0d3ee50d6932c554c958d3567d32898575884c5"
       ],
-      "ctaUrl": "https://risydao.medium.com/the-9-steps-not-10-hitchhikers-guide-to-defi-f6d767f264cd",
       "scannerUrl": "https://www.geckoterminal.com/polygon_pos/pools/",
       "swapUrl": "https://quickswap.exchange/#/swap?currency0=ETH&swapIndex=1&currency1=",
       "tallyUrl": "https://www.tally.xyz/gov/risydao",
@@ -73,6 +72,7 @@ var data = {
   "en": {
     "config": {
       "whitepaperUrl": "Risy DAO Whitepaper.pdf",
+      "ctaUrl": "https://risydao.medium.com/the-9-steps-not-10-hitchhikers-guide-to-defi-f6d767f264cd",
       "switchToPolygonError": "Error switching to Polygon Mainnet. Please try again or add the network manually.",
       "addPolygonError": "Error adding Polygon Mainnet to your wallet. Please add it manually.",
       "wrongNetwork": "You are not on the Polygon network. Would you like to switch to Polygon?",
@@ -393,6 +393,7 @@ var data = {
   "tr": {
     "config": {
       "whitepaperUrl": "Risy DAO Teknik Raporu.pdf",
+      "ctaUrl": "https://www.youtube.com/watch?v=lpMi7kfKUVg",
       "switchToPolygonError": "Polygon Mainnet'e geçiş yapılırken hata oluştu. Lütfen tekrar deneyin veya ağı manuel olarak ekleyin.",
       "addPolygonError": "Polygon Mainnet cüzdanınıza eklenirken hata oluştu. Lütfen manuel olarak ekleyin.",
       "wrongNetwork": "Polygon ağında değilsiniz. Polygon'a geçmek ister misiniz?",

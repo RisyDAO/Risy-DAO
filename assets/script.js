@@ -157,6 +157,7 @@ function risyData() {
 
         switchLanguage(lang) {
             this.language = lang;
+            this.ctaUrl = this.translations[lang].config.ctaUrl;
             this.updateContent();
             document.documentElement.lang = lang;
             localStorage.setItem('preferred-language', lang);
@@ -386,7 +387,6 @@ function risyData() {
             this.contractAddress = commonConfig.contractAddress;
             this.daoAddress = commonConfig.daoAddress;
             this.liquidityAddresses = commonConfig.liquidityAddresses;
-            this.ctaUrl = commonConfig.ctaUrl;
             this.scanUrl = commonConfig.scanUrl;
             this.analyticsUrl = commonConfig.analyticsUrl;
             this.earnFreeRisyUrl = commonConfig.earnFreeRisyUrl;
@@ -400,6 +400,7 @@ function risyData() {
             // Set language-specific configuration data
             const config = this.translations[this.language].config;
             this.whitepaperUrl = config.whitepaperUrl;
+            this.ctaUrl = config.ctaUrl;
 
             // Set content data
             this.updateContent();
