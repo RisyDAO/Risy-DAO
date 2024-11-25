@@ -12,9 +12,9 @@ Risy DAO is a revolutionary decentralized autonomous organization (DAO) built on
 
 - [Centralized Mirror](https://risy.io)
 - [GitHub Mirror](https://risydao.github.io/Risy-DAO/)
-- [IPFS Mirror](https://ipfs.io/ipfs/bafybeiar3ydtfoojqgujxhtr5u7swx3gtokvccgrbhm7bzeoc7qwdo5usa)
-- [DWeb IPFS Mirror](https://dweb.link/ipfs/bafybeiar3ydtfoojqgujxhtr5u7swx3gtokvccgrbhm7bzeoc7qwdo5usa)
-- [FLK-IPFS Mirror](https://bafybeiar3ydtfoojqgujxhtr5u7swx3gtokvccgrbhm7bzeoc7qwdo5usa.ipfs.flk-ipfs.xyz)
+- [IPFS Mirror](https://ipfs.io/ipfs/bafybeia5savit5oicbmgek72b5n7jufmgoyzkua4fu2fs6yejf5cl3upwq)
+- [DWeb IPFS Mirror](https://dweb.link/ipfs/bafybeia5savit5oicbmgek72b5n7jufmgoyzkua4fu2fs6yejf5cl3upwq)
+- [FLK-IPFS Mirror](https://bafybeia5savit5oicbmgek72b5n7jufmgoyzkua4fu2fs6yejf5cl3upwq.ipfs.flk-ipfs.xyz)
 
 ## Table of Contents
 
