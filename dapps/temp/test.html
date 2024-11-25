@@ -35,13 +35,13 @@
 </head>
 <body x-data="app()">
     <h1>Simple Ethereum dApp</h1>
-    <button x-show="!isConnected" @click="connectWallet">Connect Wallet</button>
+    <button x-show="!isConnected" x-on:click="connectWallet">Connect Wallet</button>
     <div x-show="isConnected">
         <p>Connected Account: <span x-text="account"></span></p>
         <p>Account Balance: <span x-text="balance"></span> ETH</p>
         <h2>Send Ether</h2>
         <input type="text" x-model="amount" placeholder="Amount in ETH">
-        <button @click="sendEther">Send</button>
+        <button x-on:click="sendEther">Send</button>
     </div>
     <p x-text="message"></p>
 
