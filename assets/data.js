@@ -63,9 +63,9 @@ var data = {
       "mirrors": [
         { name: 'Centralized Mirror', url: 'https://risy.io' },
         { name: 'GitHub Mirror', url: 'https://risydao.github.io/Risy-DAO/' },
-        { name: 'IPFS Mirror', url: 'https://ipfs.io/ipfs/bafybeia5savit5oicbmgek72b5n7jufmgoyzkua4fu2fs6yejf5cl3upwq' },
-        { name: 'DWeb IPFS Mirror', url: 'https://dweb.link/ipfs/bafybeia5savit5oicbmgek72b5n7jufmgoyzkua4fu2fs6yejf5cl3upwq' },
-        { name: 'FLK-IPFS Mirror', url: 'https://bafybeia5savit5oicbmgek72b5n7jufmgoyzkua4fu2fs6yejf5cl3upwq.ipfs.flk-ipfs.xyz' }
+        { name: 'IPFS Mirror', url: 'https://ipfs.io/ipfs/bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge' },
+        { name: 'DWeb IPFS Mirror', url: 'https://dweb.link/ipfs/bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge' },
+        { name: 'FLK-IPFS Mirror', url: 'https://bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge.ipfs.flk-ipfs.xyz' }
       ]
     },
   },
