@@ -463,6 +463,24 @@ function risyData() {
                 return;
             }
 
+            // Determine provider type and provider based on available wallet interfaces
+            let providerConfig = {
+                providerType: 'WALLET_CONNECT',
+                provider: null
+            };
+
+            if (typeof window.ethereum !== 'undefined') {
+                providerConfig = {
+                    providerType: 'EVM',
+                    provider: window.ethereum
+                };
+            } else if (typeof window.solana !== 'undefined') {
+                providerConfig = {
+                    providerType: 'SOLANA',
+                    provider: window.solana
+                };
+            }
+
             const feeConfig = {
                 1: {
                     feePercent: 1.0,
@@ -537,8 +555,8 @@ function risyData() {
                 chainIds: [],
                 theme: "dark",
                 tradeType: "auto",
-                providerType: "EVM",
-                provider: window.ethereum,
+                providerType: providerConfig.providerType,
+                provider: providerConfig.provider,
                 lang: geoLang,
                 baseUrl: 'https://www.okx.com',
                 width: "100%",
@@ -560,7 +578,7 @@ function risyData() {
             try {
                 const { updateParams } = createOkxSwapWidget(container, { 
                     params,
-                    provider: window.ethereum
+                    provider: providerConfig.provider
                 });
 
                 window.updateOKXWidget = updateParams;
