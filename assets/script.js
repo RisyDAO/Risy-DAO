@@ -648,7 +648,7 @@ function risyData() {
                 if (providerConfig.providerType === 'EVM') {
                     window.ethereum.on('networkChanged', async (chainId) => {
                         // If chainId is not different from current chainId, do nothing
-                        if(providerConfig.chainId === chainId) {
+                        if(providerConfig.chainId === chainId || !window.okxWidget) {
                             return;
                         }
 
@@ -662,7 +662,7 @@ function risyData() {
 
                     window.ethereum.on('chainChanged', async (chainId) => {
                         // If chainId is not different from current chainId, do nothing
-                        if(providerConfig.chainId === chainId) {
+                        if(providerConfig.chainId === chainId || !window.okxWidget) {
                             return;
                         }
 
