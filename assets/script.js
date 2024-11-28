@@ -647,6 +647,13 @@ function risyData() {
                 // Listen for chain changes if EVM provider
                 if (providerConfig.providerType === 'EVM') {
                     window.ethereum.on('networkChanged', async (chainId) => {
+                        // If chainId is not different from current chainId, do nothing
+                        if(providerConfig.chainId === chainId) {
+                            return;
+                        }
+
+                        // Update provider config
+                        providerConfig.chainId = chainId;
                         // Destroy widget
                         window.okxWidget.destroy();
                         // Reinitialize widget
@@ -654,6 +661,13 @@ function risyData() {
                     });
 
                     window.ethereum.on('chainChanged', async (chainId) => {
+                        // If chainId is not different from current chainId, do nothing
+                        if(providerConfig.chainId === chainId) {
+                            return;
+                        }
+
+                        // Update provider config
+                        providerConfig.chainId = chainId;
                         // Destroy widget
                         window.okxWidget.destroy();
                         // Reinitialize widget
