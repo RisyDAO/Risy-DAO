@@ -510,7 +510,8 @@ function risyData() {
                 },
                 {
                     event: 'ON_FROM_CHAIN_CHANGE',
-                    handler: async (chainId) => {
+                    handler: async (info) => {
+                        const chainId = JSON.parse(info[0].params[0]).token.chainId;
                         if (providerConfig.providerType === 'EVM') {
                             try {
                                 await window.ethereum.request({
@@ -645,21 +646,18 @@ function risyData() {
         
                 // Listen for chain changes if EVM provider
                 if (providerConfig.providerType === 'EVM') {
+                    window.ethereum.on('networkChanged', async (chainId) => {
+                        // Destroy widget
+                        window.okxWidget.destroy();
+                        // Reinitialize widget
+                        this.initOKXSwapWidget();
+                    });
+
                     window.ethereum.on('chainChanged', async (chainId) => {
-                        const newChainId = parseInt(chainId, 16);
-                        const newTradeType = newChainId === 137 ? 'swap' : 'bridge';
-                        const newBridgeTokenPair = {
-                            ...bridgeTokenPairConfig,
-                            fromChain: newChainId,
-                            fromToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
-                        };
-                        
-                        // Update widget parameters
-                        window.okxWidget.updateParams({
-                            ...params,
-                            tradeType: newTradeType,
-                            bridgeTokenPair: newBridgeTokenPair
-                        });
+                        // Destroy widget
+                        window.okxWidget.destroy();
+                        // Reinitialize widget
+                        this.initOKXSwapWidget();
                     });
                 }
         
