@@ -457,6 +457,7 @@ function risyData() {
 
         initOKXSwapWidget() {
             const container = document.getElementById('okx-swap-widget');
+            
             if (!container) {
                 console.log('OKX Swap Widget container not found.');
                 return;
@@ -553,16 +554,16 @@ function risyData() {
                     fromToken: "11111111111111111111111111111111",
                     toToken: "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199"
                 }
-            }
+            };
 
             try {
                 const { updateParams } = createOkxSwapWidget(container, { 
                     params
-                })
+                });
 
-                window.updateOKXWidget = updateParams
+                window.updateOKXWidget = updateParams;
             } catch (error) {
-                console.log('OKX Widget initialization failed:', error)
+                console.log('OKX Widget initialization failed:', error);
                 container.innerHTML = '<p class="text-red-500">Can not load widget. Please make sure your wallet is connected.</p>';
             }
         },
