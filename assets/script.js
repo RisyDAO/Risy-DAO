@@ -411,6 +411,9 @@ function risyData() {
             // Initialize animations and UI components
             this.initAnimations();
 
+            // Initialize OKX Swap Widget
+            this.initOKXSwapWidget();
+
             // Using Promise.all for performance improvement
             await Promise.all([
                 this.profitCalculator.init(),
@@ -450,6 +453,114 @@ function risyData() {
             setInterval(() => {
                 this.$refs.timeSinceLaunch.textContent = this.getTimeSinceLaunch();
             }, 1000);
+        },
+
+        initOKXSwapWidget() {
+            const container = document.getElementById('okx-swap-widget');
+            if (!container) {
+                console.log('OKX Swap Widget container not found.');
+                return;
+            }
+
+            const feeConfig = {
+                1: {
+                    feePercent: 1.0,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                137: {
+                    feePercent: 0.25,
+                    referrerAddress: "0xD74E510a6472B20910ABCF8a3945E445b16aE11A"
+                },
+                42161: {
+                    feePercent: 0.75,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                10: {
+                    feePercent: 0.7,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                324: {
+                    feePercent: 0.5,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                56: {
+                    feePercent: 0.4,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                43114: {
+                    feePercent: 0.45,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                8453: {
+                    feePercent: 0.6,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                59144: {
+                    feePercent: 0.45,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                5000: {
+                    feePercent: 0.35,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                534352: {
+                    feePercent: 0.4,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                196: {
+                    feePercent: 0.3,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                81457: {
+                    feePercent: 0.4,
+                    referrerAddress: "0x1CdF17441D2FDC1bd317D862b0916D32F1aC780d"
+                },
+                501: {
+                    feePercent: 0.25,
+                    referrerAddress: {
+                        "11111111111111111111111111111111": {
+                            account: "FbwyPrtt3UaCjcxeRJL1beFYRgpXR8F7BZUQEz4F6Pc1",
+                            feePercent: 0.25
+                        }
+                    }
+                }
+            }
+            
+            const params = {
+                chainIds: [],
+                theme: "dark",
+                tradeType: "auto",
+                providerType: "EVM",
+                lang: "unknown",
+                provider: window.ethereum,
+                baseUrl: 'https://www.okx.com',
+                width: "100%",
+                feeConfig: feeConfig,
+                tokenPair: {
+                    fromChain: 137,
+                    toChain: 137,
+                    fromToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+                    toToken: "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199"
+                },
+                bridgeTokenPair: {
+                    fromChain: 1,
+                    toChain: 137,
+                    fromToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+                    toToken: "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199"
+                }
+            }
+
+            try {
+                const { updateParams } = createOkxSwapWidget(container, { 
+                    params, 
+                    provider: window.ethereum 
+                })
+
+                window.updateOKXWidget = updateParams
+            } catch (error) {
+                console.log('OKX Widget initialization failed:', error)
+                container.innerHTML = '<p class="text-red-500">Can not load widget. Please make sure your wallet is connected.</p>';
+            }
         },
 
         initAnimations() {

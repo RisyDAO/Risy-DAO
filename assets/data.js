@@ -388,6 +388,9 @@ var data = {
     "alternativeMirrors": {
         "title": "Alternative Mirrors",
         "description": "Access Risy DAO through different mirrors for better availability."
+    },
+    "swapWidget": {
+      "loading": "Loading swap widget..."
     }
   },
   "tr": {
@@ -709,6 +712,9 @@ var data = {
     "alternativeMirrors": {
         "title": "Alternatif Yansılar",
         "description": "Daha iyi erişilebilirlik için Risy DAO'ya farklı yansılardan ulaşın."
+    },
+    "swapWidget": {
+      "loading": "Swap widgetı yükleniyor..."
     }
   }
 };
