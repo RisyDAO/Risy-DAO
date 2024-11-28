@@ -457,7 +457,7 @@ function risyData() {
 
         initOKXSwapWidget() {
             const container = document.getElementById('okx-swap-widget');
-            
+
             if (!container) {
                 console.log('OKX Swap Widget container not found.');
                 return;
@@ -538,6 +538,7 @@ function risyData() {
                 theme: "dark",
                 tradeType: "auto",
                 providerType: "EVM",
+                provider: window.ethereum,
                 lang: geoLang,
                 baseUrl: 'https://www.okx.com',
                 width: "100%",
@@ -558,7 +559,8 @@ function risyData() {
 
             try {
                 const { updateParams } = createOkxSwapWidget(container, { 
-                    params
+                    params,
+                    provider: window.ethereum
                 });
 
                 window.updateOKXWidget = updateParams;
