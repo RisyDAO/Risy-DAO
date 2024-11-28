@@ -538,7 +538,6 @@ function risyData() {
                 tradeType: "auto",
                 providerType: "EVM",
                 lang: geoLang,
-                provider: window.ethereum,
                 baseUrl: 'https://www.okx.com',
                 width: "100%",
                 feeConfig: feeConfig,
@@ -558,8 +557,7 @@ function risyData() {
 
             try {
                 const { updateParams } = createOkxSwapWidget(container, { 
-                    params, 
-                    provider: window.ethereum 
+                    params
                 })
 
                 window.updateOKXWidget = updateParams
