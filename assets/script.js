@@ -466,7 +466,7 @@ function risyData() {
             // Determine provider type and provider based on available wallet interfaces
             let providerConfig = {
                 providerType: 'WALLET_CONNECT',
-                provider: null
+                provider: ""
             };
 
             if (typeof window.ethereum !== 'undefined') {
