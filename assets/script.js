@@ -526,12 +526,18 @@ function risyData() {
                 }
             }
             
+            var geoLang = (navigator.language || navigator.userLanguage).toLowerCase().replace('-', '_');
+
+            if(!geoLang.includes('_')) {
+                geoLang = geoLang + '_' + geoLang;
+            }
+            
             const params = {
                 chainIds: [],
                 theme: "dark",
                 tradeType: "auto",
                 providerType: "EVM",
-                lang: (navigator.language || navigator.userLanguage).toLowerCase(),
+                lang: geoLang,
                 provider: window.ethereum,
                 baseUrl: 'https://www.okx.com',
                 width: "100%",
@@ -543,9 +549,9 @@ function risyData() {
                     toToken: "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199"
                 },
                 bridgeTokenPair: {
-                    fromChain: 1,
+                    fromChain: 501,
                     toChain: 137,
-                    fromToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+                    fromToken: "11111111111111111111111111111111",
                     toToken: "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199"
                 }
             }
