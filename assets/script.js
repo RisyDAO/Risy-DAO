@@ -531,7 +531,7 @@ function risyData() {
                 theme: "dark",
                 tradeType: "auto",
                 providerType: "EVM",
-                lang: "unknown",
+                lang: (navigator.language || navigator.userLanguage).toLowerCase(),
                 provider: window.ethereum,
                 baseUrl: 'https://www.okx.com',
                 width: "100%",
