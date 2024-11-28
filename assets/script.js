@@ -455,31 +455,90 @@ function risyData() {
             }, 1000);
         },
 
-        initOKXSwapWidget() {
+        async initOKXSwapWidget() {
             const container = document.getElementById('okx-swap-widget');
-
+        
             if (!container) {
                 console.log('OKX Swap Widget container not found.');
                 return;
             }
-
+        
             // Determine provider type and provider based on available wallet interfaces
             let providerConfig = {
                 providerType: 'WALLET_CONNECT',
-                provider: ""
+                provider: null,
+                chainId: null,
+                tradeType: 'auto'
             };
-
+        
+            // Check for EVM provider
             if (typeof window.ethereum !== 'undefined') {
+                const chainId = parseInt(await window.ethereum.request({ method: 'eth_chainId' }), 16);
                 providerConfig = {
                     providerType: 'EVM',
-                    provider: window.ethereum
+                    provider: window.ethereum,
+                    chainId: chainId,
+                    tradeType: chainId === 137 ? 'swap' : 'bridge'
                 };
-            } else if (typeof window.solana !== 'undefined') {
+            } 
+            // Check for Solana provider
+            else if (typeof window.solana !== 'undefined') {
                 providerConfig = {
                     providerType: 'SOLANA',
-                    provider: window.solana
+                    provider: window.solana,
+                    chainId: 501,
+                    tradeType: 'bridge'
                 };
             }
+            // No wallet detected
+            else {
+                console.log('OKX Swap Widget: No wallet detected.');
+                return;
+            }
+        
+            // Event listeners for widget
+            const listeners = [
+                {
+                    event: 'ON_CONNECT_WALLET',
+                    handler: async () => {
+                        if (providerConfig.providerType === 'EVM') {
+                            await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        } else if (providerConfig.providerType === 'SOLANA') {
+                            await window.solana.connect();
+                        }
+                    }
+                },
+                {
+                    event: 'ON_FROM_CHAIN_CHANGE',
+                    handler: async (chainId) => {
+                        if (providerConfig.providerType === 'EVM') {
+                            try {
+                                await window.ethereum.request({
+                                    method: 'wallet_switchEthereumChain',
+                                    params: [{ chainId: `0x${Number(chainId).toString(16)}` }],
+                                });
+                            } catch (error) {
+                                console.error('Error switching chain:', error);
+                            }
+                        }
+                    }
+                }
+            ];
+        
+            // Token configurations
+            const tokenPairConfig = {
+                fromChain: 137,
+                toChain: 137,
+                fromToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+                toToken: "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199"
+            };
+        
+            const bridgeTokenPairConfig = {
+                fromChain: providerConfig.chainId || 501,
+                toChain: 137,
+                fromToken: providerConfig.chainId === 501 ? "11111111111111111111111111111111" : "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+                toToken: "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199"
+            };
 
             const feeConfig = {
                 1: {
@@ -546,7 +605,6 @@ function risyData() {
             }
             
             var geoLang = (navigator.language || navigator.userLanguage).toLowerCase().replace('-', '_');
-
             if(!geoLang.includes('_')) {
                 geoLang = geoLang + '_' + geoLang;
             }
@@ -554,36 +612,66 @@ function risyData() {
             const params = {
                 chainIds: [],
                 theme: "dark",
-                tradeType: "auto",
+                tradeType: providerConfig.tradeType,
                 providerType: providerConfig.providerType,
-                provider: providerConfig.provider,
                 lang: geoLang,
                 baseUrl: 'https://www.okx.com',
                 width: "100%",
                 feeConfig: feeConfig,
-                tokenPair: {
-                    fromChain: 137,
-                    toChain: 137,
-                    fromToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-                    toToken: "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199"
-                },
-                bridgeTokenPair: {
-                    fromChain: 501,
-                    toChain: 137,
-                    fromToken: "11111111111111111111111111111111",
-                    toToken: "0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199"
-                }
+                tokenPair: tokenPairConfig,
+                bridgeTokenPair: bridgeTokenPairConfig
             };
-
+        
             try {
-                const { updateParams } = createOkxSwapWidget(container, { 
+                // Create widget instance with listeners
+                const widgetInstance = createOkxSwapWidget(container, { 
                     params,
-                    provider: providerConfig.provider
+                    provider: providerConfig.provider,
+                    listeners
                 });
-
-                window.updateOKXWidget = updateParams;
+        
+                // Store widget instance and methods globally
+                window.okxWidget = {
+                    instance: widgetInstance,
+                    updateProvider: (newProvider, newProviderType) => {
+                        widgetInstance.updateProvider(newProvider, newProviderType);
+                    },
+                    updateParams: widgetInstance.updateParams,
+                    destroy: () => {
+                        widgetInstance.destroy();
+                        delete window.okxWidget;
+                    }
+                };
+        
+                // Listen for chain changes if EVM provider
+                if (providerConfig.providerType === 'EVM') {
+                    window.ethereum.on('chainChanged', async (chainId) => {
+                        const newChainId = parseInt(chainId, 16);
+                        const newTradeType = newChainId === 137 ? 'swap' : 'bridge';
+                        const newBridgeTokenPair = {
+                            ...bridgeTokenPairConfig,
+                            fromChain: newChainId,
+                            fromToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+                        };
+                        
+                        // Update widget parameters
+                        window.okxWidget.updateParams({
+                            ...params,
+                            tradeType: newTradeType,
+                            bridgeTokenPair: newBridgeTokenPair
+                        });
+                    });
+                }
+        
+                // Add cleanup on page unload
+                window.addEventListener('beforeunload', () => {
+                    if (window.okxWidget) {
+                        window.okxWidget.destroy();
+                    }
+                });
+        
             } catch (error) {
-                console.log('OKX Widget initialization failed:', error);
+                console.error('OKX Widget initialization failed:', error);
                 container.innerHTML = '<p class="text-red-500">Can not load widget. Please make sure your wallet is connected.</p>';
             }
         },
