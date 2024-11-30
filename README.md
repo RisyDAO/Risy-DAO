@@ -1,10 +1,37 @@
 # Risy DAO
 
+<!-- Core Project Info -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Polygon](https://img.shields.io/badge/Polygon-Mainnet-8247e5)](https://polygonscan.com/token/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199)
+[![Contract](https://img.shields.io/badge/Contract-Verified-brightgreen)](https://polygonscan.com/token/0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199)
 [![Audit Status](https://img.shields.io/badge/Audit-In%20Progress-orange)](https://risy.io)
+
+<!-- Project Mirrors -->
+[![Website](https://img.shields.io/badge/Website-risy.io-blue)](https://risy.io)
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://risydao.github.io/Risy-DAO/)
+[![IPFS](https://img.shields.io/badge/IPFS-Gateway-blue?logo=ipfs)](https://ipfs.io/ipfs/bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge)
+[![DWeb](https://img.shields.io/badge/DWeb-IPFS-blue)](https://dweb.link/ipfs/bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge)
+
+<!-- Analytics & Trading -->
+[![Analytics](https://img.shields.io/badge/Analytics-Dune-brightgreen)](https://dune.com/risydao/risydaoanalytics)
+[![QuickSwap](https://img.shields.io/badge/Trade-QuickSwap-06d6a0)](https://quickswap.exchange/#/swap?currency0=ETH&swapIndex=1&currency1=0xca154cF88F6ffBC23E16B5D08a9Bf4851FB97199)
+[![Governance](https://img.shields.io/badge/Governance-Tally-success)](https://www.tally.xyz/gov/risydao)
+
+<!-- Documentation -->
+[![Docs](https://img.shields.io/badge/Documentation-Latest-brightgreen)](https://risy.io/#docs)
+[![Whitepaper EN](https://img.shields.io/badge/Whitepaper-English-blue)](https://risy.io/files/Risy%20DAO%20Whitepaper.pdf)
+[![Whitepaper TR](https://img.shields.io/badge/Whitepaper-Turkish-blue)](https://risy.io/files/Risy%20DAO%20Teknik%20Raporu.pdf)
+
+<!-- Community -->
 [![Twitter Follow](https://img.shields.io/twitter/follow/RisyDAO?style=social)](https://twitter.com/RisyDAO)
 [![Telegram](https://img.shields.io/badge/Telegram-Community-blue?logo=telegram)](https://t.me/RisyDAOCommunity)
+[![Discord](https://img.shields.io/badge/Discord-Join%20Chat-7289da?logo=discord&logoColor=white)](https://discord.gg/zuSBq2XBjc)
+[![Medium](https://img.shields.io/badge/Medium-Follow-black?logo=medium)](https://risydao.medium.com)
+
+<!-- GitHub Stats -->
+[![GitHub issues](https://img.shields.io/github/issues/RisyDAO/Risy-DAO)](https://github.com/RisyDAO/Risy-DAO/issues)
+[![Contributors](https://img.shields.io/github/contributors/RisyDAO/Risy-DAO)](https://github.com/RisyDAO/Risy-DAO/graphs/contributors)
+[![Last Commit](https://img.shields.io/github/last-commit/RisyDAO/Risy-DAO)](https://github.com/RisyDAO/Risy-DAO/commits/main)
 
 Risy DAO is a revolutionary decentralized autonomous organization (DAO) built on the Polygon blockchain. It features a custom ERC20 token with advanced functionality and a governance system for decentralized decision-making, designed to solve common problems in the cryptocurrency space.
 
