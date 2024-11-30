@@ -1,5 +1,10 @@
 # Risy DAO
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/RisyDAO/Risy-DAO/d01d4ab900d51a305e8de96ca937e0a5674f0c29/img/logo.png" alt="Risy DAO Logo" width="200"/>
+</p>
+
+<p align="center">
 <!-- Core Project Info -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Polygon](https://img.shields.io/badge/Polygon-Mainnet-8247e5)](https://polygonscan.com/token/0xca154cf88f6ffbc23e16b5d08a9bf4851fb97199)
@@ -32,6 +37,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/RisyDAO/Risy-DAO)](https://github.com/RisyDAO/Risy-DAO/issues)
 [![Contributors](https://img.shields.io/github/contributors/RisyDAO/Risy-DAO)](https://github.com/RisyDAO/Risy-DAO/graphs/contributors)
 [![Last Commit](https://img.shields.io/github/last-commit/RisyDAO/Risy-DAO)](https://github.com/RisyDAO/Risy-DAO/commits/main)
+</p>
 
 Risy DAO is a revolutionary decentralized autonomous organization (DAO) built on the Polygon blockchain. It features a custom ERC20 token with advanced functionality and a governance system for decentralized decision-making, designed to solve common problems in the cryptocurrency space.
 
