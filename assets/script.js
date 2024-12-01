@@ -519,7 +519,7 @@ function risyData() {
                                     params: [{ chainId: `0x${Number(chainId).toString(16)}` }],
                                 });
                             } catch (error) {
-                                console.error('Error switching chain:', error);
+                                if(error.code != 4902) console.error('Error switching chain:', error);
                             }
                         }
                     }
