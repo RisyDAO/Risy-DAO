@@ -796,6 +796,8 @@ A: Our security measures include:
 
 ## Contributing to Risy DAO
 
+For UI contributions, please refer to our [Theme Guide](./Risy%20DAO%20Theme%20Guide.md) to maintain consistency.
+
 ### 🌟 Ways to Contribute
 
 1. **Code Contributions**
