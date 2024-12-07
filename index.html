@@ -414,7 +414,7 @@
                                     </div>
                                     <div class="border-b border-gray-700 pb-4">
                                         <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.percentageRise">Percentage Rise</h4>
-                                        <p class="text-2xl font-light" :class="{'text-profit-positive': profitCalculator.percentageRise > 0, 'text-profit-negative': profitCalculator.percentageRise < 0}" x-text="profitCalculator.percentageRise.toFixed(2).replace('NaN','0') + '%'"></p>
+                                        <p class="text-2xl font-light" :class="{'text-profit-positive': profitCalculator.percentageRise > 0, 'text-profit-negative': profitCalculator.percentageRise < 0}" x-text="(profitCalculator.percentageRise > 0 ? '+' : '') + profitCalculator.percentageRise.toFixed(2).replace('NaN','0') + '%'"></p>
                                     </div>
                                     <div class="border-b border-gray-700 pb-4">
                                         <h4 class="text-sm font-medium text-gray-400 uppercase tracking-wider" data-translate="profitCalculator.xRise">X Rise</h4>
