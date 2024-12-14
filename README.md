@@ -16,8 +16,10 @@
 <p align="center">
   <a href="https://risy.io"><img src="https://img.shields.io/badge/Website-risy.io-blue" alt="Website"></a>
   <a href="https://risydao.github.io/Risy-DAO/"><img src="https://img.shields.io/badge/GitHub-Pages-blue" alt="GitHub Pages"></a>
-  <a href="https://ipfs.io/ipfs/bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge"><img src="https://img.shields.io/badge/IPFS-Gateway-blue?logo=ipfs" alt="IPFS"></a>
-  <a href="https://dweb.link/ipfs/bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge"><img src="https://img.shields.io/badge/DWeb-IPFS-blue" alt="DWeb"></a>
+  <a href="https://ipfs.io/ipfs/bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4"><img src="https://img.shields.io/badge/IPFS-Gateway-blue?logo=ipfs" alt="IPFS"></a>
+  <a href="https://b3ca46df0ceff8a786448cd755b79a9c.ipfscdn.io/ipfs/bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4"><img src="https://img.shields.io/badge/RISY's Gate-IPFS-blue?logo=ipfs" alt="RISY's Gate"></a>
+  <a href="https://dweb.link/ipfs/bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4"><img src="https://img.shields.io/badge/DWeb-IPFS-blue?logo=ipfs" alt="DWeb"></a>
+  <a href="https://bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4.ipfs.flk-ipfs.xyz"><img src="https://img.shields.io/badge/FLK-IPFS-blue?logo=ipfs" alt="FLK-IPFS"></a>
 </p>
 
 <!-- Analytics & Trading -->
@@ -55,9 +57,10 @@ Risy DAO is a revolutionary decentralized autonomous organization (DAO) built on
 
 - [Centralized Mirror](https://risy.io)
 - [GitHub Mirror](https://risydao.github.io/Risy-DAO/)
-- [IPFS Mirror](https://ipfs.io/ipfs/bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge)
-- [DWeb IPFS Mirror](https://dweb.link/ipfs/bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge)
-- [FLK-IPFS Mirror](https://bafybeibhq6qwgakj4lmcvgrknedys4w2beheru33byj2sat3x7il24k2ge.ipfs.flk-ipfs.xyz)
+- [IPFS Mirror](https://ipfs.io/ipfs/bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4)
+- [RISY's Gate IPFS Mirror](https://b3ca46df0ceff8a786448cd755b79a9c.ipfscdn.io/ipfs/bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4)
+- [DWeb IPFS Mirror](https://dweb.link/ipfs/bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4)
+- [FLK-IPFS Mirror](https://bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4.ipfs.flk-ipfs.xyz)
 
 ## Table of Contents
 
