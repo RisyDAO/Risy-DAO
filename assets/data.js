@@ -73,7 +73,7 @@ var data = {
   "en": {
     "config": {
       "whitepaperUrl": "Risy DAO Whitepaper.pdf",
-      "ctaUrl": "https://www.youtube.com/watch?v=Y6P0VWBvyYU&list=PLrj_08993xtq_wY802L-niQegyW_ATYYn",
+      "ctaUrl": "https://www.youtube.com/playlist?list=PLrj_08993xtq_wY802L-niQegyW_ATYYn",
       "switchToPolygonError": "Error switching to Polygon Mainnet. Please try again or add the network manually.",
       "addPolygonError": "Error adding Polygon Mainnet to your wallet. Please add it manually.",
       "wrongNetwork": "You are not on the Polygon network. Would you like to switch to Polygon?",
@@ -397,7 +397,7 @@ var data = {
   "tr": {
     "config": {
       "whitepaperUrl": "Risy DAO Teknik Raporu.pdf",
-      "ctaUrl": "https://www.youtube.com/watch?v=lpMi7kfKUVg&list=PLrj_08993xtpNEVPJ4HzL8Q5yTvUm_BC8",
+      "ctaUrl": "https://www.youtube.com/playlist?list=PLrj_08993xtpNEVPJ4HzL8Q5yTvUm_BC8",
       "switchToPolygonError": "Polygon Mainnet'e geçiş yapılırken hata oluştu. Lütfen tekrar deneyin veya ağı manuel olarak ekleyin.",
       "addPolygonError": "Polygon Mainnet cüzdanınıza eklenirken hata oluştu. Lütfen manuel olarak ekleyin.",
       "wrongNetwork": "Polygon ağında değilsiniz. Polygon'a geçmek ister misiniz?",
