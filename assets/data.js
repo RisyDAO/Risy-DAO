@@ -63,10 +63,10 @@ var data = {
       "mirrors": [
         { name: 'Centralized Mirror', url: 'https://risy.io' },
         { name: 'GitHub Mirror', url: 'https://risydao.github.io/Risy-DAO/' },
-        { name: 'IPFS Mirror', url: 'https://ipfs.io/ipfs/bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4' },
-        { name: "RISY's Gate IPFS Mirror", url: 'https://b3ca46df0ceff8a786448cd755b79a9c.ipfscdn.io/ipfs/bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4' },
-        { name: 'DWeb IPFS Mirror', url: 'https://dweb.link/ipfs/bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4' },
-        { name: 'FLK-IPFS Mirror', url: 'https://bafybeiawovond3juexscu54dj2vntlruoobn5on3ir6lmlclpiv532kqj4.ipfs.flk-ipfs.xyz' }
+        { name: 'IPFS Mirror', url: 'https://ipfs.io/ipfs/bafybeidmfyecpbodyjantwmkiye24am25ykct3qbx7yasd3fey5xpdhcsi' },
+        { name: "RISY's Gate IPFS Mirror", url: 'https://b3ca46df0ceff8a786448cd755b79a9c.ipfscdn.io/ipfs/bafybeidmfyecpbodyjantwmkiye24am25ykct3qbx7yasd3fey5xpdhcsi' },
+        { name: 'DWeb IPFS Mirror', url: 'https://dweb.link/ipfs/bafybeidmfyecpbodyjantwmkiye24am25ykct3qbx7yasd3fey5xpdhcsi' },
+        { name: 'FLK-IPFS Mirror', url: 'https://bafybeidmfyecpbodyjantwmkiye24am25ykct3qbx7yasd3fey5xpdhcsi.ipfs.flk-ipfs.xyz' }
       ]
     },
   },
