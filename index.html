@@ -54,7 +54,6 @@
     <script src="assets/lib/js/anime.min.js"></script>
     <script src="assets/lib/js/ethers-5_7_2.umd.min.js"></script>
     <script src="assets/lib/js/risy-connector.js"></script>
-    <script src="assets/lib/js/okx-swap-widget.js"></script>
     <script src="assets/data.js"></script>
     <script src="assets/script.js"></script>
 
@@ -372,16 +371,6 @@
                     </div>
                     <div class="lg:w-2/3">
                         <div class="grid grid-cols-1 gap-6">
-                            <!-- OKX Swap Widget -->
-                            <div x-show="typeof window.ethereum !== 'undefined' || typeof window.solana !== 'undefined'" class="bg-black p-4 rounded-xl shadow-2xl">
-                                <div x-ignore id="okx-swap-widget" class="w-full min-h-[400px] flex items-center justify-center">
-                                    <div class="text-center">
-                                        <i class="fas fa-spinner fa-spin fa-2x mb-4"></i>
-                                        <p data-translate="swapWidget.loading">Loading swap widget...</p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Profit Calculator -->
                             <div class="bg-gray-800 bg-opacity-50 p-4 rounded-xl shadow-2xl backdrop-filter backdrop-blur-sm">
                                 <h3 class="text-2xl font-light mb-6 text-center text-white" data-translate="profitCalculator.title">Profit Calculator</h3>
