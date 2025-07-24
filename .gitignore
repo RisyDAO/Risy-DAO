@@ -1,6 +1,4 @@
-/WEB3/dapps/temp
-
-# Environment files for security
+# Environment files
 .env
 .env.local
 .env.development
@@ -12,13 +10,7 @@
 *.env
 
 # Secrets and sensitive data
-secrets.json
-config/secrets.json
 *.key
 *.pem
 *.p12
 *.pfx
-
-# API keys and tokens
-api-keys.txt
-tokens.txt
