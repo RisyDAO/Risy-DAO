@@ -1,7 +1,4 @@
-nft_1000.html
-/cron
-
-# Environment files for security
+# Environment files
 .env
 .env.local
 .env.development
@@ -13,13 +10,7 @@ nft_1000.html
 *.env
 
 # Secrets and sensitive data
-secrets.json
-config/secrets.json
 *.key
 *.pem
 *.p12
 *.pfx
-
-# API keys and tokens
-api-keys.txt
-tokens.txt
