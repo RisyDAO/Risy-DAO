@@ -177,16 +177,16 @@ contract RisyDAO is RisyBase {
 
         super._update(from, to, amount);
 
-        if(from != rs.trigger && to != rs.trigger && _msgSender() != rs.trigger) {
-            trigger();
+        if(from != rs.trigger && to != rs.trigger) {
+            bytes memory callData = abi.encode(from, to, amount, _msgSender());
+            trigger(callData);
         }
     }
 
-    // Try to run rs.trigger.trigger(callData) if rs.trigger is not address(0)
-    function trigger() public {
+    function trigger(bytes memory callData) public {
         RisyDAOStorage storage rs = _getRisyDAOStorage();
         if (rs.trigger != address(0) && _msgSender() != rs.trigger) {
-            try ITrigger(rs.trigger).trigger() {} catch {}
+            try ITrigger(rs.trigger).trigger(callData) {} catch {}
         }
     }
 

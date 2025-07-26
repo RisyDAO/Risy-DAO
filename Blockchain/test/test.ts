@@ -400,6 +400,17 @@ describe("Risy DAO Advanced Features", function () {
   });
 
   describe("ERC20: Trigger Mechanism", function () {
+    it("should not block transfers even if trigger is set to revert next call", async function () {
+      // Set revertNext flag in trigger
+      const revertNextCalldata = ethers.AbiCoder.defaultAbiCoder().encode(["string"], ["revert_next"]);
+      await expect(instance.connect(user1).trigger(revertNextCalldata)).to.not.be.reverted;
+
+      // Transfer should succeed even if trigger reverts internally
+      await expect(instance.connect(user1).transfer(user2.address, 1n)).to.not.be.reverted;
+
+      // Now call the trigger directly via the TriggerMock contract, should revert
+      await expect(triggerMock.connect(user1).trigger("0x")).to.be.reverted;
+    });
     let triggerMock: TriggerMock;
 
     beforeEach(async function () {
@@ -410,9 +421,23 @@ describe("Risy DAO Advanced Features", function () {
       await instance.connect(owner).setTrigger(await triggerMock.getAddress());
     });
 
-    it("should call trigger on transfer", async function () {
-      await instance.connect(user1).transfer(user2.address, 1);
+    it("should call trigger on transfer and decode callData", async function () {
+      const amount = 1n;
+      await instance.connect(user1).transfer(user2.address, amount);
       expect(await triggerMock.called()).to.be.true;
+      expect(await triggerMock.lastFrom()).to.equal(user1.address);
+      expect(await triggerMock.lastTo()).to.equal(user2.address);
+      expect(await triggerMock.lastAmount()).to.equal(amount);
+      expect(await triggerMock.lastOperator()).to.equal(user1.address);
+    });
+
+    it("should allow calling trigger directly with empty calldata", async function () {
+      await expect(instance.connect(user1).trigger("0x")).to.not.be.reverted;
+      expect(await triggerMock.called()).to.be.true;
+      expect(await triggerMock.lastFrom()).to.equal("0x0000000000000000000000000000000000000000");
+      expect(await triggerMock.lastTo()).to.equal("0x0000000000000000000000000000000000000000");
+      expect(await triggerMock.lastAmount()).to.equal(0);
+      expect(await triggerMock.lastOperator()).to.equal("0x0000000000000000000000000000000000000000");
     });
 
     it("should allow owner to set trigger", async function () {
@@ -532,7 +557,7 @@ describe("Risy DAO Management Features", function () {
     it("should allow governance to call owner-only functions", async function () {
       const proposalDescription = "Set DAO Fee to 100";
       const encodedFunctionCall = risyDAO.interface.encodeFunctionData("setDAOFee", [100]);
-  
+
       const proposeTx = await risyDAOManager.connect(proposer).propose(
         [await risyDAO.getAddress()],
         [0],
@@ -540,28 +565,34 @@ describe("Risy DAO Management Features", function () {
         proposalDescription
       );
       const proposeReceipt = await proposeTx.wait();
-      const proposalId = proposeReceipt!.logs[0].args![0];
-  
+      let proposalId: bigint | undefined;
+      for (const log of proposeReceipt!.logs) {
+        if ("args" in log && log.args && typeof log.args[0] !== "undefined") {
+          proposalId = log.args[0] as bigint;
+          break;
+        }
+      }
+      if (proposalId === undefined) throw new Error("ProposalId not found in logs");
+
       // Move to active state
       await ethers.provider.send("evm_increaseTime", [VOTING_DELAY + 1]);
       await ethers.provider.send("evm_mine", []);
-  
+
       // Check proposal state
       expect(await risyDAOManager.state(proposalId)).to.equal(1); // Active
-  
+
       // Vote
       await risyDAOManager.connect(voter1).castVote(proposalId, 1); // 4B
       await risyDAOManager.connect(voter2).castVote(proposalId, 1); // 3B
       await risyDAOManager.connect(voter3).castVote(proposalId, 1); // 3B
       // Total votes: 10B Quorum: 1% of 1T = 10B (Barely passes)
-  
+
       // Move to end of voting period
       await ethers.provider.send("evm_increaseTime", [VOTING_PERIOD]);
       await ethers.provider.send("evm_mine", []);
-  
+
       expect(await risyDAOManager.state(proposalId)).to.equal(4); // Succeeded
-      // Execute
-      await risyDAOManager.execute(
+      await (risyDAOManager as any)["execute"](
         [await risyDAO.getAddress()],
         [0],
         [encodedFunctionCall],
@@ -585,12 +616,17 @@ describe("Risy DAO Management Features", function () {
         proposalDescription
       );
       const receipt = await tx.wait();
-      proposalId = receipt!.logs[0].args![0];
+      for (const log of receipt!.logs) {
+        if ("args" in log && log.args && typeof log.args[0] !== "undefined") {
+          proposalId = log.args[0] as bigint;
+          break;
+        }
+      }
     });
 
     it("should allow cancelling a proposal", async function () {
       const encodedFunctionCall = risyDAO.interface.encodeFunctionData("setDAOFee", [123]);
-      await risyDAOManager.connect(proposer).cancel(
+      await (risyDAOManager.connect(proposer) as any)["cancel"](
         [await risyDAO.getAddress()],
         [0],
         [encodedFunctionCall],
@@ -706,7 +742,12 @@ describe("Risy DAO Management Features", function () {
       "Test Proposal"
     );
     const receipt = await tx.wait();
-    return receipt!.logs[0].args![0];
+    for (const log of receipt!.logs) {
+      if ("args" in log && log.args && typeof log.args[0] !== "undefined") {
+        return log.args[0] as bigint;
+      }
+    }
+    throw new Error("ProposalId not found in logs");
   }
 });
 

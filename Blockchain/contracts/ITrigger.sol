@@ -4,5 +4,5 @@
 pragma solidity ^0.8.26;
 
 interface ITrigger {
-    function trigger() external;
+    function trigger(bytes calldata callData) external;
 }
