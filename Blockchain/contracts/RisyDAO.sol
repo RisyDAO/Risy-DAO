@@ -178,8 +178,7 @@ contract RisyDAO is RisyBase {
         super._update(from, to, amount);
 
         if(from != rs.trigger && to != rs.trigger) {
-            bytes memory callData = abi.encode(from, to, amount, _msgSender());
-            trigger(callData);
+            trigger(abi.encode(_msgSender(), from, to, amount));
         }
     }
 

@@ -2,6 +2,7 @@
 pragma solidity ^0.8.26;
 
 import "../ITrigger.sol";
+import "hardhat/console.sol";
 
 contract TriggerMock is ITrigger {
     bool public called;
@@ -29,7 +30,7 @@ contract TriggerMock is ITrigger {
         // Otherwise, set called to true and decode callData
         called = true;
         if (callData.length > 0) {
-            (lastFrom, lastTo, lastAmount, lastOperator) = abi.decode(callData, (address, address, uint256, address));
+            (lastOperator, lastFrom, lastTo, lastAmount) = abi.decode(callData, (address, address, address, uint256));
         }
     }
 }
