@@ -403,10 +403,15 @@ describe("Risy DAO Advanced Features", function () {
     it("should not block transfers even if trigger is set to revert next call", async function () {
       // Set revertNext flag in trigger
       const revertNextCalldata = ethers.AbiCoder.defaultAbiCoder().encode(["string"], ["revert_next"]);
+      // Revert next command do not make called true
       await expect(instance.connect(user1).trigger(revertNextCalldata)).to.not.be.reverted;
 
       // Transfer should succeed even if trigger reverts internally
       await expect(instance.connect(user1).transfer(user2.address, 1n)).to.not.be.reverted;
+
+      // Because revertNext caused the hook to revert, lastSignature remains unset (0x00000000) and called stays false
+      expect(await triggerMock.lastSignature()).to.equal("0x00000000");
+      expect(await triggerMock.called()).to.be.false;
 
       // Now call the trigger directly via the TriggerMock contract, should revert
       await expect(triggerMock.connect(user1).trigger("0x")).to.be.reverted;
@@ -423,8 +428,10 @@ describe("Risy DAO Advanced Features", function () {
 
     it("should call trigger on transfer and decode callData", async function () {
       const amount = 1n;
+      const transferSelector = instance.interface.getFunction("transfer").selector;
       await instance.connect(user1).transfer(user2.address, amount);
       expect(await triggerMock.called()).to.be.true;
+      expect(await triggerMock.lastSignature()).to.equal(transferSelector);
       expect(await triggerMock.lastFrom()).to.equal(user1.address);
       expect(await triggerMock.lastTo()).to.equal(user2.address);
       expect(await triggerMock.lastAmount()).to.equal(amount);
@@ -434,6 +441,7 @@ describe("Risy DAO Advanced Features", function () {
     it("should allow calling trigger directly with empty calldata", async function () {
       await expect(instance.connect(user1).trigger("0x")).to.not.be.reverted;
       expect(await triggerMock.called()).to.be.true;
+      expect(await triggerMock.lastSignature()).to.equal("0x00000000");
       expect(await triggerMock.lastFrom()).to.equal("0x0000000000000000000000000000000000000000");
       expect(await triggerMock.lastTo()).to.equal("0x0000000000000000000000000000000000000000");
       expect(await triggerMock.lastAmount()).to.equal(0);

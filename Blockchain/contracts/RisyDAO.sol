@@ -60,6 +60,10 @@ contract RisyDAO is RisyBase {
         }
     }
 
+    function _msgSignature() internal pure returns (bytes4) {
+        return msg.sig;
+    }
+
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
@@ -178,7 +182,7 @@ contract RisyDAO is RisyBase {
         super._update(from, to, amount);
 
         if(from != rs.trigger && to != rs.trigger) {
-            trigger(abi.encode(_msgSender(), from, to, amount));
+            trigger(abi.encode(_msgSignature(), _msgSender(), from, to, amount));
         }
     }
 
